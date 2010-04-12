@@ -1,2 +1,5 @@
 This is a small chunk of I2C protocol data.
 
+The master tries to talk to a slave device, but there is none on the bus,
+no there are no answers.
+
