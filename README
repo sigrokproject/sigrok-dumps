@@ -1,0 +1,13 @@
+-------------------------------------------------------------------------------
+README
+-------------------------------------------------------------------------------
+
+This repository contains a collection of logic analyzer example data,
+covering various protocols (e.g. I2C, SPI, USART, etc).
+
+
+Further information
+-------------------
+
+http://sigrok.org
+
