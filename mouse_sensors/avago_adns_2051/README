@@ -1,0 +1,7 @@
+This is a small chunk of communication on the SCLK and SDIO pins of the
+Avago ADNS-2051 optical mouse sensor.
+
+Datasheet:
+http://www.avagotech.com/docs/AV02-1364EN (PDF)
+http://www.avagotech.com/pages/en/navigation_interface_devices/navigation_sensors/led-based_sensors/adns-2051/
+
