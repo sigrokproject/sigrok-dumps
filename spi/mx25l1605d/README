@@ -1,0 +1,40 @@
+This is an example capture of a Macronix MX25L1605D (MX25L1605DPI-12G)
+SPI flash chip (16MBit == 2Mbyte; NOR flash) that is being written to.
+
+The SPI programmer hardware used is openbiosprog-spi, see
+
+  http://randomprojects.org/wiki/Openbiosprog-spi
+
+The software used for programming it is flashrom, see
+
+  http://flashrom.org/FT2232SPI_Programmer
+
+The command line used was
+
+  flashrom -p ft2232_spi:type=2232H,port=A -w filename
+
+where 'filename' is a 2MByte file filled with lots of consecutive "HelloWorld"
+ASCII character strings.
+
+The logic analyzer used for capturing is a Saleae Logic at a sample rate
+of 2MHz. The capture was done using sigrok (02/2011) via
+
+  sigrok-cli -d 0:samplerate=2MHz --time 5s -o foo
+
+The Saleae Logic probes were connected like this to the MX25L1605D chip:
+
+  Probe       SPI chip pin
+  ------------------------
+  1 (black)   CS#
+  2 (brown)   SO/SIO1 (a.k.a MISO)
+  3 (red)     SCLK
+  4 (orange)  SI/SIO0 (a.k.a MOSI)
+  5 (yellow)  WP#/ACC
+  6 (green)   HOLD#
+  GND         GND
+
+The capture is only partial, it contains 5 seconds of the write process
+(it does not contain the chip identification, chip erase, etc. which comes
+before the actual write parts; it also does not contain anything after those
+5 seconds, the flashrom command took quite a bit longer than 5 seconds).
+
