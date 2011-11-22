@@ -1,0 +1,38 @@
+-------------------------------------------------------------------------------
+TrekStor eBook Reader 3.0 I2C
+-------------------------------------------------------------------------------
+
+This is an example capture of the I2C traffic on a TrekStor eBook Reader 3.0
+EBR30-a (Weltbild + Hugendubel Edition) device.
+
+For details on the device see:
+
+  http://randomprojects.org/wiki/TrekStor_eBook_Reader_3.0_EBR30-a_(Weltbild_%2B_Hugendubel_Edition)
+
+There are three chips which are connected to the main CPU's SCL/SDA pins.
+So far, it's unknown which device is responsible for which I2C output.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used for capturing is a ChronoVu LA8 at a sample rate
+of 4MHz.
+
+The ChronoVu LA8 probes were connected to the I2C pins like this:
+
+  Probe       I2C pin
+  -------------------
+  1 (orange)  SCL
+  7 (yellow)  SDA
+  GND         GND
+
+
+Data
+----
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=4mhz --samples 8388608 \
+             -p '2=SCL,8=SDA' -o trekstor_ebr30_a_i2c_0x15.sr
+
