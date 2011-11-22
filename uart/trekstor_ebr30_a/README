@@ -1,0 +1,47 @@
+-------------------------------------------------------------------------------
+TrekStor eBook Reader 3.0 UART
+-------------------------------------------------------------------------------
+
+This is an example capture of the serial (UART) bootloader/firmware output on
+a TrekStor eBook Reader 3.0 EBR30-a (Weltbild + Hugendubel Edition).
+
+For details on the device see:
+
+  http://randomprojects.org/wiki/TrekStor_eBook_Reader_3.0_EBR30-a_(Weltbild_%2B_Hugendubel_Edition)
+
+The firmware sends the debug output at 115200 baud, with 8n1 settings.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used for capturing is a ChronoVu LA8 at a sample rate
+of 1MHz.
+
+The ChronoVu LA8 probes were connected to the EBR30-a device like this:
+
+  Probe       EBR30-a
+  -------------------
+  1 (orange)  TX
+  GND         GND
+
+
+Data
+----
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=1mhz --samples 8388608 \
+             -p '1-8,2=TX' --wait-trigger --triggers 2=1 \
+             -o trekstor_ebr30_a_uart.sr
+
+The capturing starts when the TX signal is high for the first time (it's low
+before the device is powered-on). We capture as many samples as fit into the
+8MByte buffer of the logic analyzer.
+
+The capture does not contain the complete bootloader/firmware output.
+
+For the full log see:
+
+  http://randomprojects.org/wiki/TrekStor_eBook_Reader_3.0_EBR30-a_%28Weltbild_%2B_Hugendubel_Edition%29#UART
+
