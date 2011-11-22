@@ -46,7 +46,7 @@ The sigrok command line used was:
   sigrok-cli -d 0:samplerate=25mhz --samples 8388608 \
              -p '1=CS#,2=MISO,3=SCLK,4=MOSI,5=WP#,6=HOLD#' \
              --wait-trigger --triggers 3=1 \
-             -o mx25l1605d_probe.sigrok
+             -o mx25l1605d_probe.sr
 
 The capturing starts when the SCLK signal is high for the first time
 (it's low per default). We capture as many samples as fit into the 8MByte
@@ -69,7 +69,7 @@ The sigrok command line used was:
 
   sigrok-cli -d 0:samplerate=25mhz --samples 8388608 \
              -p '1=CS#,2=MISO,3=SCLK,4=MOSI,5=WP#,6=HOLD#' \
-             -o mx25l1605d_write.sigrok
+             -o mx25l1605d_write.sr
 
 The capture is only partial, it contains a small part of the write process
 (it does not contain the chip identification, chip erase, etc. which comes
@@ -88,7 +88,7 @@ The sigrok command line used was:
 
   sigrok-cli -d 0:samplerate=25mhz --samples 8388608 \
              -p '1=CS#,2=MISO,3=SCLK,4=MOSI,5=WP#,6=HOLD#' \
-             -o mx25l1605d_read.sigrok
+             -o mx25l1605d_read.sr
 
 The capture only contains a small part of the read procedure. The data in
 the chip consists of consecutive "HelloWorld" ASCII strings.
@@ -105,7 +105,7 @@ The sigrok command line used was:
 
   sigrok-cli -d 0:samplerate=25mhz --samples 8388608 \
              -p '1=CS#,2=MISO,3=SCLK,4=MOSI,5=WP#,6=HOLD#' \
-             -o mx25l1605d_erase.sigrok
+             -o mx25l1605d_erase.sr
 
 The capture does not contain the full erase process, only a small part of it.
 
