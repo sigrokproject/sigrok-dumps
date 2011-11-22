@@ -1,0 +1,34 @@
+-------------------------------------------------------------------------------
+Epson 8564JE I2C RTC
+-------------------------------------------------------------------------------
+
+This an example capture of I2C traffic from/to an Epson 8564JE I2C RTC chip.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used for capturing was a ChronoVu LA8 at a sample rate
+of 1MHz. The logic analyzer probes were connected to the RTC chip like this:
+
+  Probe       RTC chip pin
+  ------------------------
+  0 (green)   SCL
+  6 (blue)    SDA
+  GND         GND
+
+
+Data
+----
+
+The device talking to the RTC was doing the following in an infinite loop:
+
+ - Set the RTC to a specific date/time (Nov 22, 2011 - 04:03:54, weekday = 2).
+
+ - Read back the current time from the RTC.
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=1mhz --samples 8388608 \
+             -p '1=SCL,7=SDA,2-6,8' -o rtc_epson_8564je.sr
+
