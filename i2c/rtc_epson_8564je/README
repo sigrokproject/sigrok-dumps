@@ -2,7 +2,8 @@
 Epson 8564JE I2C RTC
 -------------------------------------------------------------------------------
 
-This an example capture of I2C traffic from/to an Epson 8564JE I2C RTC chip.
+This an example capture of I2C traffic from/to an Epson 8564JE I2C RTC chip,
+which has a slave address of 0x51 (or 0xa2, if the read/write bit is included).
 
 
 Logic analyzer setup
@@ -14,7 +15,7 @@ of 1MHz. The logic analyzer probes were connected to the RTC chip like this:
   Probe       RTC chip pin
   ------------------------
   0 (green)   SCL
-  6 (blue)    SDA
+  1 (orange)  SDA
   GND         GND
 
 
@@ -27,8 +28,20 @@ The device talking to the RTC was doing the following in an infinite loop:
 
  - Read back the current time from the RTC.
 
+This is what the decoded data should look like:
+
+ - Setting the date/time:
+   S Wr:0xa2 A 0x02 A 0x54 A 0x03 A 0x04 A 0x22 A 0x02 A 0x11 A 0x11 A P
+
+ - Reading the current date/time:
+   S Wr:0xa2 A 0x02 A Sr Rd:0xa3 A 0x54 A 0x03 A 0x44 A 0x62 A 0x52 A
+   0x51 A 0x11 N P
+
+ - The abbrevations used above: S = Start, Wr = Write, A = ACK, P = Stop,
+   Sr = Repeated start, Rd = Read, N = NACK
+
 The sigrok command line used was:
 
   sigrok-cli -d 0:samplerate=1mhz --samples 8388608 \
-             -p '1=SCL,7=SDA,2-6,8' -o rtc_epson_8564je.sr
+             -p '1=SCL,2=SDA' -o rtc_epson_8564je.sr
 
