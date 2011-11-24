@@ -37,7 +37,7 @@ This is what the decoded data should look like:
    S Wr:0xa2 A 0x02 A Sr Rd:0xa3 A 0x54 A 0x03 A 0x44 A 0x62 A 0x52 A
    0x51 A 0x11 N P
 
- - The abbrevations used above: S = Start, Wr = Write, A = ACK, P = Stop,
+ - The abbreviations used above: S = Start, Wr = Write, A = ACK, P = Stop,
    Sr = Repeated start, Rd = Read, N = NACK
 
 The sigrok command line used was:
