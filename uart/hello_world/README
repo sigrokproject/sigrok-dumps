@@ -1,0 +1,32 @@
+-------------------------------------------------------------------------------
+Hello World UART output using various options
+-------------------------------------------------------------------------------
+
+This is a collection of example UART communication (only in one direction).
+The repeatedly transmitted data is "Hello World!\r\n", using 8n1 settings.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used for capturing is a ChronoVu LA8 at a sample rate
+of 5MHz (for baud rates 921600 - 230400), 1MHz (for 115200 - 19200),
+and 625kHz (for baud rates 9600 - 110).
+
+The ChronoVu LA8 probes were connected to the UART like this:
+
+  Probe       UART
+  -------------------
+  0 (green)   TX
+  GND         GND
+
+
+Data
+----
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=<hz> --samples 8388608 -p '1=TX' -o <file>.sr
+
+We capture as many samples as fit into the 8MByte buffer of the logic analyzer.
+
