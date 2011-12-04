@@ -3,7 +3,8 @@ Hello World UART output using various options
 -------------------------------------------------------------------------------
 
 This is a collection of example UART communication (only in one direction).
-The repeatedly transmitted data is "Hello World!\r\n", using 8n1 settings.
+The repeatedly transmitted data is "Hello World!\r\n", using various settings,
+such as 8n1, 8o1, 8e1, 7o1, 7e1, etc.
 
 The hardware sending the data is an Olimex STM32-H103 eval kit with an
 ST STM32 (ARM Cortex-M3) microcontroller. The firmware used is based on a
