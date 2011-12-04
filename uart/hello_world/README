@@ -5,6 +5,15 @@ Hello World UART output using various options
 This is a collection of example UART communication (only in one direction).
 The repeatedly transmitted data is "Hello World!\r\n", using 8n1 settings.
 
+The hardware sending the data is an Olimex STM32-H103 eval kit with an
+ST STM32 (ARM Cortex-M3) microcontroller. The firmware used is based on a
+simple libopencm3 UART example. The USART1 (USART1.TX pin) is used.
+
+For details see:
+http://libopencm3.org
+http://libopencm3.git.sourceforge.net/git/gitweb.cgi?p=libopencm3/libopencm3;a=tree;f=examples/stm32/f1/stm32-h103/usart_printf
+http://olimex.com/dev/stm32-h103.html
+
 
 Logic analyzer setup
 --------------------
