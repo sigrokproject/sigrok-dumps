@@ -1,0 +1,87 @@
+-------------------------------------------------------------------------------
+Panasonic PAN1321 Bluetooth module
+-------------------------------------------------------------------------------
+
+This is an example capture of the serial (UART) init for the Panasonic
+PAN1321 Bluetooth module.
+
+The firmware sends the init commands at 115200 baud, with 8n1 settings.
+
+Details:
+https://www.panasonic.com/industrial/electronic-components/rf-modules/bluetooth/pan1311-1321.aspx
+https://www.panasonic.com/industrial/includes/pdf/Users_Manual_PAN1321_V22.xx_Rev3.1.pdf
+http://www.datasheets.org.uk/indexdl/Datasheet-098/DSA00161388.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used for capturing is a ChronoVu LA8 at a sample rate
+of 500kHz.
+
+The logic analyzer probes were connected like this:
+
+  Probe       PAN1321
+  -------------------
+  0 (green)   TX
+  1 (orange)  RX
+  GND         GND
+
+
+Successful initialization
+-------------------------
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=500khz --samples 8388608 \
+             -p '1=TX,2=RX' -o panasonic_pan1321_init.sr
+
+The data sent (S) to the PAN1321 module and received from it (R) was:
+
+R: ROK\r\n
+S: AT+JSEC=1,1,2,04,7777\r\n
+R: OK\r\n
+S: AT+JDIS=3\r\n
+R: OK\r\n
+S: AT+JRLS=1101,11,Serial port,01,000000\r\n
+R: OK\r\n
+S: AT+JSLN=21,MyCoolBluetoothDevice\r\n
+R: OK\r\n
+S: AT+JAAC=1\r\n
+R: OK\r\n
+S: AT+JSCR\r\n
+R: OK\r\n
+
+
+Successful initialization, triggered
+------------------------------------
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=500khz --samples 8388608 \
+             -p '1=TX,2=RX' --wait-trigger --triggers 2=1 \
+             -o panasonic_pan1321_init_triggered.sr
+
+The data sent/received is the same as in the above example. The difference
+is that we triggered on the first high RX state, which might lead to
+some garbage for the first few decoded characters. This is file intended as
+a test-case for this situation.
+
+
+Invalid command, error code
+---------------------------
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=500khz --samples 8388608 \
+             -p '1=TX,2=RX' -o panasonic_pan1321_error.sr
+
+R: ROK\r\n
+S: AT+JSEC=1,1,2,04,7777\r\n
+R: OK\r\n
+S: AT+JDIS=9\r\n
+R: ERR=-1\r\n
+
+As 9 is an invalid value for the "AT+JDIS=" command, the device returns
+an error code.
+
