@@ -3,13 +3,17 @@ DCF77
 -------------------------------------------------------------------------------
 
 This is a set of example captures of a DCF77 signal. The hardware used for
-receiving the signal is a Pollin DCF1 module (3.3V supply).
+receiving the signal is a Pollin DCF1 module (3.3V supply). The Pollin
+order number for the module is 810 054.
 
 The dumps were made January 9, 2012 in the evening/night.
+Only the dcf77_480s_pon_interrupted.sr dump was made January 10, 2012 in
+the evening.
 
 Details:
 http://en.wikipedia.org/wiki/DCF77
 http://www.pollin.de/shop/dt/NTQ5OTgxOTk-/Bausaetze_Module/Module/DCF_Empfangsmodul_DCF1.html
+http://www.pollin.de/shop/downloads/D810054D.PDF
 
 
 Logic analyzer setup
@@ -35,4 +39,11 @@ The sigrok command line used was:
              -p '1=PON,2=DATA' -o dcf77_1800s.sr
 
 The time and samplerate varies, depending on the file.
+
+The dcf77_480s_interrupted.sr file contains a dump where the power was removed
+from the module one or more times during the capture.
+
+The dcf77_480s_pon_interrupted.sr file contains a dump where the PON pin was
+set from low to high (PON = high means that the device is disabled) for a
+few seconds, then back to low.
 
