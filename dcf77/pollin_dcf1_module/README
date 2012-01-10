@@ -27,7 +27,6 @@ The logic analyzer probes were connected like this:
   ------------------------
   1 (black)   PON
   2 (brown)   DATA
-  GND         GND
 
 
 Data

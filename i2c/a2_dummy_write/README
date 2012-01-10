@@ -17,7 +17,6 @@ of 1MHz. The logic analyzer probes were connected to the I2C pins like this:
   ------------------------
   0 (green)   SCL
   1 (orange)  SDA
-  GND         GND
 
 
 Data

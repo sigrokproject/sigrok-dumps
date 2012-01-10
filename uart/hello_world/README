@@ -28,7 +28,6 @@ The ChronoVu LA8 probes were connected to the UART like this:
   Probe       UART
   -------------------
   0 (green)   TX
-  GND         GND
 
 
 Data

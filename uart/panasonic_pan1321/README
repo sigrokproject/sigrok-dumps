@@ -25,7 +25,6 @@ The logic analyzer probes were connected like this:
   -------------------
   0 (green)   TX
   1 (orange)  RX
-  GND         GND
 
 
 Successful initialization

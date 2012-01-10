@@ -31,7 +31,6 @@ The ChronoVu LA8 probes were connected to the MX25L1605D chip like this:
   3 (red)     SI/SIO0 (a.k.a MOSI)
   4 (gray)    WP#/ACC
   5 (brown)   HOLD#
-  GND         GND
 
 
 Probing
