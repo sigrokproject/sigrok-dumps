@@ -29,10 +29,10 @@ The sigrok command line used was:
              -p '2=SCL,8=SDA' -o trekstor_ebr30_a_i2c_0x15.sr
 
 
-trekstor_ebr30_a_i2c_30s.sr
----------------------------
+trekstor_ebr30_a_i2c_30s.sr and trekstor_ebr30_a_i2c_120s.sr
+------------------------------------------------------------
 
-This is a 30 second dump of the I2C traffic while the device was attached
+This is a 30s/120s dump of the I2C traffic while the device was attached
 to USB.
 
 The logic analyzer used for capturing was a Saleae Logic:
@@ -44,6 +44,8 @@ The logic analyzer used for capturing was a Saleae Logic:
 
 The sigrok command line used was:
 
-  sigrok-cli -d 0:samplerate=4mhz --time 120s
-             -p '4=SCL,6=SDA' -o trekstor_ebr30_a_i2c_30s.sr
+  sigrok-cli -d 0:samplerate=4mhz --time <time>
+             -p '4=SCL,6=SDA' -o <filename.sr>
+
+(<time> was 30s or 120s)
 
