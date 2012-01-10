@@ -2,11 +2,14 @@
 DCF77
 -------------------------------------------------------------------------------
 
-This is a set of example captures of a DCF77 signal.
+This is a set of example captures of a DCF77 signal. The hardware used for
+receiving the signal is a Pollin DCF1 module (3.3V supply).
+
+The dumps were made January 9, 2012 in the evening/night.
 
 Details:
 http://en.wikipedia.org/wiki/DCF77
-TODO
+http://www.pollin.de/shop/dt/NTQ5OTgxOTk-/Bausaetze_Module/Module/DCF_Empfangsmodul_DCF1.html
 
 
 Logic analyzer setup
