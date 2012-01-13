@@ -34,12 +34,10 @@ The logic analyzer used for capturing was a Saleae Logic:
   6 (green)   RST
 
 
-JTAG/OpenOCD setup
-------------------
+olimex_stm32-h103_flash_fancyblink.sr
+-------------------------------------
 
-The OpenOCD used was "0.5.0 (2011-08-09-08:45)" (Debian version 0.5.0-1).
-
-It was invoked like this:
+The OpenOCD used was "0.5.0 (2011-08-09-08:45)" (Debian version 0.5.0-1):
 
   openocd -f interface/flossjtag-noeeprom.cfg \
           -f board/olimex_stm32_h107.cfg \
@@ -49,12 +47,24 @@ It was invoked like this:
           -c "reset" \
           -c "shutdown"
 
-sigrok setup
-------------
-
 The sigrok command line used was:
 
   sigrok-cli -d 0:samplerate=4mhz --time 20s \
              -p '1=TRST,2=TDI,3=TMS,4=TCK,5=TDO,6=RST' \
              -o olimex_stm32-h103_flash_fancyblink.sr
+
+
+olimex_stm32-h103_init_10s.sr
+-----------------------------
+
+The following OpenOCD command was used:
+
+  openocd -f interface/flossjtag-noeeprom.cfg -f board/olimex_stm32_h107.cfg \
+          -c "init"
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=4mhz --time 10s \
+             -p '1=TRST,2=TDI,3=TMS,4=TCK,5=TDO,6=RST' -o <filename>
+
 
