@@ -82,3 +82,75 @@ The sigrok command line used was:
              -p '1=TRST,2=TDI,3=TMS,4=TCK,5=TDO,6=RST' -o <filename>
 
 
+Specific OpenOCD commands
+-------------------------
+
+For the following tests/files, OpenOCD was already running/connected, and the
+following commands were entered via the OpenOCD telnet interface:
+
+ - olimex_stm32-h103_cmd_reg_10s.sr:
+
+     > reg
+     ===== arm v7m registers
+     (0) r0 (/32): 0x40011000
+     (1) r1 (/32): 0x00000000
+     (2) r2 (/32): 0x00000040
+     (3) r3 (/32): 0x000B5CF4
+     (4) r4 (/32): 0x40022000
+     (5) r5 (/32): 0xFFD7EFB4
+     (6) r6 (/32): 0x3A30084E
+     (7) r7 (/32): 0xF5309C2C
+     (8) r8 (/32): 0xFFFF55D4
+     (9) r9 (/32): 0xDFFFCFFD
+     (10) r10 (/32): 0xF9CAF759
+     (11) r11 (/32): 0xC7092295
+     (12) r12 (/32): 0x44444444
+     (13) sp (/32): 0x20000800
+     (14) lr (/32): 0xFFFFFFFF
+     (15) pc (/32): 0x080001A4
+     (16) xPSR (/32): 0x01000000
+     (17) msp (/32): 0x20000800
+     (18) psp (/32): 0x0748A880
+     (19) primask (/1): 0x00
+     (20) basepri (/8): 0x00
+     (21) faultmask (/1): 0x00
+     (22) control (/2): 0x00
+     ===== cortex-m3 dwt registers
+     (23) dwt_ctrl (/32)
+     (24) dwt_cyccnt (/32)
+     (25) dwt_0_comp (/32)
+     (26) dwt_0_mask (/4)
+     (27) dwt_0_function (/32)
+     (28) dwt_1_comp (/32)
+     (29) dwt_1_mask (/4)
+     (30) dwt_1_function (/32)
+     (31) dwt_2_comp (/32)
+     (32) dwt_2_mask (/4)
+     (33) dwt_2_function (/32)
+     (34) dwt_3_comp (/32)
+     (35) dwt_3_mask (/4)
+     (36) dwt_3_function (/32)
+
+ - olimex_stm32-h103_cmd_reset_10s.sr:
+
+     > reset
+     JTAG tap: stm32.cpu tap/device found: 0x3ba00477 (mfg: 0x23b, part: 0xba00, ver: 0x3)
+     JTAG tap: stm32.bs tap/device found: 0x16410041 (mfg: 0x020, part: 0x6410, ver: 0x1)
+
+ - olimex_stm32-h103_cmd_stm32f1x_options_read_0_10s.sr:
+
+     > stm32f1x options_read 0
+     device id = 0x20036410
+     flash size = 128kbytes
+     Option Byte: 0x3fffffc
+     Readout Protection Off
+     Software Watchdog
+     Stop: No reset generated
+     Standby: No reset generated
+
+ - olimex_stm32-h103_cmd_stm32f1x_mdw_10s.sr:
+
+     > mdw 0x20000000 16
+     0x20000000: 02255100 044aa200 3b02f830 3b02f821 f01368e3 d0fb0f01 0f14f013 3a01d101 
+     0x20000020: be00d1f0 40022000 20000800 080001a5 080001ef 080001ed 080001ed 080001ed 
+
