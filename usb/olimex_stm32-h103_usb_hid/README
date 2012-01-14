@@ -1,0 +1,36 @@
+-------------------------------------------------------------------------------
+USB HID
+-------------------------------------------------------------------------------
+
+This is a set of example captures of USB/HID communication on an Olimex
+STM32-H103 eval board with an ST STM32 (ARM Cortex-M3) microcontroller.
+
+The firmware on the board is a simple libopencm3 example named 'usb_hid'
+which lets the mouse curser move a small amount to the left and then back
+to the right in an infinite loop.
+
+Details:
+http://olimex.com/dev/stm32-h103.html
+http://libopencm3.org
+http://libopencm3.git.sourceforge.net/git/gitweb.cgi?p=libopencm3/libopencm3;a=tree;f=examples/stm32/f1/stm32-h103/usb_hid
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used for capturing was a ChronoVu LA8:
+
+  Probe       STM32-H103
+  ----------------------
+  6 (blue)    DM
+  7 (yellow)  DP
+
+
+olimex_stm32-h103_usb_hid.sr
+----------------------------
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=100mhz --samples 8388608 \
+             -p '7=DM,8=DP' -o <filename>
+
