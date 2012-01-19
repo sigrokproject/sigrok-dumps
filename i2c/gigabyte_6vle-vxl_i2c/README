@@ -1,0 +1,39 @@
+-------------------------------------------------------------------------------
+GIGABYTE 6VLE-VXL I2C data
+-------------------------------------------------------------------------------
+
+This is an example capture of I2C traffic on a DDR SDRAM's EEPROM chip, for
+Serial Presence Detect (SPD) data. The 512MB DDR RAM module was inserted
+in a GIGABYTE 6VLE-VXL mainboard. After the capture was started, the board
+was powered-on, thus the captured data corresponds to the BIOS code which
+reads the RAM module's EEPROM contents (in order to properly initialize
+the RAM).
+
+Additionally, it turned out that on the same I2C bus, there is an additional
+I2C device, the ICS950908 "Programmable Timing Control Hub for P4" (a clock
+generation chip). The capture also contains the I2C-based configuration of
+that chip by the BIOS.
+
+Details:
+https://en.wikipedia.org/wiki/Serial_presence_detect
+http://pdf1.alldatasheet.com/datasheet-pdf/view/90645/ICST/ICS950908.html
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used for capturing was a Saleae Logic:
+
+  Probe       I2C pin
+  -------------------
+  1 (black)   SCL
+  4 (orange)  SDA
+
+
+Data
+----
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=2mhz --time 10s -o <filename>
+
