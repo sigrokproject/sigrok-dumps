@@ -1,0 +1,34 @@
+-------------------------------------------------------------------------------
+Melexis MLX90614 Infrared Thermometer
+-------------------------------------------------------------------------------
+
+This an a collection of example captures of I2C traffic from/to a
+Melexis MLX90614 Infrared Thermometer chip.
+
+Details:
+http://www.melexis.com/Hardware-and-Software-Tools/Demo-Boards/Thermometer-139.aspx
+http://www.melexis.com/Assets/IR-Thermometer-Manual-4815.aspx
+http://www.melexis.com/Infrared-Thermometer-Sensors/Infrared-Thermometer-Sensors/MLX90614-615.aspx
+http://www.melexis.com/Assets/IR-sensor-thermometer-MLX90614-Datasheet-5152.aspx
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used for capturing was a Saleae Logic:
+
+  Probe       I2C
+  ------------------------
+  6 (green)   SCL
+  8 (purple)  SDA
+
+
+Data
+----
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=1mhz --time <ms> -o <filename>
+
+The <ms> and <filename> parameters vary depending on the file.
+
