@@ -2,8 +2,15 @@
 README
 -------------------------------------------------------------------------------
 
-This repository contains a collection of logic analyzer example data,
-covering various protocols (e.g. I2C, SPI, USART, etc).
+This is a collection of logic analyzer example data, covering various
+protocols (e.g. I2C, SPI, USART, etc).
+
+
+License
+-------
+
+Unless noted otherwise, all dump files are hereby released into the
+public domain by their authors.
 
 
 Further information
