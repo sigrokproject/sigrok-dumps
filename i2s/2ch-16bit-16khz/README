@@ -8,7 +8,7 @@ shipping forecast through one channel, and the other channel disconnected.
 Logic analyzer setup
 --------------------
 
-The logic analyzer used for capturing was a EE Electronics ESLA201A at a 
+The logic analyzer used for capturing was a EE Electronics ESLA201A at a
 sample rate of 16MHz. The logic analyzer probes were connected to the I2S
 pins like this:
 
@@ -17,3 +17,4 @@ pins like this:
   0           Clock
   1           Frame Select
   2           Data
+
