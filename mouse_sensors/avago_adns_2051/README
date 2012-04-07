@@ -1,7 +1,31 @@
+-------------------------------------------------------------------------------
+Avago ADNS-2051
+-------------------------------------------------------------------------------
+
 This is a small chunk of communication on the SCLK and SDIO pins of the
 Avago ADNS-2051 optical mouse sensor.
 
-Datasheet:
+Details:
 http://www.avagotech.com/docs/AV02-1364EN (PDF)
 http://www.avagotech.com/pages/en/navigation_interface_devices/navigation_sensors/led-based_sensors/adns-2051/
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used for capturing was a Saleae Logic.
+
+The logic analyzer probes were connected like this:
+
+  Probe       Avago ADNS-2051
+  ---------------------------
+  TODO
+
+
+Data
+----
+
+The sigrok command line used was:
+
+  TODO
 
