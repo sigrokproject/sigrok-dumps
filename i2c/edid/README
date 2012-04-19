@@ -7,7 +7,7 @@ various displays, as the EDID data was sent across the I2C bus.
 
 To decode these, set up a protocol decoder stack like this:
 
-	i2c -> ddc -> edid
+	i2c -> i2cfilter -> edid
 
 Details:
 https://en.wikipedia.org/wiki/Extended_display_identification_data
