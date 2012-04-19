@@ -9,8 +9,13 @@ For details on the device see:
 
   http://randomprojects.org/wiki/TrekStor_eBook_Reader_3.0_EBR30-a_(Weltbild_%2B_Hugendubel_Edition)
 
-There are three chips which are connected to the main CPU's SCL/SDA pins.
-So far, it's unknown which device is responsible for which I2C output.
+There are three chips which are connected to the main CPU's SCL/SDA pins:
+
+ - Battery management chip: X-Powers AXP199
+
+ - RTC chip: Hec Semiconductor H8563S
+
+ - Digital Thermal Orientation Sensor (DTOS): MEMSIC MXC6225XU
 
 
 trekstor_ebr30_a_i2c_0x15.sr
