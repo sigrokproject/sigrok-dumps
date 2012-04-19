@@ -15,8 +15,7 @@ http://paparazzi.enac.fr/wiki/User/LisaM
 Logic analyser setup
 --------------------
 
-The capture was taken using the Openbench Logic Sniffer at a sample rate
-of 50MHz.
+The logic analyzer used was an Openbench Logic Sniffer (at 50MHz):
 
   Probe    Signal
   ---------------
@@ -27,11 +26,11 @@ of 50MHz.
   4        SPI_MOSI
   5        SPI_MISO
 
-The command line used was:
+The sigrok command line used was:
 
-sigrok-cli -d 0:samplerate=50mhz:rle=on \
-        -p 1=USB_DM,2=USB_DP,3=SPI_NCS,4=SPI_SCK,5=SPI_MOSI,6=SPI_MISO \
-        --time=50ms -o lisa_m_usb_spi.sr
+  sigrok-cli -d 0:samplerate=50mhz:rle=on \
+             -p 1=USB_DM,2=USB_DP,3=SPI_NCS,4=SPI_SCK,5=SPI_MOSI,6=SPI_MISO \
+             --time=50ms -o lisa_m_usb_spi.sr
 
 The OLS can't actually capture 50ms, so it just captures as much as it can
 buffer. No triggering was used.

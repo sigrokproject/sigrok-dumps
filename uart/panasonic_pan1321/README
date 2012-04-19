@@ -16,10 +16,7 @@ http://www.datasheets.org.uk/indexdl/Datasheet-098/DSA00161388.pdf
 Logic analyzer setup
 --------------------
 
-The logic analyzer used for capturing is a ChronoVu LA8 at a sample rate
-of 500kHz.
-
-The logic analyzer probes were connected like this:
+The logic analyzer used was a ChronoVu LA8 (at 500kHz):
 
   Probe       PAN1321
   -------------------
@@ -63,7 +60,7 @@ The sigrok command line used was:
 
 The data sent/received is the same as in the above example. The difference
 is that we triggered on the first high RX state, which might lead to
-some garbage for the first few decoded characters. This is file intended as
+some garbage for the first few decoded characters. This file is intended as
 a test-case for this situation.
 
 

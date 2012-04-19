@@ -19,14 +19,11 @@ http://olimex.com/dev/stm32-h103.html
 Logic analyzer setup
 --------------------
 
-The logic analyzer used for capturing is a ChronoVu LA8 at a sample rate
-of 5MHz (for baud rates 921600 - 230400), 1MHz (for 115200 - 19200),
-and 625kHz (for baud rates 9600 - 1200).
-
-The ChronoVu LA8 probes were connected to the UART like this:
+The logic analyzer used was a ChronoVu LA8 at a sample rate of 5MHz (for baud
+rates 921600 - 230400), 1MHz (115200 - 19200), and 625kHz (9600 - 1200):
 
   Probe       UART
-  -------------------
+  ----------------
   0 (green)   TX
 
 

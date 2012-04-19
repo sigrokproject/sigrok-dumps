@@ -15,10 +15,7 @@ The firmware sends the debug output at 115200 baud, with 8n1 settings.
 Logic analyzer setup
 --------------------
 
-The logic analyzer used for capturing is a ChronoVu LA8 at a sample rate
-of 1MHz.
-
-The ChronoVu LA8 probes were connected to the EBR30-a device like this:
+The logic analyzer used was a ChronoVu LA8 (at 1MHz):
 
   Probe       EBR30-a
   -------------------

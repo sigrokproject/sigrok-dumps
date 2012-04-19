@@ -9,8 +9,7 @@ which has a slave address of 0x51 (or 0xa2, if the read/write bit is included).
 Logic analyzer setup
 --------------------
 
-The logic analyzer used for capturing was a ChronoVu LA8 at a sample rate
-of 1MHz. The logic analyzer probes were connected to the RTC chip like this:
+The logic analyzer used was a ChronoVu LA8 (at 1MHz):
 
   Probe       RTC chip pin
   ------------------------

@@ -18,7 +18,7 @@ http://libopencm3.git.sourceforge.net/git/gitweb.cgi?p=libopencm3/libopencm3;a=t
 Logic analyzer setup
 --------------------
 
-The logic analyzer used for capturing was a ChronoVu LA8:
+The logic analyzer used was a ChronoVu LA8 (at 100MHz):
 
   Probe       STM32-H103
   ----------------------

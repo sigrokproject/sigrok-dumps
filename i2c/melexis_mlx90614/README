@@ -2,7 +2,7 @@
 Melexis MLX90614 Infrared Thermometer
 -------------------------------------------------------------------------------
 
-This an a collection of example captures of I2C traffic from/to a
+This is a collection of example captures of I2C traffic from/to a
 Melexis MLX90614 Infrared Thermometer chip.
 
 Details:
@@ -15,10 +15,10 @@ http://www.melexis.com/Assets/IR-sensor-thermometer-MLX90614-Datasheet-5152.aspx
 Logic analyzer setup
 --------------------
 
-The logic analyzer used for capturing was a Saleae Logic:
+The logic analyzer used was a Saleae Logic (at 1MHz):
 
-  Probe       I2C
-  ------------------------
+  Probe       I2C pin
+  -------------------
   6 (green)   SCL
   8 (purple)  SDA
 

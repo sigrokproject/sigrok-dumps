@@ -10,7 +10,8 @@ The JTAG adapter used was the FTDI FT2232H based Floss-JTAG (V0.2).
 The firmware flashed to the board is a simple LED-blinking libopencm3
 example named 'fancyblink'. The respective fancyblink.bin file is
 available as a reference in the same directory as this README.
-The file's MD5 sum is aa6980d55b9ced84fc0c64bfe9e5ff98.
+The file's MD5 sum is aa6980d55b9ced84fc0c64bfe9e5ff98. The binary is licensed
+under the GPL, version 3 or later (see URL below for the source code).
 
 Details:
 http://olimex.com/dev/stm32-h103.html
@@ -22,7 +23,7 @@ http://libopencm3.git.sourceforge.net/git/gitweb.cgi?p=libopencm3/libopencm3;a=t
 Logic analyzer setup
 --------------------
 
-The logic analyzer used for capturing was a Saleae Logic:
+The logic analyzer used was a Saleae Logic (at 4MHz):
 
   Probe       STM32-H103 JTAG connector
   -------------------------------------

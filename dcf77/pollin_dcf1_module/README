@@ -19,9 +19,7 @@ http://www.pollin.de/shop/downloads/D810054D.PDF
 Logic analyzer setup
 --------------------
 
-The logic analyzer used for capturing was a Saleae Logic.
-
-The logic analyzer probes were connected like this:
+The logic analyzer used was a Saleae Logic (at 1MHz):
 
   Probe       DCF77 module
   ------------------------

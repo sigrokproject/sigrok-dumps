@@ -13,9 +13,7 @@ http://www.avagotech.com/pages/en/navigation_interface_devices/navigation_sensor
 Logic analyzer setup
 --------------------
 
-The logic analyzer used for capturing was a Saleae Logic.
-
-The logic analyzer probes were connected like this:
+The logic analyzer used was a Saleae Logic (at 4MHz):
 
   Probe       Avago ADNS-2051
   ---------------------------

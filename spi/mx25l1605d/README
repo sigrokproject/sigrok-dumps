@@ -18,13 +18,10 @@ The software used for programming it is flashrom, see
 Logic analyzer setup
 --------------------
 
-The logic analyzer used for capturing is a ChronoVu LA8 at a sample rate
-of 25MHz.
+The logic analyzer used was a ChronoVu LA8 (at 25MHz):
 
-The ChronoVu LA8 probes were connected to the MX25L1605D chip like this:
-
-  Probe       SPI chip pin
-  ------------------------
+  Probe       MX25L1605D pin
+  --------------------------
   0 (green)   CS#
   1 (orange)  SO/SIO1 (a.k.a MISO)
   2 (white)   SCLK

@@ -2,18 +2,16 @@
 I2S Master 2-channel 16-bit 16-kHz
 -------------------------------------------------------------------------------
 
-This is an example of an I2S master with a playing a recording of the BBC
+This is an example of an I2S master playing a recording of the BBC
 shipping forecast through one channel, and the other channel disconnected.
 
 Logic analyzer setup
 --------------------
 
-The logic analyzer used for capturing was a EE Electronics ESLA201A at a
-sample rate of 16MHz. The logic analyzer probes were connected to the I2S
-pins like this:
+The logic analyzer used was an EE Electronics ESLA201A (at 16MHz):
 
-  Probe       Signal
-  ------------------------
+  Probe       I2S pin
+  -------------------
   0           Clock
   1           Frame Select
   2           Data

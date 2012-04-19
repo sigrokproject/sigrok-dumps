@@ -21,7 +21,7 @@ There are three chips which are connected to the main CPU's SCL/SDA pins:
 trekstor_ebr30_a_i2c_0x15.sr
 ----------------------------
 
-The logic analyzer used for capturing was a ChronoVu LA8:
+The logic analyzer used was a ChronoVu LA8 (at 4MHz):
 
   Probe       I2C pin
   -------------------
@@ -40,7 +40,7 @@ trekstor_ebr30_a_i2c_30s.sr and trekstor_ebr30_a_i2c_120s.sr
 This is a 30s/120s dump of the I2C traffic while the device was attached
 to USB.
 
-The logic analyzer used for capturing was a Saleae Logic:
+The logic analyzer used was a Saleae Logic (at 4MHz):
 
   Probe       I2C pin
   -------------------

@@ -17,10 +17,10 @@ https://en.wikipedia.org/wiki/Display_Data_Channel
 samsung_le46b620r3p.sr / samsung_syncmaster245b.sr
 --------------------------------------------------
 
-The logic analyzer used was a Saleae Logic at 500kHz:
+The logic analyzer used was a Saleae Logic (at 500kHz):
 
-  Probe       I2C pins
-  --------------------
+  Probe       I2C pin
+  -------------------
   1 (black)   SDA
   2 (brown)   SCL
 
@@ -28,10 +28,10 @@ The logic analyzer used was a Saleae Logic at 500kHz:
 samsung_syncmaster203b.sr
 -------------------------
 
-The logic analyzer used was a Saleae Logic at 1MHz:
+The logic analyzer used was a Saleae Logic (at 1MHz):
 
-  Probe       I2C pins
-  --------------------
+  Probe       I2C pin
+  -------------------
   1 (black)   SCL
   2 (brown)   SDA
 

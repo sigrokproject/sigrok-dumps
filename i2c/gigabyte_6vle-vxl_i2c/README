@@ -22,7 +22,7 @@ http://pdf1.alldatasheet.com/datasheet-pdf/view/90645/ICST/ICS950908.html
 Logic analyzer setup
 --------------------
 
-The logic analyzer used for capturing was a Saleae Logic:
+The logic analyzer used was a Saleae Logic (at 2MHz):
 
   Probe       I2C pin
   -------------------

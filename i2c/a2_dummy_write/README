@@ -3,15 +3,14 @@ Dummy I2C writes
 -------------------------------------------------------------------------------
 
 This an example capture of some dummy I2C traffic, where the master writes
-to a slave at address 0x51 (or 0x2a, if the read/write bit is included)
-in an infinite loop. The slave does not respond.
+to a slave (an RTC) at address 0x51 (or 0x2a, if the read/write bit is
+included) in an infinite loop. The slave does not respond.
 
 
 Logic analyzer setup
 --------------------
 
-The logic analyzer used for capturing was a ChronoVu LA8 at a sample rate
-of 1MHz. The logic analyzer probes were connected to the I2C pins like this:
+The logic analyzer used was a ChronoVu LA8 (at 1MHz):
 
   Probe       RTC chip pin
   ------------------------
