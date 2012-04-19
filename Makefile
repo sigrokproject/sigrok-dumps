@@ -18,12 +18,12 @@
 ## Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
 ##
 
-d=`date "+%Y%m%d"`
+VERSION = "0.1.0"
 
 all: tarball
 
 tarball:
 	@tar -c -v -z --exclude=.git --exclude=Makefile \
-		--exclude=sigrok-dumps-$(d).tar.gz \
-		-f sigrok-dumps-$(d).tar.gz *
+		--exclude=sigrok-dumps-$(VERSION).tar.gz \
+		-f sigrok-dumps-$(VERSION).tar.gz *
 
