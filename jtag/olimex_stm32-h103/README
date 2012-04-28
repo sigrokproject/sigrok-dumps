@@ -27,7 +27,7 @@ The logic analyzer used was a Saleae Logic (at 4MHz):
 
   Probe       STM32-H103 JTAG connector
   -------------------------------------
-  1 (black)   TRST
+  1 (black)   TRST#
   2 (brown)   TDI
   3 (red)     TMS
   4 (orange)  TCK
@@ -154,4 +154,20 @@ following commands were entered via the OpenOCD telnet interface:
      > mdw 0x20000000 16
      0x20000000: 02255100 044aa200 3b02f830 3b02f821 f01368e3 d0fb0f01 0f14f013 3a01d101 
      0x20000020: be00d1f0 40022000 20000800 080001a5 080001ef 080001ed 080001ed 080001ed 
+
+olimex_stm32-h103_idle.sr
+-------------------------
+
+The following OpenOCD command was used:
+
+  openocd -f interface/flossjtag-noeeprom.cfg -f board/olimex_stm32_h107.cfg \
+          -c "init" -c "reset halt"
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=4mhz --time 3s \
+             -p '1=TRST,2=TDI,3=TMS,4=TCK,5=TDO,6=RST' -o <filename>
+
+sigrok-cli was only started a few seconds after the OpenOCD init/connection
+to capture what happens when the user doesn't actively use OpenOCD commands.
 
