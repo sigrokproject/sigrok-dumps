@@ -1,0 +1,98 @@
+-------------------------------------------------------------------------------
+JTAG / Toshiba TMPA900
+-------------------------------------------------------------------------------
+
+This is a set of example captures of JTAG communication to a Glyn Tonga2
+eval board with a Toshiba TMPA900 (ARM9) microcontroller.
+
+The JTAG adapter used was the FTDI FT2232H based Floss-JTAG (V0.2).
+
+Details:
+http://randomprojects.org/wiki/Floss-JTAG
+http://randomprojects.org/wiki/Linux_on_the_Glyn_Tonga2_%28Toshiba_TMPA900,_ARM9%29#JTAG
+http://www.semicon.toshiba.co.jp/openb2b/websearch/productDetails.jsp?partKey=TMPA900CMXBG
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 4MHz):
+
+  Probe       JTAG connector
+  --------------------------
+  1 (black)   TRST#
+  2 (brown)   TDI
+  3 (red)     TMS
+  4 (orange)  TCK
+  5 (yellow)  TDO
+  6 (green)   RST
+  7 (blue)    RTCK
+
+
+glyn_tonga2_init.sr
+-------------------
+
+The following OpenOCD command was used:
+
+  openocd -f interface/flossjtag-noeeprom.cfg -f board/glyn_tonga2.cfg \
+          -c "adapter_khz 1000" -c "init"
+
+(this runs the OpenOCD "tonga2_init" function too, which sets up clocks/RAM)
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=4mhz --time 5s \
+             -p '1=TRST,2=TDI,3=TMS,4=TCK,5=TDO,6=RST,7=RTCK' -o <filename>
+
+
+glyn_tonga2_reset.sr
+--------------------
+
+The following OpenOCD command was used:
+
+  openocd -f interface/flossjtag-noeeprom.cfg -f board/glyn_tonga2.cfg \
+          -c "adapter_khz 1000" -c "init" -c "halt" -c "poll off" \
+          -c "sleep 4000" -c "reset" -c "halt"
+
+(only the last "reset" and "halt" are in the dump)
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=4mhz --time 5s \
+             -p '1=TRST,2=TDI,3=TMS,4=TCK,5=TDO,6=RST,7=RTCK' -o <filename>
+
+
+glyn_tonga2_idle.sr
+-------------------
+
+The following OpenOCD command was used:
+
+  openocd -f interface/flossjtag-noeeprom.cfg -f board/glyn_tonga2.cfg \
+          -c "adapter_khz 1000" -c "init"
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=4mhz --time 3s \
+             -p '1=TRST,2=TDI,3=TMS,4=TCK,5=TDO,6=RST,7=RTCK' -o <filename>
+
+sigrok-cli was only started a few seconds after the OpenOCD init/connection
+to capture what happens when the user doesn't actively use OpenOCD commands.
+
+
+glyn_tonga2_irscan_drscan.sr
+----------------------------
+
+The following OpenOCD command was used:
+
+  openocd -f interface/flossjtag-noeeprom.cfg -f board/glyn_tonga2.cfg \
+          -c "adapter_khz 1000" -c "init" -c "halt" -c "poll off" \
+          -c "sleep 4000" -c "irscan tmpa900.cpu 0xe" \
+          -c "drscan tmpa900.cpu 32 0"
+
+This gets the 32bit contents of the IDCODE register (0b1110): 0x07926031.
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=4mhz --time 5s \
+             -p '1=TRST,2=TDI,3=TMS,4=TCK,5=TDO,6=RST,7=RTCK' -o <filename>
+
