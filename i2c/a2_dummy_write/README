@@ -2,7 +2,7 @@
 Dummy I2C writes
 -------------------------------------------------------------------------------
 
-This an example capture of some dummy I2C traffic, where the master writes
+This is an example capture of some dummy I2C traffic, where the master writes
 to a slave (an RTC) at address 0x51 (or 0x2a, if the read/write bit is
 included) in an infinite loop. The slave does not respond.
 

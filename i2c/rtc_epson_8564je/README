@@ -1,9 +1,10 @@
 -------------------------------------------------------------------------------
-Epson 8564JE I2C RTC
+Epson RTC-8564 JE/NB
 -------------------------------------------------------------------------------
 
-This an example capture of I2C traffic from/to an Epson 8564JE I2C RTC chip,
-which has a slave address of 0x51 (or 0xa2, if the read/write bit is included).
+This is an example capture of I2C traffic from/to an Epson RTC-8564 JE/NB
+I2C RTC chip, which has a slave address of 0x51 (or 0xa2, if the read/write
+bit is included).
 
 
 Logic analyzer setup

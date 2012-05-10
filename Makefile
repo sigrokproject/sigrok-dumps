@@ -20,9 +20,10 @@
 
 VERSION = "0.1.0"
 
-all: tarball
+all:
+	@echo "Run 'make dist' to create a tarball."
 
-tarball:
+dist:
 	@tar -c -v -z --exclude=.git --exclude=Makefile \
 		--exclude=sigrok-dumps-$(VERSION).tar.gz \
 		-f sigrok-dumps-$(VERSION).tar.gz *
