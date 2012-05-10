@@ -1,0 +1,94 @@
+-------------------------------------------------------------------------------
+JTAG / NXP LPC2148
+-------------------------------------------------------------------------------
+
+This is a set of example captures of JTAG communication to a Keil MCB2140
+eval board with a NXP LPC2148 (ARM7TDMI) microcontroller.
+
+The JTAG adapter used was the FTDI FT2232H based Floss-JTAG (V0.2).
+
+Details:
+http://randomprojects.org/wiki/Floss-JTAG
+http://www.keil.com/mcb2140/
+http://www.nxp.com/products/microcontrollers/arm7/lpc2100/series/LPC2141_42_44_46_48.html
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 4MHz):
+
+  Probe       JTAG connector
+  --------------------------
+  1 (black)   TRST#
+  2 (brown)   TDI
+  3 (red)     TMS
+  4 (orange)  TCK
+  5 (yellow)  TDO
+  6 (green)   RST
+  7 (blue)    RTCK
+
+
+keil_mcb2140_init.sr
+--------------------
+
+The following OpenOCD command was used:
+
+  openocd -f interface/flossjtag-noeeprom.cfg -f board/keil_mcb2140.cfg \
+          -c "init"
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=4mhz --time 5s \
+             -p '1=TRST,2=TDI,3=TMS,4=TCK,5=TDO,6=RST,7=RTCK' -o <filename>
+
+
+keil_mcb2140_reset.sr
+---------------------
+
+The following OpenOCD command was used:
+
+  openocd -f interface/flossjtag-noeeprom.cfg -f board/keil_mcb2140.cfg \
+          -c "init" -c "poll off" -c "sleep 4000" -c "reset" -c "halt"
+
+(only the last "reset" and "halt" are in the dump)
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=4mhz --time 5s \
+             -p '1=TRST,2=TDI,3=TMS,4=TCK,5=TDO,6=RST,7=RTCK' -o <filename>
+
+
+keil_mcb2140_idle.sr
+--------------------
+
+The following OpenOCD command was used:
+
+  openocd -f interface/flossjtag-noeeprom.cfg -f board/keil_mcb2140.cfg \
+          -c "init"
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=4mhz --time 3s \
+             -p '1=TRST,2=TDI,3=TMS,4=TCK,5=TDO,6=RST,7=RTCK' -o <filename>
+
+sigrok-cli was only started a few seconds after the OpenOCD init/connection
+to capture what happens when the user doesn't actively use OpenOCD commands.
+
+
+keil_mcb2140_irscan_drscan.sr
+-----------------------------
+
+The following OpenOCD command was used:
+
+  openocd -f interface/flossjtag-noeeprom.cfg -f board/keil_mcb2140.cfg \
+          -c "init" -c "poll off" -c "sleep 4000" -c "irscan lpc2148.cpu 0xe" \
+          -c "drscan lpc2148.cpu 32 0"
+
+This gets the 32bit contents of the IDCODE register (0b1110): 0x4f1f0f0f.
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=4mhz --time 5s \
+             -p '1=TRST,2=TDI,3=TMS,4=TCK,5=TDO,6=RST,7=RTCK' -o <filename>
+
