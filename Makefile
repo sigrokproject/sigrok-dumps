@@ -23,8 +23,12 @@ VERSION = "0.1.0"
 all:
 	@echo "Run 'make dist' to create a tarball."
 
-dist:
+ChangeLog:
+	git log > ChangeLog || touch ChangeLog
+
+dist: ChangeLog
 	@tar -c -v -z --exclude=.git --exclude=Makefile \
 		--exclude=sigrok-dumps-$(VERSION).tar.gz \
 		-f sigrok-dumps-$(VERSION).tar.gz *
+	@rm -f ChangeLog
 
