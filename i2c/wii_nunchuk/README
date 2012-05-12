@@ -1,0 +1,280 @@
+-------------------------------------------------------------------------------
+Nintendo Wii Nunchuk controller
+-------------------------------------------------------------------------------
+
+This is a collection of example captures of I2C traffic from/to a Nintendo
+Wii Nunchuk game controller.
+
+A Dangerous Prototypes Buspirate (v4) was used as I2C master to talk to the
+Nunchuk controller.
+
+Details:
+https://en.wikipedia.org/wiki/Wiimote#Nunchuk
+http://wiibrew.org/wiki/Wiimote/Extension_Controllers/Nunchuck
+http://dangerousprototypes.com/docs/Bus_Pirate
+http://dangerousprototypes.com/2009/08/19/bus-pirate-wii-nunchuck-quick-guide/
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 1MHz):
+
+  Probe       I2C pin
+  -------------------
+  3 (red)     SCL
+  7 (blue)    SDA
+
+
+Buspirate setup
+---------------
+
+Connections:
+
+  Buspirate   Nunchuk I2C breakout adapter
+  ----------------------------------------
+  GND         - (GND)
+  +3.3        + (VCC)
+  MOSI        d (SDA)
+  CLK         c (SCL)
+
+The basic setup after connecting to the Buspirate on /dev/ttyACM0
+(115200, 8n1) via minicom was:
+
+  HiZ>m (mode)
+  (1)>4 (I2C)
+  (1)>2 (I2C mode: hardware)
+  (1)>1 (speed: 100kHz)
+  I2C>W (enable Buspirate power supplies)
+
+See below for further per-file I2C commands used.
+
+
+sigrok
+------
+
+The sigrok command line used was:
+
+  sigrok-cli -d fx2lafw:samplerate=1mhz --time <ms> \
+             -p '3=SCL,7=SDA' -o <filename>
+
+The <ms> and <filename> parameters vary depending on the file.
+
+
+wii_nunchuk_init.sr
+-------------------
+
+I2C>[0xa4 0x40 0x00]
+I2C START BIT
+WRITE: 0xA4 ACK
+WRITE: 0x40 ACK
+WRITE: 0x00 ACK
+I2C STOP BIT
+
+
+wii_nunchuk_set_reg.sr
+----------------------
+
+I2C>[0xa4 0x00]
+I2C START BIT
+WRITE: 0xA4 ACK
+WRITE: 0x00 ACK
+I2C STOP BIT
+
+
+wii_nunchuk_data_idle.sr
+------------------------
+
+No buttons were pressed, the analog stick was not moved.
+
+I2C>[0xa5 r:6]
+I2C START BIT
+WRITE: 0xA5 ACK
+READ: 0x74  ACK 0x7F  ACK 0x7B  ACK 0x20  ACK 0x7D  ACK 0xC7
+NACK
+
+
+wii_nunchuk_data_left.sr
+------------------------
+
+No buttons were pressed, the analog stick was moved to the left.
+
+I2C>[0xa5 r:6]
+I2C START BIT
+WRITE: 0xA5 ACK
+READ: 0x12  ACK 0x7C  ACK 0x48  ACK 0x2C  ACK 0x97  ACK 0x2F
+NACK
+I2C STOP BIT
+
+
+wii_nunchuk_data_right.sr
+-------------------------
+
+No buttons were pressed, the analog stick was moved to the right.
+
+I2C>[0xa5 r:6]
+I2C START BIT
+WRITE: 0xA5 ACK
+READ: 0xD6  ACK 0x61  ACK 0x4E  ACK 0x28  ACK 0x93  ACK 0x2B
+NACK
+I2C STOP BIT
+
+
+wii_nunchuk_data_top.sr
+-----------------------
+
+No buttons were pressed, the analog stick was moved to the top.
+
+I2C>[0xa5 r:6]
+I2C START BIT
+WRITE: 0xA5 ACK
+READ: 0x74  ACK 0x7E  ACK 0x8E  ACK 0x70  ACK 0x48  ACK 0x97
+NACK
+I2C STOP BIT
+
+
+wii_nunchuk_data_bottom.sr
+--------------------------
+
+No buttons were pressed, the analog stick was moved to the bottom.
+
+I2C>[0xa5 r:6]
+I2C START BIT
+WRITE: 0xA5 ACK
+READ: 0x75  ACK 0x19  ACK 0x43  ACK 0x2F  ACK 0x65  ACK 0xA3
+NACK
+I2C STOP BIT
+
+
+wii_nunchuk_button_c.sr
+-----------------------
+
+The C button was pressed.
+
+I2C>[0xa5 r:6]
+I2C START BIT
+WRITE: 0xA5 ACK
+READ: 0x75  ACK 0x7F  ACK 0x70  ACK 0x56  ACK 0x9F  ACK 0xED
+NACK
+I2C STOP BIT
+
+
+wii_nunchuk_button_z.sr
+-----------------------
+
+The Z button was pressed.
+
+I2C>[0xa5 r:6]
+I2C START BIT
+WRITE: 0xA5 ACK
+READ: 0x75  ACK 0x7F  ACK 0x80  ACK 0x78  ACK 0x64  ACK 0x6C
+NACK
+I2C STOP BIT
+
+
+wii_nunchuk_orientation_vertical_top.sr
+---------------------------------------
+
+The Nunchuk was in vertical ("normal") position.
+
+I2C>[0xa5 r:6]
+I2C START BIT
+WRITE: 0xA5 ACK
+READ: 0x75  ACK 0x7F  ACK 0x81  ACK 0x78  ACK 0x63  ACK 0x5F
+NACK
+I2C STOP BIT
+
+
+wii_nunchuk_orientation_vertical_bottom.sr
+------------------------------------------
+
+The Nunchuk was in vertical position, help upside-down.
+
+I2C>[0xa5 r:6]
+I2C START BIT
+WRITE: 0xA5 ACK
+READ: 0x75  ACK 0x7F  ACK 0x71  ACK 0x83  ACK 0x5D  ACK 0xD3
+NACK
+I2C STOP BIT
+
+
+wii_nunchuk_orientation_horizontal_left.sr
+------------------------------------------
+
+The Nunchuk was in horizontal position, pointing to the left.
+
+I2C>[0xa5 r:6]
+I2C START BIT
+WRITE: 0xA5 ACK
+READ: 0x75  ACK 0x7F  ACK 0x25  ACK 0x7E  ACK 0x7B  ACK 0xEB
+NACK
+I2C STOP BIT
+
+
+wii_nunchuk_orientation_horizontal_right.sr
+-------------------------------------------
+
+The Nunchuk was in horizontal position, pointing to the right.
+
+I2C>[0xa5 r:6]
+I2C START BIT
+WRITE: 0xA5 ACK
+READ: 0x75  ACK 0x7F  ACK 0x8F  ACK 0x7E  ACK 0x75  ACK 0x4B
+NACK
+I2C STOP BIT
+
+
+wii_nunchuk_init_reg_3xdata.sr
+------------------------------
+
+I2C>[0xa4 0x40 0x00]
+I2C START BIT
+WRITE: 0xA4 ACK
+WRITE: 0x40 ACK
+WRITE: 0x00 ACK
+I2C STOP BIT
+
+I2C>[0xa4 0x00]
+I2C START BIT
+WRITE: 0xA4 ACK
+WRITE: 0x00 ACK
+I2C STOP BIT
+
+I2C>[0xa5 r:6]
+I2C START BIT
+WRITE: 0xA5 ACK
+READ: 0x75  ACK 0x7F  ACK 0x77  ACK 0x4F  ACK 0x82  ACK 0x3B
+NACK
+I2C STOP BIT
+
+(for the above values, no button was pressed)
+
+I2C>[0xa4 0x00]
+I2C START BIT
+WRITE: 0xA4 ACK
+WRITE: 0x00 ACK
+I2C STOP BIT
+
+I2C>[0xa5 r:6]
+I2C START BIT
+WRITE: 0xA5 ACK
+READ: 0x75  ACK 0x7F  ACK 0x75  ACK 0x44  ACK 0x82  ACK 0x34
+NACK
+I2C STOP BIT
+
+(for the above values, the Z button was pressed)
+
+I2C>[0xa4 0x00]
+I2C START BIT
+WRITE: 0xA4 ACK
+WRITE: 0x00 ACK
+I2C STOP BIT
+I2C>[0xa5 r:6]
+I2C START BIT
+WRITE: 0xA5 ACK
+READ: 0x75  ACK 0x7F  ACK 0x77  ACK 0x43  ACK 0x83  ACK 0x5D
+NACK
+I2C STOP BIT
+
+(for the above values, the C button was pressed)
+
