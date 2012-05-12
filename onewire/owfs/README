@@ -1,0 +1,64 @@
+This directory contains waveforms generated with OWFS
+
+
+Tools:
+
+- Logic Analyzer: Tektronix TLA 613
+- Sowtware:
+  - Ubuntu 12.04 (Precise Pangolin)
+  - owfs 2.8p15
+- 1-Wire master: home made from:
+  - PL2303 (USB to UART)
+  - DS2480B (UART to 1-Wire)
+
+
+1-Wire MicroLan:
+
+Two thermometers were attached to the bus (only the data line was connected,
+power was not):
+- DS28EA00 (1-Wire Digital Thermometer with Sequence Detect and PIO)
+- DS18B20 (Programmable Resolution 1-Wire Digital Thermometer)
+
+The server was started as:
+$ owserver -d /dev/ttyUSB0
+
+
+Three dumps were created:
+
+1) "owdir.sr" (samplerate = 1MHz)
+A request to list devices connected to the bus was performed:
+$ owdir
+/28.9BCFC8000000
+/42.A8A603000000
+/bus.0
+/uncached
+/settings
+/system
+/statistics
+/structure
+/simultaneous
+/alarm
+
+2) "DS18B20.sr" (samplerate = 1MHz)
+A read temperathure request was performed for the specified device:
+$ owread /28.9BCFC8000000/temperature
+        25.5
+
+2) "DS28EA00.sr" (samplerate = 1MHz)
+A read temperathure request was performed for the specified device:
+$ owread /42.A8A603000000/temperature
+      26.875
+
+
+Conversion from TXT to sigrok dumps:
+
+The provided dumps were exported from Flextronix TLA 613 logic analizer as text
+files. A simple Python script was used to convert this dumps first into a
+binary file and then into a sigrok standard dump.
+
+
+Decoding 1-Wire dumps
+
+sigrok-cli -i owdir.sr -a onewire:owr=0
+sigrok-cli -i DS18B20.sr -a onewire:owr=0
+sigrok-cli -i DS28EA00.sr -a onewire:owr=0
