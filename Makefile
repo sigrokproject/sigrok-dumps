@@ -20,6 +20,8 @@
 
 VERSION = "0.1.0"
 
+DESTDIR ?= /usr/local/share/sigrok-dumps
+
 all:
 	@echo "Run 'make dist' to create a tarball."
 
@@ -31,4 +33,9 @@ dist: ChangeLog
 		--exclude=sigrok-dumps-$(VERSION).tar.gz \
 		-f sigrok-dumps-$(VERSION).tar.gz *
 	@rm -f ChangeLog
+
+install:
+	@mkdir -p $(DESTDIR)
+	@cp -r * $(DESTDIR)
+	@rm -f $(DESTDIR)/Makefile
 
