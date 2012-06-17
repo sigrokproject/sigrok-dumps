@@ -1,0 +1,250 @@
+-------------------------------------------------------------------------------
+USB HID (Full-speed)
+-------------------------------------------------------------------------------
+
+This is a set of example captures of USB/HID communication on the
+keyboard/mouse combo device Logitech MK220 (the keyboard is named "K220",
+the mouse is named "M150").
+
+Details:
+http://www.logitech.com/en-za/keyboards/keyboard-mice-combos/8411
+
+
+HID dump
+--------
+
+For a HOWTO, see:
+http://lists.en.qi-hardware.com/pipermail/discussion/2011-November/009206.html
+
+  Usage Page (Desktop),                   ; Generic desktop controls (01h)
+  Usage (Mouse),                          ; Mouse (02h, application collection)
+  Collection (Application),
+      Report ID (2),
+      Usage (Pointer),                    ; Pointer (01h, physical collection)
+      Collection (Physical),
+          Usage Page (Button),            ; Button (09h)
+          Usage Minimum (01h),
+          Usage Maximum (10h),
+          Logical Minimum (0),
+          Logical Maximum (1),
+          Report Count (16),
+          Report Size (1),
+          Input (Variable),
+          Usage Page (Desktop),           ; Generic desktop controls (01h)
+          Logical Minimum (-2047),
+          Logical Maximum (2047),
+          Report Size (12),
+          Report Count (2),
+          Usage (X),                      ; X (30h, dynamic value)
+          Usage (Y),                      ; Y (31h, dynamic value)
+          Input (Variable, Relative),
+          Logical Minimum (-127),
+          Logical Maximum (127),
+          Report Size (8),
+          Report Count (1),
+          Usage (Wheel),                  ; Wheel (38h, dynamic value)
+          Input (Variable, Relative),
+          Usage Page (Consumer),          ; Consumer (0Ch)
+          Usage (AC Pan),                 ; AC pan (0238h, linear control)
+          Report Count (1),
+          Input (Variable, Relative),
+      End Collection,
+  End Collection,
+  Usage Page (Consumer),                  ; Consumer (0Ch)
+  Usage (Consumer Control),               ; Consumer control (01h, application collection)
+  Collection (Application),
+      Report ID (3),
+      Report Size (16),
+      Report Count (2),
+      Logical Minimum (1),
+      Logical Maximum (652),
+      Usage Minimum (Consumer Control),   ; Consumer control (01h, application collection)
+      Usage Maximum (AC Send),            ; AC send (028Ch, selector)
+      Input,
+  End Collection,
+  Usage Page (Desktop),                   ; Generic desktop controls (01h)
+  Usage (Sys Control),                    ; System control (80h, application collection)
+  Collection (Application),
+      Report ID (4),
+      Report Size (2),
+      Report Count (1),
+      Logical Minimum (1),
+      Logical Maximum (3),
+      Usage (Sys Sleep),                  ; System sleep (82h, one-shot control)
+      Usage (Sys Power Down),             ; System power down (81h, one-shot control)
+      Usage (Sys Wake Up),                ; System wake up (83h, one-shot control)
+      Input (No Preferred, Null State),
+      Report Size (6),
+      Input (Constant, Variable),
+  End Collection,
+  Usage Page (FF00h),                     ; FF00h, vendor-defined
+  Usage (01h),
+  Collection (Application),
+      Report ID (16),
+      Report Size (8),
+      Report Count (6),
+      Logical Minimum (0),
+      Logical Maximum (255),
+      Usage (01h),
+      Input,
+      Usage (01h),
+      Output,
+  End Collection,
+  Usage Page (FF00h),                     ; FF00h, vendor-defined
+  Usage (02h),
+  Collection (Application),
+      Report ID (17),
+      Report Size (8),
+      Report Count (19),
+      Logical Minimum (0),
+      Logical Maximum (255),
+      Usage (02h),
+      Input,
+      Usage (02h),
+      Output,
+  End Collection,
+  Usage Page (Desktop),                   ; Generic desktop controls (01h)
+  Usage (Keyboard),                       ; Keyboard (06h, application collection)
+  Collection (Application),
+      Usage Page (Keyboard),              ; Keyboard/keypad (07h)
+      Usage Minimum (KB Leftcontrol),     ; Keyboard left control (E0h, dynamic value)
+      Usage Maximum (KB Right GUI),       ; Keyboard right GUI (E7h, dynamic value)
+      Logical Minimum (0),
+      Logical Maximum (1),
+      Report Size (1),
+      Report Count (8),
+      Input (Variable),
+      Input (Constant, Variable),
+      Report Count (5),
+      Usage Page (LED),                   ; LEDs (08h)
+      Usage Minimum (01h),
+      Usage Maximum (05h),
+      Output (Variable),
+      Report Count (1),
+      Report Size (3),
+      Output (Constant),
+      Report Count (6),
+      Report Size (8),
+      Logical Minimum (0),
+      Logical Maximum (164),
+      Usage Page (Keyboard),              ; Keyboard/keypad (07h)
+      Usage Minimum (None),               ; No event (00h, selector)
+      Usage Maximum (KB ExSel),           ; Keyboard ExSel (A4h, selector)
+      Input,
+  End Collection
+
+
+lsusb -v -d 046d:c52e
+---------------------
+
+ Bus 002 Device 019: ID 046d:c52e Logitech, Inc. 
+ Device Descriptor:
+   bLength                18
+   bDescriptorType         1
+   bcdUSB               2.00
+   bDeviceClass            0 (Defined at Interface level)
+   bDeviceSubClass         0 
+   bDeviceProtocol         0 
+   bMaxPacketSize0         8
+   idVendor           0x046d Logitech, Inc.
+   idProduct          0xc52e 
+   bcdDevice           23.00
+   iManufacturer           1 Logitech
+   iProduct                2 USB Receiver
+   iSerial                 0 
+   bNumConfigurations      1
+   Configuration Descriptor:
+     bLength                 9
+     bDescriptorType         2
+     wTotalLength           59
+     bNumInterfaces          2
+     bConfigurationValue     1
+     iConfiguration          4 RQR23.00_B0005
+     bmAttributes         0xa0
+       (Bus Powered)
+       Remote Wakeup
+     MaxPower               98mA
+     Interface Descriptor:
+       bLength                 9
+       bDescriptorType         4
+       bInterfaceNumber        0
+       bAlternateSetting       0
+       bNumEndpoints           1
+       bInterfaceClass         3 Human Interface Device
+       bInterfaceSubClass      1 Boot Interface Subclass
+       bInterfaceProtocol      1 Keyboard
+       iInterface              0 
+         HID Device Descriptor:
+           bLength                 9
+           bDescriptorType        33
+           bcdHID               1.11
+           bCountryCode            0 Not supported
+           bNumDescriptors         1
+           bDescriptorType        34 Report
+           wDescriptorLength      59
+          Report Descriptors: 
+            ** UNAVAILABLE **
+       Endpoint Descriptor:
+         bLength                 7
+         bDescriptorType         5
+         bEndpointAddress     0x81  EP 1 IN
+         bmAttributes            3
+           Transfer Type            Interrupt
+           Synch Type               None
+           Usage Type               Data
+         wMaxPacketSize     0x0008  1x 8 bytes
+         bInterval               8
+     Interface Descriptor:
+       bLength                 9
+       bDescriptorType         4
+       bInterfaceNumber        1
+       bAlternateSetting       0
+       bNumEndpoints           1
+       bInterfaceClass         3 Human Interface Device
+       bInterfaceSubClass      1 Boot Interface Subclass
+       bInterfaceProtocol      2 Mouse
+       iInterface              0 
+         HID Device Descriptor:
+           bLength                 9
+           bDescriptorType        33
+           bcdHID               1.11
+           bCountryCode            0 Not supported
+           bNumDescriptors         1
+           bDescriptorType        34 Report
+           wDescriptorLength     177
+          Report Descriptors: 
+            ** UNAVAILABLE **
+       Endpoint Descriptor:
+         bLength                 7
+         bDescriptorType         5
+         bEndpointAddress     0x82  EP 2 IN
+         bmAttributes            3
+           Transfer Type            Interrupt
+           Synch Type               None
+           Usage Type               Data
+         wMaxPacketSize     0x0014  1x 20 bytes
+         bInterval               2
+ Device Status:     0x0000
+   (Bus Powered)
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was an ARMFLY Mini-Logic (at 24MHz):
+
+  Probe       MK220
+  -----------------
+  0           DM
+  1           DP
+
+
+mk220.sr
+--------
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=24mhz --time 1s -o mk220.sr --probes 1,2
+
+(the mouse was moved while running this command)
+
