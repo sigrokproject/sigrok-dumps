@@ -1,0 +1,211 @@
+-------------------------------------------------------------------------------
+USB HID (low-speed signalling)
+-------------------------------------------------------------------------------
+
+This is a set of example captures of USB/HID communication on the
+keyboard/mouse combo device Riitek RT-MWK01.
+
+Details:
+http://www.riitek.com/product_Info.asp?id=56
+
+
+HID dump
+--------
+
+For a HOWTO, see:
+http://lists.en.qi-hardware.com/pipermail/discussion/2011-November/009206.html
+
+  Usage Page (Desktop),               ; Generic desktop controls (01h)
+  Usage (Mouse),                      ; Mouse (02h, application collection)
+  Collection (Application),
+      Usage (Pointer),                ; Pointer (01h, physical collection)
+      Collection (Physical),
+          Report ID (1),
+          Report Count (3),
+          Report Size (1),
+          Usage Page (Button),        ; Button (09h)
+          Usage Minimum (01h),
+          Usage Maximum (03h),
+          Logical Minimum (0),
+          Logical Maximum (1),
+          Input (Variable),
+          Report Count (1),
+          Report Size (5),
+          Input (Constant),
+          Report Size (8),
+          Report Count (2),
+          Usage Page (Desktop),       ; Generic desktop controls (01h)
+          Usage (X),                  ; X (30h, dynamic value)
+          Usage (Y),                  ; Y (31h, dynamic value)
+          Logical Minimum (-127),
+          Logical Maximum (127),
+          Input (Variable, Relative),
+      End Collection,
+      Collection (Physical),
+          Report Count (1),
+          Report Size (8),
+          Usage Page (Desktop),       ; Generic desktop controls (01h)
+          Usage (Wheel),              ; Wheel (38h, dynamic value)
+          Logical Minimum (-127),
+          Logical Maximum (127),
+          Input (Variable, Relative),
+      End Collection,
+  End Collection,
+  Usage Page (Consumer),              ; Consumer (0Ch)
+  Usage (Consumer Control),           ; Consumer control (01h, application collection)
+  Collection (Application),
+      Report ID (2),
+      Usage Minimum (00h),
+      Usage Maximum (AC Format),      ; AC format (023Ch, selector)
+      Logical Minimum (0),
+      Logical Maximum (572),
+      Report Count (1),
+      Report Size (16),
+      Input,
+  End Collection,
+  Usage Page (Desktop),               ; Generic desktop controls (01h)
+  Usage (Keyboard),                   ; Keyboard (06h, application collection)
+  Collection (Application),
+      Usage Page (Keyboard),          ; Keyboard/keypad (07h)
+      Usage Minimum (KB Leftcontrol), ; Keyboard left control (E0h, dynamic value)
+      Usage Maximum (KB Right GUI),   ; Keyboard right GUI (E7h, dynamic value)
+      Logical Minimum (0),
+      Logical Maximum (1),
+      Report Size (1),
+      Report Count (8),
+      Input (Variable),
+      Report Count (1),
+      Report Size (8),
+      Input (Constant),
+      Report Count (5),
+      Report Size (1),
+      Usage Page (LED),               ; LEDs (08h)
+      Usage Minimum (01h),
+      Usage Maximum (05h),
+      Output (Variable),
+      Report Count (1),
+      Report Size (3),
+      Output (Constant),
+      Report Count (6),
+      Report Size (8),
+      Logical Minimum (0),
+      Logical Maximum (-107),
+      Usage Page (Keyboard),          ; Keyboard/keypad (07h)
+      Usage Minimum (None),           ; No event (00h, selector)
+      Usage Maximum (KB LANG6),       ; Keyboard LANG6 (95h, selector)
+      Input,
+  End Collection
+
+
+lsusb -v -d 1997:0409
+---------------------
+
+  Bus 002 Device 093: ID 1997:0409
+  Device Descriptor:
+    bLength                18
+    bDescriptorType         1
+    bcdUSB               2.00
+    bDeviceClass            0 (Defined at Interface level)
+    bDeviceSubClass         0 
+    bDeviceProtocol         0 
+    bMaxPacketSize0         8
+    idVendor           0x1997 
+    idProduct          0x0409 
+    bcdDevice            2.00
+    iManufacturer           1 Riitek
+    iProduct                2 Micro Keyboard
+    iSerial                 0 
+    bNumConfigurations      1
+    Configuration Descriptor:
+      bLength                 9
+      bDescriptorType         2
+      wTotalLength           59
+      bNumInterfaces          2
+      bConfigurationValue     1
+      iConfiguration          0 
+      bmAttributes         0xa0
+        (Bus Powered)
+        Remote Wakeup
+      MaxPower              100mA
+      Interface Descriptor:
+        bLength                 9
+        bDescriptorType         4
+        bInterfaceNumber        0
+        bAlternateSetting       0
+        bNumEndpoints           1
+        bInterfaceClass         3 Human Interface Device
+        bInterfaceSubClass      1 Boot Interface Subclass
+        bInterfaceProtocol      1 Keyboard
+        iInterface              0 
+          HID Device Descriptor:
+            bLength                 9
+            bDescriptorType        33
+            bcdHID               1.11
+            bCountryCode            0 Not supported
+            bNumDescriptors         1
+            bDescriptorType        34 Report
+            wDescriptorLength      63
+           Report Descriptors: 
+             ** UNAVAILABLE **
+        Endpoint Descriptor:
+          bLength                 7
+          bDescriptorType         5
+          bEndpointAddress     0x81  EP 1 IN
+          bmAttributes            3
+            Transfer Type            Interrupt
+            Synch Type               None
+            Usage Type               Data
+          wMaxPacketSize     0x0008  1x 8 bytes
+          bInterval              10
+      Interface Descriptor:
+        bLength                 9
+        bDescriptorType         4
+        bInterfaceNumber        1
+        bAlternateSetting       0
+        bNumEndpoints           1
+        bInterfaceClass         3 Human Interface Device
+        bInterfaceSubClass      1 Boot Interface Subclass
+        bInterfaceProtocol      2 Mouse
+        iInterface              0 
+          HID Device Descriptor:
+            bLength                 9
+            bDescriptorType        33
+            bcdHID               1.11
+            bCountryCode            0 Not supported
+            bNumDescriptors         1
+            bDescriptorType        34 Report
+            wDescriptorLength      94
+           Report Descriptors: 
+             ** UNAVAILABLE **
+        Endpoint Descriptor:
+          bLength                 7
+          bDescriptorType         5
+          bEndpointAddress     0x82  EP 2 IN
+          bmAttributes            3
+            Transfer Type            Interrupt
+            Synch Type               None
+            Usage Type               Data
+          wMaxPacketSize     0x0008  1x 8 bytes
+          bInterval              10
+  Device Status:     0x0000
+    (Bus Powered)
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was an ARMFLY Mini-Logic (at 24MHz):
+
+  Probe       RT-MWK01
+  --------------------
+  0           DM
+  1           DP
+
+
+rt-mwk01.sr
+-----------
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=24mhz --time 1s -o rt-mwk01.sr --probes 1,2
+
