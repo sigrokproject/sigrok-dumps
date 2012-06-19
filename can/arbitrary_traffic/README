@@ -1,0 +1,54 @@
+-------------------------------------------------------------------------------
+Arbitrary CAN Bus Traffic
+-------------------------------------------------------------------------------
+
+These captures are the transmission of some content (in this case, the
+BSD license), over a CAN bus, at different speeds and in different
+modes.
+
+These captures are not capturing specific vehicle or industrial
+protocols.  While these captures were being taken, the CAN bus was
+effectively being used as a file-transfer mechanism.
+
+Details:
+http://en.wikipedia.org/wiki/CAN_bus
+http://en.wikipedia.org/wiki/ISO_11898
+http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=33422
+
+
+Logic Analyzer Setup
+--------------------
+
+The logic analyzer used was a Saleae Logic16.  Channel 0 was hooked up
+to a custom TI ISO1050 carrier board, operating passively.  The CAN
+bus was externally terminated by the bus participants, and all ACKs
+were handled by the participants.
+
+
+Data
+----
+
+These capture are in Saleae's Logic Software binary format, due to
+Sigrok not currently supporting the Logic16.
+
+- bsd_license_can_extended_62.5k.logicdata
+  The BSD license transmitted at 62.5 kb/s in extended mode.
+
+- bsd_license_can_extended_125k.logicdata
+  The BSD license transmitted at 125 kb/s in extended mode.
+
+- bsd_license_can_extended_250k.logicdata
+  The BSD license transmitted at 250 kb/s in extended mode.
+
+- bsd_license_can_extended_500k.logicdata
+  The BSD license transmitted at 500 kb/s in extended mode.
+
+- bsd_license_can_extended_1M.logicdata
+  The BSD license transmitted at 1 mb/s in extended mode.
+
+- bsd_license_can_standard_500k.logicdata
+  The BSD license transmitted at 500 kb/s in standard mode.
+
+Use this data, in
+any way you see fit to;
+please write a PD.
