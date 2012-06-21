@@ -209,3 +209,5 @@ The sigrok command line used was:
 
   sigrok-cli -d 0:samplerate=24mhz --time 1s -o rt-mwk01.sr --probes 1,2
 
+(the user pressed 'q' again and again; there was no mouse movement)
+
