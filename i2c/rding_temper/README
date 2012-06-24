@@ -1,0 +1,36 @@
+-------------------------------------------------------------------------------
+RDing TEMPer USB-based temperature sensor
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the I2C/USB/other traffic on an
+RDing TEMPer USB-based temperature sensor.
+
+The device consists of a Fairchild FM75 temperature sensor, an unknown
+I2C EEPROM, and an unknown "main chip" (20 pins) which does USB
+(low-speed, HID), among other things.
+
+Details:
+http://sigrok.org/wiki/RDing_TEMPer
+
+
+Data
+----
+
+The logic analyzer used was a CWAV USBee SX (at 12MHz):
+
+  Probe       RDing TEMPer
+  ------------------------
+  0 (black)   I2C SDA (FM75)
+  1 (brown)   I2C SCL (FM75)
+  2 (red)     OS (FM75)
+  3 (orange)  USB DM (main chip)
+  4 (yellow)  USB DP (main chip)
+  5 (green)   LED (a pin on the main chip)
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=12mhz --time <time> \
+             -p 1=SDA,2=SCL,3=OS,4=DM,5=DP,6=LED -o <file>
+
+(<time> and <file> vary)
+
