@@ -13,8 +13,8 @@ Details:
 http://sigrok.org/wiki/RDing_TEMPer
 
 
-Data
-----
+Most files
+----------
 
 The logic analyzer used was a CWAV USBee SX (at 12MHz):
 
@@ -32,5 +32,19 @@ The sigrok command line used was:
   sigrok-cli -d 0:samplerate=12mhz --time <time> \
              -p 1=SDA,2=SCL,3=OS,4=DM,5=DP,6=LED -o <file>
 
-(<time> and <file> vary)
+
+rding_temper_i2c_eeprom_and_sensor.sr
+-------------------------------------
+
+The logic analyzer used was a CWAV USBee SX (at 2MHz):
+
+  Probe       RDing TEMPer
+  ------------------------
+  0 (black)   I2C SDA (FM75)
+  1 (brown)   I2C SCL (FM75)
+  2 (red)     OS (FM75)
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=2mhz --time <time> -p 1=SDA,2=SCL,3=OS -o <file>
 
