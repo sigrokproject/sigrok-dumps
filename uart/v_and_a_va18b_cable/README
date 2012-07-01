@@ -1,0 +1,35 @@
+-------------------------------------------------------------------------------
+V&A VA18B multimeter cable, serial communication
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the serial (UART) communication and
+its timings on a USB cable for the V&A VA18B digital multimeter.
+
+The UART parameters are 2400 baud, with 8n1 settings.
+
+Details:
+TODO.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 16MHz):
+
+  Probe       USB cable PCB
+  -------------------------
+  1 (black)   IR LED
+  2 (brown)   TX (PL2303HX)
+  3 (red)     RX (PL2303HX)
+  4 (orange)  USB DM
+  5 (yellow)  UBS DP
+
+
+Data
+----
+
+The sigrok command line used was:
+
+  sigrok-cli -d fx2lafw:samplerate=16mhz -p '1=IR LED,2=TX,3=RX,4=DM,5=DP' \
+             -o v_and_a_va18b_cable_ir_serial_usb.sr --time 10s
+
