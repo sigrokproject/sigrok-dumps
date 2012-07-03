@@ -46,7 +46,7 @@ A request to list devices connected to the bus was performed:
  /alarm
 
 
-DS18B20.sr (samplerate = 1MHz)
+ds18b20.sr (samplerate = 1MHz)
 ------------------------------
 
 A read temperature request was performed for the specified device:
@@ -55,7 +55,7 @@ A read temperature request was performed for the specified device:
          25.5
 
 
-DS28EA00.sr (samplerate = 1MHz)
+ds28ea00.sr (samplerate = 1MHz)
 -------------------------------
 
 A read temperature request was performed for the specified device:
