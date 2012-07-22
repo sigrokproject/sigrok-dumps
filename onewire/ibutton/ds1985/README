@@ -1,0 +1,86 @@
+-------------------------------------------------------------------------------
+Dallas DS1985 16kbit Add-Only iButton
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the 1-Wire traffic from a
+Dallas DS1985 iButton device.
+
+This specific iButton device has a registration number of 0x05000000586ce20b
+(family code: 0x05, serial number: 0x000000586ce2, CRC: 0x0b).
+
+The device has the following markings:
+
+  Dallas
+  0050 Registered B1 
+  05  0B
+  000000586CE2
+  DS1985-F5
+
+The "1-Wire/iButton Drivers for Windows" 4.03 software was used with a
+Maxim DS9097U-E25 serial port 1-Wire interface adapter (which itself
+contains a Maxim DS2480B serial 1-Wire line driver chip).
+The DS9097U-E25 was attached to a PC using a USB-to-serial adapter.
+
+The following information can be seen in the Windows software for the
+respective dumps (when clicking on the respective tabs/entries):
+
+Polling:
+
+ - The Windows software was configured as follows:
+   - Device poll rate: 1 second
+   - 1-Wire search mode: Show normal devices
+
+Main memory:
+
+ - Contents: all-0xff (pages 0 - 63, each page 32 bytes in size)
+ - Start address: 0
+ - Bank size: 2048 bytes
+ - General-purpose/non-volatile/read-only/read-write/write-once: Y/Y/N/N/Y
+
+Write protect pages:
+
+ - Contents: ff ff ff ff ff ff ff ff
+ - Start address: 0
+ - Bank size: 8 bytes
+ - General-purpose/non-volatile/read-only/read-write/write-once: N/Y/N/N/Y
+
+Write protect redirection:
+
+ - Start address: 0x20
+ - Bank size: 8 bytes
+ - General-purpose/non-volatile/read-only/read-write/write-once: N/Y/N/N/Y
+
+Bitmap of used pages for file structure:
+
+ - Start address: 0x40
+ - Bank size: 8 bytes
+ - General-purpose/non-volatile/read-only/read-write/write-once: N/Y/N/N/Y
+
+Page redirection bytes:
+
+ - Contents: all-0xff (pages 0 - 3, each page 16 bytes in size)
+ - Start address: 0x100
+ - Bank size: 64 bytes
+ - General-purpose/non-volatile/read-only/read-write/write-once: N/Y/N/N/Y
+
+Details:
+https://en.wikipedia.org/wiki/1-Wire
+http://www.maxim-ic.com/datasheet/index.mvp/id/2827/t/al
+http://www.maxim-ic.com/app-notes/index.mvp/id/192
+http://www.maxim-ic.com/datasheet/index.mvp/id/2983/t/al
+http://www.maxim-ic.com/app-notes/index.mvp/id/192
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 8MHz):
+
+  Probe       DS2480B pin
+  -----------------------
+  1 (black)   1-W
+
+The sigrok command line used was:
+
+  sigrok-cli -d fx2lafw:samplerate=8mhz --time 5s -p 1=OWR -o <file>
+
