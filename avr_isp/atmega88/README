@@ -1,0 +1,41 @@
+-------------------------------------------------------------------------------
+AVR ISP / Atmel ATmega88
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the AVR in-system programming (ISP)
+protocol.
+
+The device used for ISP was a USBprog with AVRISP mkII compatible firmware.
+
+The target was a board with an Atmel ATmega88 chip.
+
+The PC software used for controlling the programmer was avrdude 5.11.1.
+
+Details:
+http://www.atmel.com/images/doc0943.pdf ("AVR910: In-System Programming")
+http://www.usbprog.org
+http://www.atmel.com/devices/atmega88.aspx
+http://www.nongnu.org/avrdude/
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 4MHz):
+
+  Probe       AVR ISP header
+  -------------------------
+  1 (black)   MOSI
+  2 (brown)   RST
+  3 (red)     SCK
+  4 (orange)  MISO
+
+
+Data
+----
+
+The sigrok command line used was:
+
+  sigrok-cli -d fx2lafw:samplerate=4mhz -p 1=MOSI,2=RST,3=SCK,4=MISO \
+             -o <file> --time <time>
+
