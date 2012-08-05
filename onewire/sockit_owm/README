@@ -1,4 +1,17 @@
+This directory contains waveforms created by accesing various onewire devices
+using the 'sockit_owm' Verilog master. The master is used in a demo hardware
+(Terasic DE1 development board, and a Quartus/Qsys project) and software (also
+available as a Nios II project) implementation available at the next GIT repo.
+
+https://github.com/jeras/sockit_owm
+
+
+This dumps were created using sigrok with the following command:
+
 sigrok-cli -d 0:samplerate=8000000 --time 4s -p 1=OWR -t OWR=0 -o onewire.sr
+
+
+This is the console output after running the demo:
 
 (0) 6700000003A6A842  25.9 Celsius
 (1) 3F000000C8CF9B28  25.8 Celsius
