@@ -1,0 +1,6 @@
+sigrok-cli -d 0:samplerate=8000000 --time 4s -p 1=OWR -t OWR=0 -o onewire.sr
+
+(0) 6700000003A6A842  25.9 Celsius
+(1) 3F000000C8CF9B28  25.8 Celsius
+(2) 44000801E51EC510  25.9 Celsius
+
