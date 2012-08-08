@@ -1,15 +1,32 @@
-This directory contains waveforms created by accesing various onewire devices
+-------------------------------------------------------------------------------
+Onewire dumps, sockit_owm master
+-------------------------------------------------------------------------------
+
+This directory contains waveforms created by accessing various onewire devices
 using the 'sockit_owm' Verilog master. The master is used in a demo hardware
 (Terasic DE1 development board, and a Quartus/Qsys project) and software (also
-available as a Nios II project) implementation available at the next GIT repo.
+available as a Nios II project) implementation.
 
+Details:
 https://github.com/jeras/sockit_owm
 
 
-This dumps were created using sigrok with the following command:
+Logic analyzer setup
+--------------------
 
-sigrok-cli -d 0:samplerate=8000000 --time 4s -p 1=OWR -t OWR=0 -o onewire.sr
+The logic analyzer used was a Saleae Logic (at 8MHz):
 
+  Probe       1-Wire pin
+  ----------------------
+  1 (black)   OWR
+
+
+Data
+----
+
+The sigrok command line used was:
+
+  sigrok-cli -d 0:samplerate=8000000 --time 4s -p 1=OWR -t OWR=0 -o onewire.sr
 
 This is the console output after running the demo:
 
