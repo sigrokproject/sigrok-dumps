@@ -1,0 +1,31 @@
+-------------------------------------------------------------------------------
+Tondaj SL-814 UART
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the serial (UART) data of a
+Tondaj SL-814 sound level meter.
+
+The communication happens at 9600 baud, 8e1.
+
+Details:
+TODO
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 1MHz):
+
+  Probe       UART
+  ----------------
+  1 (black)   RX
+  2 (brown)   TX
+
+
+Data
+----
+
+The sigrok command line used was:
+
+  sigrok-cli -d fx2lafw:samplerate=1mhz --time 3s -p 1=RX,2=TX -o <file>.sr
+
