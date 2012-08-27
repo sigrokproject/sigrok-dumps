@@ -34,6 +34,15 @@ The logic analyzer used was a Saleae Logic (at 4MHz):
 Data
 ----
 
+The following avrdude commands were captured:
+
+  avrdude -c avrisp2 -P usb -p m88 -vvv
+  avrdude -c avrisp2 -P usb -p m88 -e -vvv
+  avrdude -c avrisp2 -P usb -p m88 -U lfuse:r:lfuse.hex:i -vvv
+  avrdude -c avrisp2 -P usb -p m88 -U flash:r:empty.dd:r -vvv
+
+The respective avrdude output is available in avrdude_log*.txt and lfuse.hex.
+
 The sigrok command line used was:
 
   sigrok-cli -d fx2lafw:samplerate=4mhz -p 1=MOSI,2=RST,3=SCK,4=MISO \

@@ -1,0 +1,111 @@
+
+avrdude: Version 5.11.1, compiled on Oct 18 2011 at 21:41:15
+         Copyright (c) 2000-2005 Brian Dean, http://www.bdmicro.com/
+         Copyright (c) 2007-2009 Joerg Wunsch
+
+         System wide configuration file is "/etc/avrdude.conf"
+         User configuration file is "/root/.avrduderc"
+         User configuration file does not exist or is not a regular file, skipping
+
+         Using Port                    : usb
+         Using Programmer              : avrisp2
+avrdude: usbdev_open(): Found AVRISP mk2 Clone, serno: 0000A00128255
+avrdude: usbdev_open(): using read endpoint 0x82
+avrdude: stk500v2_getsync(): found AVRISP mkII programmer
+         AVR Part                      : ATMEGA88
+         Chip Erase delay              : 9000 us
+         PAGEL                         : PD7
+         BS2                           : PC2
+         RESET disposition             : dedicated
+         RETRY pulse                   : SCK
+         serial program mode           : yes
+         parallel program mode         : yes
+         Timeout                       : 200
+         StabDelay                     : 100
+         CmdexeDelay                   : 25
+         SyncLoops                     : 32
+         ByteDelay                     : 0
+         PollIndex                     : 3
+         PollValue                     : 0x53
+         Memory Detail                 :
+
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           eeprom        65    20     4    0 no        512    4      0  3600  3600 0xff 0xff
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           flash         65     6    64    0 yes      8192   64    128  4500  4500 0xff 0xff
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           lfuse          0     0     0    0 no          1    0      0  4500  4500 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           hfuse          0     0     0    0 no          1    0      0  4500  4500 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           efuse          0     0     0    0 no          1    0      0  4500  4500 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           lock           0     0     0    0 no          1    0      0  4500  4500 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           calibration    0     0     0    0 no          1    0      0     0     0 0x00 0x00
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           signature      0     0     0    0 no          3    0      0     0     0 0x00 0x00
+
+         Programmer Type : STK500V2
+         Description     : Atmel AVR ISP mkII
+         Programmer Model: AVRISP mkII
+         Hardware Version: 0
+         Firmware Version Master : 9.09
+         Vtarget         : 5.0 V
+         SCK period      : 10.37 us
+
+avrdude: AVR device initialized and ready to accept instructions
+
+Reading | ################################################## | 100% 0.01s
+
+avrdude: Device signature = 0x1e930a
+avrdude: safemode read 1, lfuse value: ff
+avrdude: safemode read 2, lfuse value: ff
+avrdude: safemode read 3, lfuse value: ff
+avrdude: safemode: lfuse reads as FF
+avrdude: safemode read 1, hfuse value: df
+avrdude: safemode read 2, hfuse value: df
+avrdude: safemode read 3, hfuse value: df
+avrdude: safemode: hfuse reads as DF
+avrdude: safemode read 1, efuse value: 1
+avrdude: safemode read 2, efuse value: 1
+avrdude: safemode read 3, efuse value: 1
+avrdude: safemode: efuse reads as 1
+avrdude: reading flash memory:
+
+Reading | ################################################## | 100% 3.11s
+
+avrdude: writing output file "empty.dd"
+
+avrdude: safemode read 1, lfuse value: ff
+avrdude: safemode read 2, lfuse value: ff
+avrdude: safemode read 3, lfuse value: ff
+avrdude: safemode: lfuse reads as FF
+avrdude: safemode read 1, hfuse value: df
+avrdude: safemode read 2, hfuse value: df
+avrdude: safemode read 3, hfuse value: df
+avrdude: safemode: hfuse reads as DF
+avrdude: safemode read 1, efuse value: 1
+avrdude: safemode read 2, efuse value: 1
+avrdude: safemode read 3, efuse value: 1
+avrdude: safemode: efuse reads as 1
+avrdude: safemode: Fuses OK
+
+avrdude done.  Thank you.
+
