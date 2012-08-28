@@ -1,0 +1,31 @@
+-------------------------------------------------------------------------------
+SD card / SPI-mode / XMORE 512MB
+-------------------------------------------------------------------------------
+
+This is a set of example captures of an XMORE 512MB SD card in SPI-mode.
+
+Details:
+TODO.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 4MHz):
+
+  Probe       SD card
+  -------------------
+  2 (brown)   CS#
+  3 (red)     MOSI
+  4 (orange)  CLK
+  5 (yellow)  MISO
+
+
+Data
+----
+
+The sigrok command line used was:
+
+  sigrok-cli -d fx2lafw:samplerate=4mhz --time <time> \
+             -p 2=CS#,3=MOSI,4=CLK,5=MISO -o <file>
+
