@@ -2,8 +2,18 @@
 README
 -------------------------------------------------------------------------------
 
-This is a collection of logic analyzer example data, covering various
+The sigrok project aims at creating a portable, cross-platform,
+Free/Libre/Open-Source signal analysis software suite that supports various
+device types (such as logic analyzers, oscilloscopes, multimeters, and more).
+
+sigrok-dumps is a collection of logic analyzer example data, covering various
 protocols (e.g. I2C, SPI, USART, etc).
+
+
+Status
+------
+
+sigrok-dumps is in a usable state and has had official tarball releases.
 
 
 License
@@ -19,8 +29,23 @@ Contributing dumps
 See http://sigrok.org/wiki/Example_dumps for details.
 
 
-Further information
--------------------
+Mailing lists
+-------------
 
-http://sigrok.org
+There are two mailing lists for sigrok/sigrok-dumps:
+
+ https://lists.sourceforge.net/lists/listinfo/sigrok-devel
+ https://lists.sourceforge.net/lists/listinfo/sigrok-commits
+
+
+IRC
+---
+
+You can find the sigrok developers in the #sigrok IRC channel on Freenode.
+
+
+Website
+-------
+
+ http://sigrok.org/wiki/Example_dumps
 
