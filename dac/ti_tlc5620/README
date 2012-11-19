@@ -1,0 +1,5 @@
+Texas Instruments TLC5620 8-bit quad DAC (http://www.ti.com/product/tlc5620)
+
+ti_tlc5620_full_range.sr		Skipping through full range, low to high.
+ti_tlc5620_low_mid_high.sr		Setting low, (roughly) middle, and high.
+
