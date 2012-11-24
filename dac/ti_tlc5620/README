@@ -1,5 +1,12 @@
 Texas Instruments TLC5620 8-bit quad DAC (http://www.ti.com/product/tlc5620)
 
+These captures were grabbed from a running Velleman PCSU1000 USB oscilloscope.
+This device reconfigures its hardware, including the TLC5620 that controls
+level triggering, after every frame transfer. This accounts for the regular
+traffic in these captures.
+
 ti_tlc5620_full_range.sr		Skipping through full range, low to high.
 ti_tlc5620_low_mid_high.sr		Setting low, (roughly) middle, and high.
+ti_tlc5620_running.sr			Running, no configuration changes.
+ti_tlc5620_one_change.sr		Running, one configuration change.
 
