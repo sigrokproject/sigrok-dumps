@@ -1,0 +1,41 @@
+-------------------------------------------------------------------------------
+5050RGBSet LED strip
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the signals on a controller for the
+5050RGBSet LED strip.
+
+The signals were grabbed on a 14-pin SOIC chip (no markings).
+The red/blue/green pins on the chip control the (R/G/B) LED color, the
+SDA/SCL pins are connected to an Atmel AT24C02N EEPROM, and the IR pin is
+directly connected to the wires leading to the IR remote receiver.
+
+Details:
+http://www.komerci.de/shop/product_info.php?products_id=691&cPath=33_52
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 4MHz):
+
+  Probe       AVR ISP header
+  -------------------------
+  1 (black)   Blue
+  2 (brown)   Green
+  3 (red)     Red
+  4 (orange)  SDA
+  5 (yellow)  SCL
+  6 (green)   IR
+
+
+Data
+----
+
+The data contains various states and button presses, as noted in the filenames.
+
+The sigrok command line used was:
+
+  sigrok-cli --driver fx2lafw -d samplerate=4mhz \
+             -p 0=Blue,1=Green,2=Red,3=SDA,4=SCL,5=IR --time 2s -o <file>
+
