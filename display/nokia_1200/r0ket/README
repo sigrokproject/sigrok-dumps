@@ -1,0 +1,41 @@
+-------------------------------------------------------------------------------
+Nokia 1200
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the protocol of a Nokia 1200 cell
+phone display.
+
+The display is a monochrome LCD with 96x68 pixels. It uses the
+Philips PCF8814 "65 x 96 pixels matrix LCD driver".
+
+The display is attached to the "r0ket" eval board / conference badge. It is
+controlled from the NXP LPC1343 ARM controller on that board.
+
+Details:
+http://r0ket.badge.events.ccc.de
+http://r0ket.badge.events.ccc.de/_media/r0ket.sch.png
+http://mylcd.sourceforge.net/files/pcf8814.pdf
+http://www.nxp.com/documents/data_sheet/LPC1311_13_42_43.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 16MHz):
+
+  Probe       LPC1343 chip
+  ------------------------
+  1 (black)   CS#  (PIO2_1  / DSR)
+  2 (brown)   SCK  (PIO2_11 / SCK0)
+  3 (red)     SDA  (PIO0_9  / MOSI0)
+  4 (orange)  RST# (PIO2_2  / DCD#)
+
+
+Data
+----
+
+The sigrok command line used was:
+
+  sigrok-cli --driver fx2lafw -d samplerate=16mhz --time <time>
+             -o <file> -p 0=CS#,1=SCK,2=SDA,3=RST#
+
