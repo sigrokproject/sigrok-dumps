@@ -8,7 +8,7 @@ shipping forecast through one channel, and the other channel disconnected.
 Logic analyzer setup
 --------------------
 
-The logic analyzer used was an EE Electronics ESLA201A (at 16MHz):
+The logic analyzer used was an EE Electronics ESLA201A (at 12MHz):
 
   Probe       I2S pin
   -------------------
