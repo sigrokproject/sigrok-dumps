@@ -13,12 +13,12 @@ Logic analyzer setup
 
 The logic analyzer used was Open Bench Logic Sniffer (at 10Mhz):
 
- Probe		MAX6921 Pin
+ Probe          MAX6921 Pin
  --------------------------
- 0              LOAD	
- 1		DATA
- 2		CLK
- 3		BLANK (PWM Brightness Control)
+ 0              LOAD    
+ 1              DATA
+ 2              CLK
+ 3              BLANK (PWM Brightness Control)
 
 Data
 ----
