@@ -2,23 +2,30 @@
 MAX6921 Shift Register
 -------------------------------------------------------------------------------
 
-This is a capture of data output to a MAX6921 high voltage shift register that
-was outputting data for a VFD clock.
+This is a capture of data output to a Maxim MAX6921 high voltage shift
+register that was outputting data for a VFD clock.
 
 The signals were grabbed on a 28-pin PLCC chip (MAX6921) which outputs 20-bits
 that is crafted as a design for VFD applications.
 
+Details:
+ - BeagleBoard.org vendor tree: https://github.com/beagleboard/kernel
+ - Beagle Nixie GitHub: https://github.com/mranostay/beagle-nixie/
+ - MAX6921 datasheet: http://datasheets.maximintegrated.com/en/ds/MAX6921-MAX6931.pdf
+
+
 Logic analyzer setup
 --------------------
 
-The logic analyzer used was Open Bench Logic Sniffer (at 10Mhz):
+The logic analyzer used was Open Bench Logic Sniffer (at 10MHz):
 
- Probe          MAX6921 Pin
+ Probe          MAX6921 pin
  --------------------------
- 0              LOAD    
+ 0              LOAD
  1              DATA
  2              CLK
  3              BLANK (PWM Brightness Control)
+
 
 Data
 ----
@@ -27,39 +34,31 @@ The data contain various values for the VFD being driven, as reference at the
 prototype Nixie Cape for the Beaglebone.
 
   Digit         Bit
- --------------------------
-  0             1<<12
-  1             1<<19
-  2             1<<13
-  3             1<<18
-  4             1<<14
-  5             1<<17
-  6             1<<16
-  7             1<<15
-  8             1<<15
-  9             1<<11
+  -----------------------
+  0             (1 << 12)
+  1             (1 << 19)
+  2             (1 << 13)
+  3             (1 << 18)
+  4             (1 << 14)
+  5             (1 << 17)
+  6             (1 << 16)
+  7             (1 << 15)
+  8             (1 << 15)
+  9             (1 << 11)
 
   Segment       Bit
- ---------------------------
-  SEG_A         1<<0
-  SEG_B         1<<1
-  SEG_C         1<<2
-  SEG_D         1<<3
-  SEG_E         1<<4
-  SEG_F         1<<5
-  SEG_G         1<<6
-  SEG_H         1<<7
-
-
-References:
------------
-
- * BeagleBoard.org Vendor Tree (https://github.com/beagleboard/kernel)
- * Beagle Nixie GitHub (https://github.com/mranostay/beagle-nixie/)
- * MAX6921 Datasheet (http://datasheets.maximintegrated.com/en/ds/MAX6921-MAX6931.pdf)
+  -----------------------
+  SEG_A         (1 << 0)
+  SEG_B         (1 << 1)
+  SEG_C         (1 << 2)
+  SEG_D         (1 << 3)
+  SEG_E         (1 << 4)
+  SEG_F         (1 << 5)
+  SEG_G         (1 << 6)
+  SEG_H         (1 << 7)
 
 The sigrok command line used was:
 
-  sigrok-cli --driver=ols:conn=/dev/ttyACM0 -d samplerate=10mhz  \
-             -samples=24576 -p 0=LOAD,1=DATA,2=CLK,3=BLANK -o max6921_data_10mhz.sr
+  sigrok-cli --driver=ols:conn=/dev/ttyACM0 -d samplerate=10mhz \
+             --samples=24576 -p 0=LOAD,1=DATA,2=CLK,3=BLANK -o <filename>
 
