@@ -1,0 +1,44 @@
+-------------------------------------------------------------------------------
+Dallas DS1307 RTC Clock
+-------------------------------------------------------------------------------
+
+This is a capture of data ouput from a Dallas DS1307 RTC module using:
+
+ - hwclock -f /dev/rtc1 --systohc && { while true; hwclock -f /dev/rtc1; done }
+
+Details:
+ - DS1307 datasheet: http://sparkfun.com/datasheets/Components/DS1307.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was Open Bench Logic Sniffer (at 20kHz):
+
+ Probe          DS1307 pin
+ -------------------------
+ 0              SCL
+ 1              SDA
+
+
+Data
+----
+
+This is what the decoded data should look like:
+
+ - Setting the date/time:
+   S Wr:0x68 A 0x16 A 0x35 A 0x18 A 0x01 A 0x10 A 0x03 A 0x13 A P
+
+ - Reading the current date/time:
+   S Wr:0x68 A 0x00 A Sr Rd:0x68 A 0x16 A 0x35 A 0x18 A 0x01 A 0x10 A
+   0x03 A 0x13 N P
+
+ - The abbreviations used above: S = Start, Wr = Write, A = ACK, P = Stop,
+   Sr = Repeated start, Rd = Read, N = NACK
+
+
+The sigrok command line used was:
+
+  sigrok-cli --driver=ols:conn=/dev/ttyACM0 -d samplerate=200khz \
+             --samples=24576 -p 0=SCL,1=SDA --triggers SDA=0 -o <filename>
+
