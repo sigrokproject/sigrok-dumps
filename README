@@ -7,7 +7,7 @@ Free/Libre/Open-Source signal analysis software suite that supports various
 device types (such as logic analyzers, oscilloscopes, multimeters, and more).
 
 sigrok-dumps is a collection of logic analyzer example data, covering various
-protocols (e.g. I2C, SPI, USART, etc).
+protocols (e.g. I2C, SPI, UART, etc).
 
 
 Status
@@ -16,17 +16,17 @@ Status
 sigrok-dumps is in a usable state and has had official tarball releases.
 
 
-License
--------
-
-Unless noted otherwise, all dump files are hereby released into the
-public domain by their authors.
-
-
 Contributing dumps
 ------------------
 
 See http://sigrok.org/wiki/Example_dumps for details.
+
+
+Copyright and license
+---------------------
+
+Unless noted otherwise, all dump files are hereby released into the
+public domain by their authors.
 
 
 Mailing lists
