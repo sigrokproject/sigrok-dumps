@@ -1,0 +1,69 @@
+-------------------------------------------------------------------------------
+SPI / Atmel ATMEGA32
+-------------------------------------------------------------------------------
+
+This is a set of SPI captures from an Atmel ATMEGA32 device. The main loop of
+the C program outputs an 8-bit value which is increased by one between
+subsequent transmissions:
+
+  unsigned char c = 0;
+  for (;;) {
+  	_delay_us(250);
+  	cbi(PORTB, DD_SS);
+  	SPDR = c;
+  	c++;
+  	while (!(SPSR & (1 << SPIF)));
+  	sbi(PORTB, DD_SS);
+  }
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 500kHz).
+
+  Probe     ATMEGA32 pins (PDIP-40)
+  ---------------------------------
+  0 (CS)    SS/PB4 (Pin 5)
+  1 (MOSI)  MOSI/PB5 (Pin 6)
+  2 (SCK)   SCK/PB7 (Pin 8)
+
+
+Probing
+-------
+
+The sigrok command line used was:
+
+  sigrok-cli --driver fx2lafw --samples=1m --config samplerate=500k -o <file>
+
+
+SPI setup
+---------
+
+There are 4 different SPI setups each captured in a separate capture file
+(see the ATMEGA datasheet for the meaning of the CPOL & CPHA flags).
+
+
+spi_atmega32_00.sr
+------------------
+
+SPCR = (1<<SPE)|(1<<MSTR)|(1<<SPR0)|(1<<SPR1);
+
+
+spi_atmega32_11.sr
+------------------
+
+SPCR = (1<<SPE)|(1<<MSTR)|(1<<SPR0)|(1<<SPR1) | (1<<CPOL) | (1<<CPHA);
+
+
+spi_atmega32_01.sr
+------------------
+
+SPCR = (1<<SPE)|(1<<MSTR)|(1<<SPR0)|(1<<SPR1) | (1<<CPHA);
+
+
+spi_atmega32_10.sr
+------------------
+
+SPCR = (1<<SPE)|(1<<MSTR)|(1<<SPR0)|(1<<SPR1) | (1<<CPOL);
+
