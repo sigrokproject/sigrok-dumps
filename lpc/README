@@ -1,0 +1,50 @@
+-------------------------------------------------------------------------------
+Arbitrary LPC (low pin count) traffic
+-------------------------------------------------------------------------------
+
+These captures are the identification and programming with random data of a LPC
+(low pin count) interface flash chip. The LPC bus is emulated with an ARM
+Cortex-M microcontroller, and does not run at the standard 33MHz clock. Although
+the clock contains significant jitter, the connected chips respond and
+communicate as expected.
+
+Details:
+http://en.wikipedia.org/wiki/Low_Pin_Count
+http://www.intel.com/design/chipsets/industry/25128901.pdf
+
+
+Hardware Setup
+--------------
+
+A VultureProg daughterboard was attached to a TI Stellaris Launcphad board. A
+SST49LF080A flash chip was installed in the PLCC socket. The core clock of the
+CPU was reduced from 80MHz to 16MHz to permit the logic analyzer to capture all
+details of the waveform.
+
+Hardware: http://github.com/mrnuke/vultureprog-hardware
+Firmware + SW: http://git.qiprog.org/
+
+The logic analyzer used was a MCU123 USBee AX Pro clone. It was connected to the
+"LPC probe" header of the VultureProg daughterboard. All captures were run at
+24MHz sampling rate.
+
+Hookup
+------
+P0: LAD0
+P1: LAD1
+P2: LAD2
+P3: LAD3
+P4: LCLK
+P5: #LFRAME
+P6: NC
+P7: NC
+
+Data
+----
+
+- lpc_vultureprog.sr
+  VultureProg BIOS chip programmer programming random data to a SST49LF080A.
+  The bus clock was intentionally reduced to allow capture with an FX2-based
+  logic analyzer.
+
+This data is released into the public domain.
