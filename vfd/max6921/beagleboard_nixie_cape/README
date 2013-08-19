@@ -59,6 +59,6 @@ prototype Nixie Cape for the Beaglebone.
 
 The sigrok command line used was:
 
-  sigrok-cli --driver=ols:conn=/dev/ttyACM0 -d samplerate=10mhz \
+  sigrok-cli --driver=ols:conn=/dev/ttyACM0 --config samplerate=10mhz \
              --samples=24576 -p 0=LOAD,1=DATA,2=CLK,3=BLANK -o <filename>
 
