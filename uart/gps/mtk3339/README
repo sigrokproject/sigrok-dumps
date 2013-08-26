@@ -1,0 +1,32 @@
+-------------------------------------------------------------------------------
+MTK3339 GPS NMEA UART output
+-------------------------------------------------------------------------------
+
+This is a dump of NMEA data from MTK3339 GPS Adafruit Breakout's UART output.
+
+For details see:
+http://www.adafruit.com/products/746
+http://www.adafruit.com/datasheets/GlobalTop-FGPMMOPA6H-Datasheet-V0A.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic anlyzer used was a Open Logic Sniffer at a sample rate of 200KHz for
+using a baud rate of 9600 8N1.
+  
+  Probe       UART
+  ----------------
+  0           TX
+
+
+Data
+----
+
+The sigrok command line used was:
+
+  sigrok-cli --driver=ols:conn=/dev/ttyACM0 --config rle=1:samplerate=<hz> \
+  	--samples=1000000 -p '0=TX' --triggers 'TX=0' -o <file>.sr
+  Device only sent 845282 samples.
+
+We capture as many samples as the RLE mode can handle.
