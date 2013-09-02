@@ -1,0 +1,46 @@
+-------------------------------------------------------------------------------
+PN532 NFC UART output
+-------------------------------------------------------------------------------
+
+This is a dump of several MiFare Classic cards + tokens.
+
+For details see:
+http://www.adafruit.com/products/364
+http://www.adafruit.com/products/365
+http://www.adafruit.com/datasheets/pn532ds.pdf
+http://www.nxp.com/documents/data_sheet/MF1S503x.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic anlyzer used was a Open Logic Sniffer at a sample rate of 1MHz for
+using a baud rate of 106000 8N1.
+
+Each item's UID is within the filename of the dump.
+
+  Probe       UART
+  ----------------
+  0           RX
+  1           TX
+
+
+Data
+----
+
+The sigrok command line used was:
+
+  sigrok-cli --driver=ols:conn=/dev/ttyACM0 --config rle=1:samplerate=<hz> \
+             --samples=1400000 -p '0=RX,1=TX' --triggers 'RX=0' -o <file>.sr
+
+The libnfc command line used was:
+
+   ./examples/nfc-poll
+   /stash/libnfc-sources/libnfc/examples/.libs/lt-nfc-poll uses libnfc libnfc-1.7.0-rc7-42-g8fe13ec
+   NFC reader: pn532_uart:/dev/ttyUSB0 opened
+   NFC device will poll during 30000 ms (20 pollings of 300 ms for 5 modulations)
+   ISO/IEC 14443A (106 kbps) target:
+       ATQA (SENS_RES): 00  04
+          UID (NFCID1): eb  95  b2  b1
+         SAK (SEL_RES): 08
+
