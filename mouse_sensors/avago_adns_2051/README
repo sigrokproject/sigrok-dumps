@@ -2,8 +2,8 @@
 Avago ADNS-2051
 -------------------------------------------------------------------------------
 
-This is a small chunk of communication on the SCLK and SDIO pins of the
-Avago ADNS-2051 optical mouse sensor.
+This is set of examples of the communication of the Avago ADNS-2051 optical
+mouse sensor.
 
 Details:
 http://www.avagotech.com/docs/AV02-1364EN (PDF)
@@ -13,11 +13,18 @@ http://www.avagotech.com/pages/en/navigation_interface_devices/navigation_sensor
 Logic analyzer setup
 --------------------
 
-The logic analyzer used was a Saleae Logic (at 4MHz):
+The logic analyzer used was a Saleae Logic (at 1MHz):
 
-  Probe       Avago ADNS-2051
-  ---------------------------
-  TODO
+  Probe       Avago ADNS-2051 pin
+  -------------------------------
+  0 (black)   SCLK
+  1 (brown)   XA
+  2 (red)     XB
+  3 (orange)  YB
+  4 (yellow)  YA
+  5 (green)   XY_LED
+  6 (blue)    PD
+  7 (purple)  SDIO
 
 
 Data
@@ -25,5 +32,7 @@ Data
 
 The sigrok command line used was:
 
-  TODO
+  sigrok-cli --driver fx2lafw --config samplerate=1mhz \
+             -p 0=SCLK,1=XA,2=XB,3=YB,4=YA,5=XY_LED,6=PD,7=SDIO \
+             --time <time> -o <file>
 
