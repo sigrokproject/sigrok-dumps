@@ -1,0 +1,29 @@
+-------------------------------------------------------------------------------
+Rock Band 3 Wireless Keyboard for Wii and WiiU
+-------------------------------------------------------------------------------
+
+This is set of examples of the MIDI communication from a Rock Band 3
+Wireless Keyboard for Wii and WiiU.
+
+Details:
+http://www.amazon.com/Rock-Band-Wireless-Keyboard-WiiU/dp/B003RS19XE
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 1MHz):
+
+  Probe       MIDI UART
+  ---------------------
+  0 (black)   RX
+
+
+Data
+----
+
+The sigrok command line used was:
+
+  sigrok-cli --driver fx2lafw --config samplerate=1mhz \
+             -p 0=RX --time <time> -o <file>
+
