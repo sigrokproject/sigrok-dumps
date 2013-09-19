@@ -1,0 +1,37 @@
+-------------------------------------------------------------------------------
+Agilent HDNS-2000
+-------------------------------------------------------------------------------
+
+This is set of examples of the communication of the Agilent HDNS-2000
+optical mouse sensor.
+
+Details:
+http://www.iammp.org/design/files/h2000.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 1MHz):
+
+  Probe       Avago ADNS-2051 pin
+  -------------------------------
+  0 (black)   PS2_C
+  1 (brown)   MODE/XA
+  2 (red)     RB/XB
+  3 (orange)  MB/YB
+  4 (yellow)  LB/YA
+  5 (green)   XY_LED
+  6 (blue)    NRESET
+  7 (purple)  PS2_D
+
+
+Data
+----
+
+The sigrok command line used was:
+
+  sigrok-cli --driver fx2lafw --config samplerate=1mhz \
+             -p 0=PS2_C,1='MODE/XA',2='RB/XB',3='MB/YB',4='LB/YA',\
+                5=XY_LED,6=NRESET,7=PS2_D --time <time> -o <file>
+
