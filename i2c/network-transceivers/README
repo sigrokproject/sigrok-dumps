@@ -1,0 +1,14 @@
+The captures in this directory were taken from various network modules while
+an I2C master dumped the available pages.
+
+To decode these, set up a protocol decoder stack like this:
+
+	i2c -> xfp
+
+Details:
+http://en.wikipedia.org/wiki/XFP_transceiver
+
+xfp.sr:
+  SCL = probe 0
+  SDA = probe 1
+
