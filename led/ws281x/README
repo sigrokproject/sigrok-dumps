@@ -1,0 +1,53 @@
+-------------------------------------------------------------------------------
+WS2812B LED strip
+-------------------------------------------------------------------------------
+
+This is a capture of data output to 4 LED universes of 256 RGB LEDs.
+Every universe has a frame size of 768 bytes and the dumps are clocked at
+roughly 100 frames per second.
+
+Details:
+ - Koen Kooi's evil vendor tree: https://github.com/koenkooi/kernel
+ - PRU WS281x firmware: https://github.com/mranostay/ws28xx-lighting-pru
+ - WS2812B datasheet: http://www.adafruit.com/datasheets/WS2812.pdf
+
+
+WS2812B protocol overview
+-------------------------
+
+All values have +/- tolerance of 150 nanoseconds so the PRU firmware uses
+slightly different timing value below to sync the high/low transitions.
+
+  Logic low  -> high 0.40 uS -> low 0.85 uS (1.25 uS)
+  Logic high -> high 0.80 uS -> low 0.45 uS (1.25 uS)
+  Latch      -> low 50 uS
+
+Each LED receives and the stores the first 24-bits of GRB ordered data then
+passes any more out the Data Output pin to the next LED in the chain.
+
+This functions as a "reverse" shift register and allows the strip length not to
+be defined in the protocol.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analzyer used was a Saleae Logic16 (at 5MHz).
+
+  Probe       WS2812B LED strip
+  -----------------------------
+  1 (black)   Universe #1
+  2 (brown)   Universe #2
+  3 (red)     Universe #3
+  4 (orange)  Universe #4
+
+
+Data
+----
+
+The data contains various RGB values and frames.
+
+The sigrok command line used was:
+
+  sigrok-cli --driver saleae-logic16 --samples 10M --config samplerate=5mhz \
+             -p 0=UNI1,1=UNI2,2=UNI3,3=UNI4 -o ws281x_4ch_5mhz.sr
