@@ -2,38 +2,39 @@
 WS2801 LED strip
 -------------------------------------------------------------------------------
 
-This is a capture of data output an LED universes of 50 RGB LEDS.
+This is a capture of data output to a LED universe of 50 RGB LEDs.
 
-Every universe at full capacity of  has a frame size of 768 bytes and can clock
+Every universe at full capacity has a frame size of 768 bytes and can clock
 out at roughly 100 frames per second.
 
 Details:
  - Koen Kooi's evil vendor tree: https://github.com/koenkooi/kernel
- - PRU WS2801 firmware: https://github.com/mranostay/ws28xx-lighting-pru
+ - PRU WS28xx firmware: https://github.com/mranostay/ws28xx-lighting-pru
  - WS2801 datasheet: http://www.adafruit.com/datasheets/WS2801.pdf
 
 
-WS2812B protocol overview
--------------------------
+WS2801 protocol overview
+------------------------
 
-Each LED receives and the stores the first 24-bits of RGB ordered data then
+Each LED receives and then stores the first 24-bits of RGB ordered data then
 passes any more out the Data Output pin to the next LED in the chain.
 
-There is no CS line but latching is done when CLK is held low for >500 uS
+There is no CS line but latching is done when CLK is held low for >500 uS.
 
-This functions as a "reverse" shift register and allows the strip length not to
-be defined in the protocol.
+This functions as a "reverse" shift register and allows the strip length not
+to be defined in the protocol.
 
 
 Logic analyzer setup
 --------------------
 
-The logic analzyer used was a Saleae Logic16 (at 5mhz)
+The logic analyzer used was a Saleae Logic16 (at 5MHz):
 
-  Probe       WS2812B LED strip
-  -------------------------
+  Probe       WS2801 LED strip
+  ----------------------------
   1 (black)   Universe #1
   2 (brown)   Clock
+
 
 Data
 ----
@@ -44,3 +45,4 @@ The sigrok command line used was:
 
   sigrok-cli --driver saleae-logic16 --samples 10M --config samplerate=5mhz \
              -p 0=UNI1,1=CLK -o ws2801_2ch_5mhz.sr
+
