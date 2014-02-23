@@ -1,0 +1,56 @@
+-------------------------------------------------------------------------------
+KC 85/4 Z80-based computer, OS main loop trace
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the Z80 CPU operation of the KC 85/4
+by VEB Mikroelektronik Wilhelm-Pieck Mühlhausen.
+
+Details: http://www.mpm-kc85.de/
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a SysClk LWLA 1034:
+
+  Probe       Signal
+  ------------------
+  CH1         CLK
+  CH2         /M1
+  CH3         /INT
+  CH4         MEI
+  CH5         /WAIT
+  CH6         IEI
+  CH7..CH22   A0..A15
+  CH23        /IORQ
+  CH24        /MREQ
+  CH25        /RD
+  CH26        /WR
+  CH27..CH34  D0..D7
+
+
+Data
+----
+
+Contains two samples, one captured asynchronously at 20 MHz, and another
+captured synchronously on the falling edge of the Z80 CPU clock.
+
+The sigrok command lines used were:
+
+  sigrok-cli -d sysclk-lwla \
+             -c samplerate=20M \
+             -p CH1=CLK,CH2=/M1,CH3=/INT,CH4=MEI,CH5=/WAIT,CH6=IEI,\
+CH7=A0,CH8=A1,CH9=A2,CH10=A3,CH11=A4,CH12=A5,CH13=A6,CH14=A7,\
+CH15=A8,CH16=A9,CH17=A10,CH18=A11,CH19=A12,CH20=A13,CH21=A14,CH22=A15,\
+CH23=/IORQ,CH24=/MREQ,CH25=/RD,CH26=/WR,\
+CH27=D0,CH28=D1,CH29=D2,CH30=D3,CH31=D4,CH32=D5,CH33=D6,CH34=D7 \
+             -o kc85-20mhz.sr --samples 5000
+
+  sigrok-cli -d sysclk-lwla \
+             -c samplerate=1M:external_clock=true:clock_edge=f \
+             -p CH1=CLK,CH2=/M1,CH3=/INT,CH4=MEI,CH5=/WAIT,CH6=IEI,\
+CH7=A0,CH8=A1,CH9=A2,CH10=A3,CH11=A4,CH12=A5,CH13=A6,CH14=A7,\
+CH15=A8,CH16=A9,CH17=A10,CH18=A11,CH19=A12,CH20=A13,CH21=A14,CH22=A15,\
+CH23=/IORQ,CH24=/MREQ,CH25=/RD,CH26=/WR,\
+CH27=D0,CH28=D1,CH29=D2,CH30=D3,CH31=D4,CH32=D5,CH33=D6,CH34=D7 \
+             -o kc85-cpuclk.sr --samples 5000
