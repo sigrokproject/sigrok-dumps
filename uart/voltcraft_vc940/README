@@ -1,0 +1,33 @@
+-------------------------------------------------------------------------------
+Voltcraft VC-940 multimeter
+-------------------------------------------------------------------------------
+
+This is a set of example captures of various communication channels in a
+Voltcraft VC-940 multimeter:
+
+ - Texas Instruments MSP430F149: UART
+ - IR transmitter diode: UART
+ - Cyrustek ES51966F: custom 3-wire protocol (SCLK, STATUS, EOC)
+ - 24LC515: I²C
+
+Details:
+http://sigrok.org/wiki/Voltcraft_VC-940
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic16 (at 500kHz / 1MHz / 4MHz):
+
+  Probe       Voltcraft VC-940
+  ----------------------------
+  0           M430F149 UTXD1
+  1           M430F149 URXD1
+  2           ES51966F STATUS
+  3           ES51966F SCLK
+  4           ES51966F EOC
+  5           TX1 (IR)
+  6           24LC515 SDA
+  7           24LC515 SCL
+  8           24LC515 WP
+
