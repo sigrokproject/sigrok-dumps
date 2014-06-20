@@ -1,0 +1,44 @@
+-------------------------------------------------------------------------------
+Vishay TOIM4232
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the initialization and communication
+of a Vishay TOIM4232 "SIR Endec for IrDA" chip.
+
+This chip is usually connected to a TDFU4101 (or similar) infrared transceiver
+module (SIR).
+
+In this setup, a microcontroller initializes the TOIM4232 (which defaults
+to a baud rate of 9600 on its UART, pins TD_232 and RD_232), then changes
+the baud rate to 57600, and finally sends out ten bytes at 57600 (0x11,
+0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xaa).
+
+The receiver side (another device) is also probed ("Receiver RX" pin).
+
+Details:
+http://www.vishay.com/product?docid=82546
+http://www.vishay.com/docs/82546/toim4232.pdf
+http://www.vishay.com/ir-transceivers/list/product-81288/
+http://www.vishay.com/docs/81288/tfdu4101.pdf
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic16 (at 2MHz):
+
+  Probe       Pin
+  ---------------------------
+  0           TOIM4232 RESET
+  1           TOIM4232 BR/D
+  2           TOIM4232 RD_232
+  3           TOIM4232 TD_232
+  4           TOIM4232 VCC_SD
+  5           TOIM4232 TD_LED
+  6           TOIM4232 RD_LED
+  7           TOIM4232 S1
+  8           TOIM4232 S2
+  9           TOIM4232 TD_IR
+  10          TOIM4232 RD_IR
+  11          (unused)
+  12          Receiver RX
+
