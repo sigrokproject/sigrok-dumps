@@ -1,0 +1,19 @@
+-------------------------------------------------------------------------------
+S/PDIF transmission 2-channel 16-bit 48kHz (bitrate: 3.072 Mbit/s)
+-------------------------------------------------------------------------------
+
+This is an example of an S/PDIF transmitter playing the same rectangular
+waveform on both channels.
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was an Open Logic Sniffer (OLS) (at 50MHz).
+
+The 50MHz is way above the 3.072MHz so we have some margin to distinguish
+"long" from "short" samples.
+
+  Probe       S/PDIF
+  ------------------
+  0           Data
+
