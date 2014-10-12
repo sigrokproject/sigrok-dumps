@@ -1,0 +1,23 @@
+-------------------------------------------------------------------------------
+Aosong AM2301
+-------------------------------------------------------------------------------
+
+This is set of example captures of the Aosong AM2301 temperature and
+humidity sensor single-wire protocol.
+
+The sensor was connected to an Arduino running the "DHTTester" sketch.
+
+Details:
+https://learn.adafruit.com/dht/
+https://github.com/adafruit/DHT-sensor-library
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at various samplerates):
+
+  Probe       AM2301
+  ------------------
+  5 (yellow)  SDA
+
