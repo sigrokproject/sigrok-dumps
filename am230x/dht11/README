@@ -1,0 +1,23 @@
+-------------------------------------------------------------------------------
+Aosong DHT11
+-------------------------------------------------------------------------------
+
+This is set of example captures of the Aosong DHT11 temperature and
+humidity sensor single-wire protocol.
+
+The sensor was connected to an Arduino running the "DHTTester" sketch.
+
+Details:
+https://learn.adafruit.com/dht/
+https://github.com/adafruit/DHT-sensor-library
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at various samplerates):
+
+  Probe       DHT11
+  -----------------
+  5 (yellow)  SDA
+
