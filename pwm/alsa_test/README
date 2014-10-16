@@ -1,0 +1,43 @@
+Hardware used
+=============
+* Saleae clone 
+* Olimex AT Mega32U4 "T" board
+  https://www.olimex.com/Products/Duino/AVR/AVR-T32U4/
+
+For "high speed" operation, the T32U4 must be jumpered to run on 5V!
+
+Software
+========
+* avr-gcc & companions
+* ALSA
+* LUFA
+  http://www.fourwalledcubicle.com/LUFA.php
+  in particular, the ClassDriver/AudioOutput demo
+  LUFA-140302/Demos/Device/ClassDriver/AudioOutput/
+
+Adapted the Makefile:
+
+14c14
+< MCU          = at90usb1287
+---
+> MCU          = atmega32u4
+16,17c16,17
+< BOARD        = USBKEY
+< F_CPU        = 8000000
+---
+> BOARD        = OLIMEXT32U4
+> F_CPU        = 16000000
+
+[make; avrdude ...]
+
+Left channel on OC3A (pin32) -> Olimex "D5" -> probe 4.
+
+Run "aplay -D front:CARD=Demo,DEV=0 /usr/share/sounds/alsa/test.wav"
+while the Saleae records for 8 seconds. The result is pwmtest.sr.
+Probe 5 was unterminated, see the crosstalk.
+
+You can test the PWM decoder via CLI and extract the raw values:
+sigrok-cli -i pwmtest.sr -P pwm:pwm=4 -B pwm=raw > PWM.raw
+
+Add e.g. some .wav header using sox:
+sox -t raw -e unsigned -b 8 -r 64000 PWM.raw PWM.wav
