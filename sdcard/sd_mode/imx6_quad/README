@@ -1,0 +1,30 @@
+-------------------------------------------------------------------------------
+SD card / SD mode / i.MX6
+-------------------------------------------------------------------------------
+
+This is a set of example captures of SD cards in "SD mode" (not SPI mode).
+
+The cards were used in an eval board based on the Freescale i.MX6 Quad.
+
+ - Working: Transcend 16GB micro SDHC
+ - Failing: SanDisk 2GB class 2 SD card
+
+Details:
+http://wandboard.org/
+http://boundarydevices.com/products/nitrogen6x-board-imx6-arm-cortex-a9-sbc/
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic16 (at 40MHz):
+
+  Probe       SD card
+  -------------------
+  0           CLK
+  1           DAT0
+  2           DAT1
+  3           DAT2
+  4           CMD
+  5           DAT3
+
