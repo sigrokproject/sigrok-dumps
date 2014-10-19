@@ -40,8 +40,8 @@ class SPI:
 
     def add(self, mosi, miso):
         for _ in range(8):
-            mo = mosi & 0x80
-            mi = miso & 0x80
+            mo = (mosi & 0x80) >> 7
+            mi = (miso & 0x80) >> 7
             mosi <<= 1
             miso <<= 1
             self._data.append([0, 0, mo, mi])
@@ -57,7 +57,7 @@ class SPI:
                 w.writerows(self._data)
 
             fn = '{}.sr'.format(self._filename)
-            I = 'csv:header=true:samplerate=1k'
+            I = 'csv:header=true:samplerate=1000'
             subprocess.check_call(['sigrok-cli', '-I', I, '-i', tf.name, '-o', fn])
 
 spi = SPI('nrf24l01-test-activate')
