@@ -187,3 +187,12 @@ for i in range(5):
     spi.add(i, 0x00)
 spi.CShigh()
 spi.write()
+
+spi = SPI('nrf24l01-test-incomplete-cmd')
+spi.add(0xff, 0xff) # some bytes from a command
+spi.add(0xff, 0xff) # that was captured incompletely
+spi.CShigh()
+spi.CSlow()
+spi.add(0xe1, 0x00) # FLUSH_TX
+spi.CShigh()
+spi.write()
