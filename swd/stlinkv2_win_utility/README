@@ -1,0 +1,44 @@
+-------------------------------------------------------------------------------
+SWD / ST-LINK/V2 / STM32F429ZIT6
+-------------------------------------------------------------------------------
+
+This is a set of example captures of SWD communication of an ST-LINK/V2 to
+an ST STM32F429ZIT6 (ARM Cortex-M4F) microcontroller.
+
+Details:
+http://www.st.com/web/catalog/tools/FM146/CL1984/SC724/SS1677/PF251168
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a USBee SX (at 8MHz):
+
+  Probe       SWD
+  ---------------
+  0 (black)   SWDIO
+  1 (brown)   SWCLK
+  2 (red)     SWO
+  3 (orange)  RESET#
+
+
+Data
+----
+
+The following data is displayed by the ST-LINK/V2 Windows utility:
+
+Device: STM32F42xx/F43xx
+Device ID: 0x419
+Revision ID: Rev 1
+Flash size: 2MB
+
+STM32 ST-LINK Utility.exe v3.4.0
+STLinkUSBDriver.dll v4.3.3.0
+ST-LINK_CLI.exe v2.0.0
+
+Old ST-LINK firmware/ST-LINK already used
+Firmware info: V2J17S4 (needs update)
+Supply voltage: 3.2V
+STM32 target info: STM32F42xx/F43xx
+Mode: normal, enable debug in low-power mode
+
