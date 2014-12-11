@@ -1,0 +1,30 @@
+-------------------------------------------------------------------------------
+Maxim MAX3232E
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the serial (UART) data going over
+a Maxim MAX3232E RS232 transceiver.
+
+The communication happens at 57600 baud, 8n1.
+
+Details:
+http://www.maximintegrated.com/en/products/interface/transceivers/MAX3232E.html
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was an IKALOGIC ScanaPLUS (at 100MHz):
+
+  Probe       UART
+  ----------------
+  2 (red)     MAX3232E DOUT1
+  3 (orange)  MAX3232E DIN1
+
+
+Data
+----
+
+The text "Hello world\r\n" is transmitted multiple times (DIN1 and DOUT1
+logic levels are inverted, but they both have the same data).
+
