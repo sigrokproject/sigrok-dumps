@@ -1,0 +1,53 @@
+-------------------------------------------------------------------------------
+SWD
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the ARM SWD (version 1) protocol.
+
+Details:
+http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.ihi0031c/index.html
+(registration required)
+
+
+Logic analyzer setup
+--------------------
+
+  Probe       SWD
+  ---------------
+  0           swclk
+  1           swdio
+
+
+Data
+----
+
+Different SWD sessions showing different types of behaviour:
+
+* stlink_openocd/
+
+Using an STLINK-V2 adapter via OpenOCD 0.9.0 development
+version. Device under test is a Nordic nRF51822.
+
+Command line:
+
+  $ openocd -f interface/stlink-v2.cfg -c 'transport select hla_swd' \
+            -f target/nrf51.cfg
+
+** stlink_openocd/init.sr
+   Intiliasing device, IDCODE read, etc.
+   OpenOCD args: -c "init; exit"
+
+** stlink_openocd/init_write_0xabbabeeb.sr
+   Initialise, write 20 bytes of 0xabbabeeb at start of RAM.
+   OpenOCD args: -c "init; halt; mww 0x20000000 0xabbabeeb 20; exit"
+
+** stlink_openocd/wait_retry.sr
+   Capture showing an SWD WAIT with overrun mode not enabled (in contrast to
+   ftdi_openocd/wait_retry.sr), adapter immediately retries and gets an OK
+   response.
+
+   For this capture OpenOCD was patched with this change (known to induce
+   SWD WAITs): http://openocd.zylin.com/#/c/2204/
+
+   OpenOCD args: -c "init; reset halt; flash fillw 0 0xabbabeeb 2048; exit"
+
