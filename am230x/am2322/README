@@ -1,0 +1,19 @@
+-------------------------------------------------------------------------------
+Aosong AM2322
+-------------------------------------------------------------------------------
+
+This is an example capture of the Aosong AM2322 temperature and humidity sensor
+single-wire protocol.
+
+The sensor was connected to an Atmel ATmega8 running a custom software to read
+out this type of devices.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was an MCU123 USBee AX Pro clone (at 1 MHz):
+
+  Probe       AM2322
+  ------------------
+  0           SDA
