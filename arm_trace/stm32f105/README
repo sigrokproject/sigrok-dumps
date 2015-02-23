@@ -1,0 +1,58 @@
+-------------------------------------------------------------------------------
+ARM ETM/ITM Tracing
+-------------------------------------------------------------------------------
+
+This is an example capture from ARM Cortex-M3 ETM/ITM trace stream.
+
+The trace was captured from STM32F105 microcontroller while running
+this software (revision 5a1553c):
+https://github.com/PetteriAimonen/STM32_Trace_Example
+
+The example software outputs both ITM and ETM trace as follows:
+
+1) The main loop blinks PC8 approx every 10 ms.
+   On every blink it prints "On" and "Off" to ITM port 0.
+
+2) TIM2 interrupt blinks PC9 approx every 6 ms.
+   It is kept on for the duration of a bubble_sort() call.
+   ETM tracing is enabled for the duration of that subroutine.
+   Sort results are printed to ITM port 1.
+
+3) DWT is continuously reporting exception status and periodically
+   reporting PC values (these go to the ITM stream).
+
+Both ITM and ETM are mixed into the same stream by TPIU module
+ITM is configured as stream 1 and ETM as stream 2.
+
+Trace output is configured as 8 MHz UART protocol from TRACESWO pin.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was an FX2 based device (at 24MHz):
+
+  Probe       STM32F105
+  ---------------------
+  3           PC9
+  5           SWO
+  7           PC8
+
+
+Data
+----
+
+Capture command:
+
+  sigrok-cli -d fx2lafw -c samplerate=24MHz -C 4=SWO,2=PC9,6=PC8 -o trace_example.sr --time 50
+
+Decoding command for ITM output:
+
+  sigrok-cli -i trace_example.sr -P \
+    uart:rx=SWO:baudrate=8000000,arm_tpiu:stream=1,arm_itm:elffile=trace_example.elf
+
+Decoding command for ETM output:
+
+  sigrok-cli -i trace_example.sr -P \
+    uart:rx=SWO:baudrate=8000000,arm_tpiu:stream=2,arm_etmv3:elffile=trace_example.elf
+
