@@ -1,0 +1,37 @@
+-------------------------------------------------------------------------------
+Brainchild IO-16DO Modbus communication
+-------------------------------------------------------------------------------
+
+This is a dump of Modbus data from a Brainchild IO-16DO module.
+
+It was connected to a PC using a Prolific USB-RS232 converter and a cheap
+Chinese RS232-RS485 converter.
+
+Details:
+http://www.brainchild.com.tw/en/2_1752_41579/product/16_digital_outputs_id147280.html
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic16 clone (at 1MHz).
+
+It was connected on the RS232 line.
+The probes were connected through 10K resistors.
+
+  Probe       UART
+  ----------------
+  0           RX
+  1           TX 
+
+
+Data
+----
+
+The sigrok command line used was:
+
+  sigrok-cli -C 0,1 -c "samplerate=1 MHz" -d saleae-logic16 -o \
+             brainchild-io-16do.sr --time 300ms
+
+The requests were sent with the included brainchild-io-16do-activity.py script.
+
