@@ -1,0 +1,19 @@
+-------------------------------------------------------------------------------
+Stepper motor signals
+-------------------------------------------------------------------------------
+
+This is a capture of Smoothieware stepper signals while running the test.gcode.
+
+Signals:
+
+0: ARM ITM trace (irrelevant)
+3: Y axis step
+4: Y axis direction
+5: X axis step
+6: X axis direction
+
+Command to decode X axis position:
+sigrok-cli -i smoothieware.sr -P stepper_motor:step=5:dir=6:unit=mm:steps_per_mm=80.0
+(though steps_per_mm doesn't currently work in sigrok-cli)
+
+
