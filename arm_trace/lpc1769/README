@@ -1,0 +1,27 @@
+-------------------------------------------------------------------------------
+ARM ETM/ITM Tracing
+-------------------------------------------------------------------------------
+
+This is an example capture from ARM Cortex-M3 ETM/ITM trace stream.
+
+The trace was captured from LPC1769 microcontroller while running
+this software (revision bffb804):
+https://github.com/PetteriAimonen/Smoothieware/tree/bffb804
+
+The data has been captured with the CPU running at 4 MHz at 12 MHz samplerate,
+to capture all the data. It has then been cut to a smaller fragment and
+samplerate set to 300MHz so that times correspond to realtime speeds.
+
+Configuration for decoding:
+- UART signal 0, baudrate 100000000
+- TPIU stream 2
+- ARM_ETMv3, elffile=smoothieware.elf
+
+The ETM capture has been configured without direct branch reporting, so the .elf
+file is needed for proper decoding.
+
+Note that the source code is not visible in the gui (and not in objdump output
+either), because it is not included in this repo. You can download it from the
+above github link. Due to how gcc stores debug info, you have to put it in this
+path if you want it to show: /home/petteri/projects/Smoothieware
+
