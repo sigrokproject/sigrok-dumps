@@ -15,7 +15,7 @@ http://www.cyrustek.com.tw/spec/ES51978.pdf
 Logic analyzer setup
 --------------------
 
-The logic analyzer used was an OpenBench Logic Sniffer:
+The logic analyzer used was an OpenBench Logic Sniffer (at 100kHz):
 
   Probe       RS232 cable
   -----------------------
@@ -25,7 +25,7 @@ The logic analyzer used was an OpenBench Logic Sniffer:
 Data
 ----
 
-Contains 3 samples sent by the multimeter set in resistance mode, mesuring
+Contains 3 samples sent by the multimeter set in resistance mode, measuring
 skin resistance, a few Mega Ohm.
 
 The sigrok command line used was:
