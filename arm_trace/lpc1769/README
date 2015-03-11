@@ -17,11 +17,23 @@ Configuration for decoding:
 - TPIU stream 2
 - ARM_ETMv3, elffile=smoothieware.elf
 
-The ETM capture has been configured without direct branch reporting, so the .elf
-file is needed for proper decoding.
+The ETM capture has been configured without direct branch reporting,
+so the .elf file is needed for proper decoding.
 
-Note that the source code is not visible in the gui (and not in objdump output
+Note that the source code is not visible in the GUI (and not in objdump output
 either), because it is not included in this repo. You can download it from the
 above github link. Due to how gcc stores debug info, you have to put it in this
-path if you want it to show: /home/petteri/projects/Smoothieware
+path if you want it to show: /home/petteri/projects/Smoothieware.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was an FX2 based device (at 12MHz, but see above):
+
+  Probe       LPC1769
+  -------------------
+  0           SWO
+  3           ?
+  5           ?
 
