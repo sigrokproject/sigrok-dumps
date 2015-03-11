@@ -1,19 +1,35 @@
 -------------------------------------------------------------------------------
-Stepper motor signals
+Smoothieware stepper motor signals
 -------------------------------------------------------------------------------
 
 This is a capture of Smoothieware stepper signals while running the test.gcode.
 
-Signals:
+Details:
+http://smoothieware.org/
+http://essentialscrap.com/tips/arm_trace/smoothie.html
 
-0: ARM ITM trace (irrelevant)
-3: Y axis step
-4: Y axis direction
-5: X axis step
-6: X axis direction
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was an FX2 based device (at 24MHz):
+
+  Probe       Target
+  ------------------
+  0           ARM ITM trace (irrelevant)
+  3           Y axis step
+  4           Y axis direction
+  5           X axis step
+  6           X axis direction
+
+
+Data
+----
 
 Command to decode X axis position:
-sigrok-cli -i smoothieware.sr -P stepper_motor:step=5:dir=6:unit=mm:steps_per_mm=80.0
-(though steps_per_mm doesn't currently work in sigrok-cli)
 
+  sigrok-cli -i smoothieware.sr \
+             -P stepper_motor:step=5:dir=6:unit=mm:steps_per_mm=80.0
+
+(though steps_per_mm doesn't currently work in sigrok-cli)
 
