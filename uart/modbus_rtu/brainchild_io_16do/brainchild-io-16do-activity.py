@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 #
-# A quick script to genererate modbus test data, it requires minimalmodbus.
+# A quick script to generate modbus test data, it requires minimalmodbus.
 #
 # This is free and unencumbered software released into the public domain.
+
 import time
 
 import minimalmodbus
