@@ -1,0 +1,41 @@
+-------------------------------------------------------------------------------
+PulsedLight3D LIDARlite module
+-------------------------------------------------------------------------------
+
+This is the capture of data output from a LIDARlite module with various short
+range distances.
+
+Each 10 uS the PWM/MODESEL line is high equals one centimeter, and continuous
+trigger is enabled via keeping the line strongly low. For long distances the
+rate can be limited due to the longer time to PWM the distance than processing
+time for the next sample.
+
+Details:
+ - Sparkfun product page:
+    * https://www.sparkfun.com/products/13167
+ - LIDARlite product spec + developer docs:
+    * http://kb.pulsedlight3d.com/support/home
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic16 (at 5MHz):
+
+  Probe       LIDARlite
+  ---------------------
+  1 (black)   Mode select pin
+
+Note: The 'Mode select' pin is pulled low strongly with 1K ohm resistor
+to trigger continuous sampling).
+
+
+Data
+----
+
+The data contains various PWM encoded distances.
+
+The sigrok command line used was:
+
+  sigrok-cli --driver saleae-logic16 --samples 100M --config samplerate=5mhz \
+             -C 0=PWM -o lidarlite_5mhz.sr
