@@ -1,0 +1,59 @@
+-------------------------------------------------------------------------------
+Microchip MRF24J40
+-------------------------------------------------------------------------------
+
+This directory contains a capture of the communication between a custom sensor
+mote board [1] and a Microchip MRF24J40MA IEEE 802.15.4 transceiver module.
+
+It is not nearly a complete sample of what types of traffic are possible,
+it does not have any examples of cyclic mode, it doesn't even contain RX
+packets, other than an ACK.
+
+[1] The board used is available here:
+https://github.com/karlp/karlnet/tree/master/nodes/boxcar
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a generic Saleae Logic clone (at 16MHz).
+
+The same configuration was used for all captures.
+
+  Probe  Pin    Description
+  -------------------------
+  0      nRESET
+  1      INT     Signals the host MCU
+  2      SDI     Slave data IN
+  3      SCK     SPI clock
+  4      SDO     Slave data OUT
+  5      nCS     SPI chip select
+  6      VDD
+
+
+mrf24j40-reset-wakeup.sr
+------------------------
+
+Capture of power-on behaviour resetting the radio and rewriting its config
+as per the datasheet recommendations.
+
+The sigrok command line used was:
+
+  sigrok-cli -d fx2lafw --config samplerate=16M:captureratio=2 \
+             --time 10ms -o mrf24j40-reset-wakeup.sr -t nCS=f \
+             --channels 0=nRESET,1=INT,2=SDI,3=SCK,4=SDO,5=nCS,6=VDD
+
+
+mrf24j40-wake-tx-ack.sr
+-----------------------
+
+Captures the host MCU waking the radio, sending a packet, and checking the
+interrupt flags for an ACK. The sequence is not necessarily optimal, but
+functional.
+
+The sigrok command line used was:
+
+  sigrok-cli -d fx2lafw --config samplerate=16M:captureratio=70 \
+             --time 20ms -o mrf24j40-wake-tx-ack.sr -t INT=r \
+             --channels 0=nRESET,1=INT,2=SDI,3=SCK,4=SDO,5=nCS,6=VDD
+
