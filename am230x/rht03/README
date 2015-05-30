@@ -1,0 +1,19 @@
+-------------------------------------------------------------------------------
+RHT03 (Aosong AM230x compatible)
+-------------------------------------------------------------------------------
+
+This is an example capture of a device labelled "RHT03", a temperature and
+humidity sensor with a single-wire protocol.
+
+The sensor was connected to a custom STM32F100 board.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a generic fx2lafw device (at 4 MHz):
+
+  Probe       RHT03
+  -----------------
+  1           RHTIO
+
