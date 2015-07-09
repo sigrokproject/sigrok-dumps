@@ -1,0 +1,31 @@
+-------------------------------------------------------------------------------
+Qi charger protocol
+-------------------------------------------------------------------------------
+
+This directory contains captures of data communication from Qi receivers to
+Qi transmitters.
+
+Details:
+http://www.wirelesspowerconsortium.com/developers/specification.html
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saelae Logic clone (at 250kHz):
+
+  Probe      Signal
+  -----------------
+  0 (black)  Qi demodulated data signal
+
+
+Data
+----
+
+Captured from a noname Qi receiver for Samsung 5.
+
+The sigrok command line used was:
+
+  sigrok-cli --time 4s -d fx2lafw --config samplerate=250k \
+             --channels 0 -o noname-samsung5.sr
+
