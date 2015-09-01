@@ -1,0 +1,23 @@
+-------------------------------------------------------------------------------
+KERN EW 6200-2NM scale
+-------------------------------------------------------------------------------
+
+This is an set of example captures of the serial (UART) data sent by the
+KERN EW 6200-2NM weighing scale.
+
+Details:
+http://sigrok.org/wiki/KERN_EW_6200-2NM
+
+The device sends the output at 1200/8n2 per default. Some of the dumps
+use 9600/8o2 though (see filename).
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a CWAV USBee SX (at 1MHz):
+
+  Probe       KERN EW 6200-2NM
+  ----------------------------
+  0 (black)   TX
+
