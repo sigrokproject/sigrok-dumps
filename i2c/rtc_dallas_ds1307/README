@@ -13,7 +13,7 @@ Details:
 Logic analyzer setup
 --------------------
 
-The logic analyzer used was Open Bench Logic Sniffer (at 20kHz):
+The logic analyzer used was Open Bench Logic Sniffer (at 200kHz):
 
  Probe          DS1307 pin
  -------------------------
