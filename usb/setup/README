@@ -1,0 +1,83 @@
+-------------------------------------------------------------------------------
+USB device setup (low-speed signalling)
+-------------------------------------------------------------------------------
+
+This is an example capture of USB a plugin and setup sequence.
+
+Plugin and reset signaling (trace walktrough)
+---------------------------------------------
+
+The logic analyzer is connected to the D+ and D- signals of the device. As the
+device ground is not connected to the LA ground, the signal level at the start
+of the trace is arbitrary.
+
+When the cable is plugged in, DM and DP are pulled down by the host side 15k
+pull-down resistors. Next, the power supply level of the device rises and
+the 1.5k pull-up resistor signals the connection of a low speed device.
+
+The host waits for 100ms, according to the attach debounce interval [USB 2.0
+spec, Table 7-14, T_ATTDB] for the connection and device power to become
+stable. At 240ms the host signals a reset (SE) condition for 50ms [USB 2.0
+spec, 7.1.7.5, T_DRSTR].
+
+After the reset, the host issues keep-alives every 1ms (SE0 for 2 bit times),
+to allow the device to recover. 10ms are required, but the Linux kernel waits
+at least 100ms.
+
+At this time, the host knows the port is enabled and the device is in the
+DEFAULT state, e.g. it responds to control requests at address 0. It is now
+possible to request the Device Descriptor.
+
+At 398ms, the GET_DEVICE_DESCRIPTOR request is the first condition decoded by
+the usb_signalling and stacked protocol decoders. After this request, the
+max packet size for the control endpoint is known.
+
+After the request, some buggy devices may be in a bad state (1), thus there
+is a second reset/device recovery cycle.
+
+There follows a sequence of SET_ADDRESS(13) and more GET_DESCRIPTOR requests.
+After the setup, the polling of the INTERRUPT endpoint (EP1) starts.
+
+---
+(1) The stack requests 64 bytes of device descriptor because otherwise some
+devices may return more than requested. Other devices can not cope with this
+request, and thus a reset is needed. If all devices where compliant, a request
+of just 8 bytes should return the wanted bMaxPacketSize of the device.
+
+
+Decoding in PulseView
+---------------------
+
+Add a usb_signalling decoder. Set the signalling to "low-speed", next assign
+DP to "D+" and DM to "D-". The usb_packet and usb_request PDs can be stacked
+on top.
+
+Creating a PCAP (Wireshark) capture
+-----------------------------------
+
+1. Convert the trace with sigrok-cli.
+
+  $ sigrok-cli -i usb_reset_and_setup_lowspeed.sr \
+    -P usb_signalling:dp=DP:dm=DM:signalling=low-speed,usb_packet,usb_request \
+    -B usb_request > usb_reset_and_setup_lowspeed.pcap
+
+2. View with tshark (wireshark command line tool).
+
+  $ tshark -r usb_reset_and_setup_lowspeed.pcap
+  1  0.000000    host -> 0.0     USB    64  GET DESCRIPTOR Request DEVICE
+  2  0.002258     0.0 -> host    USB    82  GET DESCRIPTOR Response DEVICE
+  3  0.154975    host -> 0.0     USB    64  SET ADDRESS Request
+  4  0.155441     0.0 -> host    USB    64  SET ADDRESS Response
+  5  0.165960    host -> 13.0    USB    64  GET DESCRIPTOR Request DEVICE
+  6  0.168258    13.0 -> host    USB    82  GET DESCRIPTOR Response DEVICE
+  7  0.168287    host -> 13.0    USB    64  GET DESCRIPTOR Request CONFIGURATION
+  8  0.169757    13.0 -> host    USB    73  GET DESCRIPTOR Response CONFIGURATION
+  9  0.169781    host -> 13.0    USB    64  GET DESCRIPTOR Request CONFIGURATION
+ 10  0.173834    13.0 -> host    USB    98  GET DESCRIPTOR Response CONFIGURATION
+ 11  0.174505    host -> 13.0    USB    64  SET CONFIGURATION Request
+ 12  0.175061    13.0 -> host    USB    64  SET CONFIGURATION Response
+ 13  0.175116    host -> 13.0    USBHID 64  SET_IDLE Request
+ 14  0.175506    13.0 -> host    USB    64  URB_CONTROL out
+ 15  0.175694    host -> 13.0    USB    64  GET DESCRIPTOR Request Unknown type 34
+ 16  0.181389    13.0 -> host    USB   116  GET DESCRIPTOR Response Unknown type 34
+ 17  0.200694    host -> 13.1    USB    64  URB_BULK in
