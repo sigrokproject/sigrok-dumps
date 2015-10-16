@@ -1,0 +1,31 @@
+-------------------------------------------------------------------------------
+Qi charger protocol
+-------------------------------------------------------------------------------
+
+This directory contains captures of data communication from Qi receivers to
+Qi transmitters.
+
+Details:
+http://www.wirelesspowerconsortium.com/developers/specification.html
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic16 clone (at 1MHz):
+
+  Probe      Signal
+  -----------------
+  0 (black)  Qi demodulated data signal
+
+
+Data
+----
+
+Captured from a Generalplus GPMQ8005A, communicating with a Nexus 5.
+
+The sigrok command line used was:
+
+  sigrok-cli --time 4s -d saleae-logic16 --config samplerate=1M \
+             --channels 0 -o gpmq8005a-nexus5.sr
+
