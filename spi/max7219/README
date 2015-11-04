@@ -1,0 +1,31 @@
+-------------------------------------------------------------------------------
+Maxim MAX7219
+-------------------------------------------------------------------------------
+
+This is a set of example captures of a Maxim MAX7219 LED display driver.
+
+Details:
+https://www.maximintegrated.com/en/products/MAX7219
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic clone (at 2MHz):
+
+  Probe       MAX7219
+  -------------------
+  0           MISO (not used by this chip)
+  1           CS#
+  2           MOSI
+  3           CLK
+
+
+Data
+----
+
+The capture was generated using PulseView.
+
+The chip was driven by an FTDI FT232H connected to USB, using a custom Perl
+program to drive the signals, including the intentional error cases.
+
