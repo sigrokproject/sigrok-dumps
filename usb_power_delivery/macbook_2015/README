@@ -1,0 +1,36 @@
+-------------------------------------------------------------------------------
+USB Power Delivery protocol
+-------------------------------------------------------------------------------
+
+This directory contains captures of data communication on the Control Channels
+of Type-C USB connectors using the USB Power Delivery protocol.
+
+Details:
+http://www.usb.org/developers/powerdelivery/
+
+
+Logic analyzer setup
+--------------------
+
+A 'Twinkie' USB type-C interposer was used to capture the communication
+on the CCx pins:
+
+  Probe      Signal
+  -----------------
+  CC1        Control Channel 1
+  CC2        Control Channel 2
+
+The type-C connectors are reversible, so the actual communication might
+happen on CC1 or CC2 depending the polarity of the plug inside the receptacle.
+
+Data
+----
+
+Captured Between an Apple Macbook 2015 (with a USB type-C connector) and both
+its 5V/14.8V power supply and an Apple USB-C to HDMI AV accessory.
+
+The sigrok command lines used were:
+
+  sigrok-cli -d chromium-twinkie --continuous -o apple_power_brick.sr
+  sigrok-cli -d chromium-twinkie --continuous -o apple_av_hdmi.sr
+
