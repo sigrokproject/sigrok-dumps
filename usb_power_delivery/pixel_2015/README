@@ -23,10 +23,11 @@ on the CCx pins:
 The type-C connectors are reversible, so the actual communication might
 happen on CC1 or CC2 depending the polarity of the plug inside the receptacle.
 
+
 Data
 ----
 
-Captured Between a Google Pixel 2015 laptop and both its 5V/12/V/20V power
+Captured between a Google Pixel 2015 laptop and both its 5V/12V/20V power
 supply and an USB-C to HDMI video dongle.
 
 The sigrok command lines used were:

@@ -23,10 +23,11 @@ on the CCx pins:
 The type-C connectors are reversible, so the actual communication might
 happen on CC1 or CC2 depending the polarity of the plug inside the receptacle.
 
+
 Data
 ----
 
-Captured Between an Apple Macbook 2015 (with a USB type-C connector) and both
+Captured between an Apple Macbook 2015 (with a USB type-C connector) and both
 its 5V/14.8V power supply and an Apple USB-C to HDMI AV accessory.
 
 The sigrok command lines used were:
