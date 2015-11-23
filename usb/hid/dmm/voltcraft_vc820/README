@@ -1,0 +1,22 @@
+-------------------------------------------------------------------------------
+Voltcraft VC-820 multimeter
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the HID-based communication going over
+a UNI-T UT-D04 USB/HID cable (attached to a Voltcraft VC-820 DMM).
+
+Details:
+http://sigrok.org/wiki/Voltcraft_VC-820
+http://sigrok.org/wiki/Device_cables#UNI-T_UT-D04
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a ChronoVu LA8 (at 100MHz):
+
+  Probe       Voltcraft VC-820
+  ----------------------------
+  6           DM
+  7           DP
+
