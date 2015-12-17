@@ -2,7 +2,7 @@
 USB device setup (low-speed signalling)
 -------------------------------------------------------------------------------
 
-This is an example capture of USB a plugin and setup sequence.
+This is an example capture of a USB plugin and setup sequence.
 
 Plugin and reset signaling (trace walktrough)
 ---------------------------------------------
