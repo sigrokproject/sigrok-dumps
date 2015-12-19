@@ -1,0 +1,32 @@
+-------------------------------------------------------------------------------
+RDM630 125kHz RFID reader module
+-------------------------------------------------------------------------------
+
+This is a set of example captures of an RDM630 125kHz RFID reader module.
+
+Details:
+http://store.iteadstudio.com/index.php?main_page=product_info&cPath=16&products_id=7
+http://iteadstudio.com/store/images/produce/RFID/125KReader_W/RDM630-Spec.pdf
+http://www.seeedstudio.com/wiki/125Khz_RFID_module_-_UART
+http://www.priority1design.com.au/em4100_protocol.html
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 2MHz):
+
+  Probe       RDM630
+  ------------------
+  1           TX (P1 header, pin 1, UART)
+  2           RFID (ST Microelectronics SO-8 IC, pin 2)
+
+
+Data
+----
+
+The RFID tag hex values are encoded in the respective filenames.
+
+The files contain both the "raw" RFID signal (in Manchester, Biphase, or PSK
+encoding) as well as the UART output (9600/8n1) of the RDM630 module.
+
