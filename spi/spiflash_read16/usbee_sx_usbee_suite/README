@@ -1,0 +1,44 @@
+-------------------------------------------------------------------------------
+CWAV USBee Suite
+-------------------------------------------------------------------------------
+
+Version 1.1.78 of the USBee Suite software was used to save/export the files.
+
+Details:
+http://usbee.com/download.htm
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a CWAV USBee (at 4MHz):
+
+  Probe       SPI
+  ---------------
+  3 (orange)  MOSI
+  4 (yellow)  MISO
+  5 (green)   SCK
+  6 (blue)    CS#
+
+
+Files
+-----
+
+The following UI options were used to get the files:
+
+ - Export -> Signal data to Binary File
+   - usbee_sx_spiflash_read16.bin
+ - Export -> Signal data to Text/CSV File
+   - usbee_sx_spiflash_read16.csv
+ - Export -> Bus data to Text/CSV File
+   - usbee_sx_spiflash_read16_decode_ascii.csv
+   - usbee_sx_spiflash_read16_decode_binary.csv
+   - usbee_sx_spiflash_read16_decode_binary_x1x2.csv
+   - usbee_sx_spiflash_read16_decode_decimal.csv
+   - usbee_sx_spiflash_read16_decode_hex.csv
+ - Save As Capture -> Uncompressed USBee Suite Capture Files (*.usbeesuite)
+   - usbee_sx_spiflash_read16.usbeesuite
+ - Save As Capture -> Compressed USBee Suite Capture Files (*.usbeecomp)
+   - usbee_sx_spiflash_read16.usbeecomp
+     (this is the same as above, just gzipped additionally)
+
