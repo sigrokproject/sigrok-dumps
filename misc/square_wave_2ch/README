@@ -1,0 +1,83 @@
+-------------------------------------------------------------------------------
+Agilent MSO7034A
+-------------------------------------------------------------------------------
+
+This is a set of files saved/exported from the Agilent MSO7034A oscilloscope.
+
+Details:
+http://www.keysight.com/en/pd-1293631-pn-MSO7034A/mixed-signal-oscilloscope-350-mhz-4-analog-plus-16-digital-channels
+
+
+Setup
+-----
+
+The oscilloscope has the following options in the 'Save/Recall' menu, that
+can be used to save the acquired/displayed data on a USB thumb drive:
+
+ - Trace and Setup
+  - Used to store the data *in* the scope (not on USB thumb drive)
+ - BMP (8-bit) image file
+  - Options: Setup info = y/n, Invert Grat = y/n, Palette = Color/Grayscale
+ - BMP (24-bit) image file
+  - Options: Setup info = y/n, Invert Grat = y/n, Palette = Color/Grayscale
+ - PNG (24-bit) image file
+  - Options: Setup info = y/n, Invert Grat = y/n, Palette = Color/Grayscale
+ - CSV data file
+  - Options: Setup info = y/n, Length = 100/250/500/1000
+ - ASCII XY data file
+  - Options: Setup info = y/n, Length = x
+    (x = 100/250/500/1000/2000/5000/10000/20000/50000/100000/200000/500000
+     1000000/2000000)
+ - ALB data file
+  - Options: Setup info = y/n, Length = x (see above),
+    Alb serial format = Default/CAN/I2C/LIN/UART|RS232/SPI2/SPI3/SPI4
+ - BIN data file
+  - Options: Setup info = y/n, Length = x (see above)
+ - Lister data file
+  - No options
+
+When "Setup info" is enabled, the scope also saves an additional file
+with the respective basename and a *.txt extention (e.g. "scope_0.txt"),
+which contains some ASCII info about the scope setup, any measurements
+displayed on the LCD, and so on.
+
+
+Files
+-----
+
+Channels 1 and 2 of the (4-channel) scope were connected to the test output
+of the scope (used for probe impedance matching), which outputs a 1.2kHz
+square wave signal with an amplitude of 2.5V (2.72V peak-to-peak).
+
+After the "Stop" button was pressed, the following files were saved:
+
+ scope_0: BMP (8-bit)
+ scope_1: BMP (24-bit)
+ scope_2: PNG (24-bit)
+ scope_3: CSV, 1000
+ scope_4: CSV, 500
+ scope_5: CSV, 250
+ scope_6: CSV, 100
+ scope_7: ASCII XY, 100
+ scope_8: ASCII XY, 250
+ ...
+ scope_19: ASCII XY, 1000000
+ scope_20: ASCII XY, 2000000
+ scope_21: ALB, 100, Default
+ scope_22: ALB, 100, CAN
+ scope_23: ALB, 100, I2C
+ scope_24: ALB, 100, LIN
+ scope_25: ALB, 100, UART/RS232
+ scope_26: ALB, 100, SPI2 (SPI3/4 cannot be be used with only 2 channels)
+ scope_27: BIN, 100
+ scope_28: BIN, 250
+ scope_29: BIN, 500
+ scope_30: Lister
+ 
+Only two "Setup info" files are included, scope_0.txt and scope_4.txt.
+The first one is valid (and identical) for files scope_0* to scope_3*, the
+latter is valid (and identical) for the files scope_4* to scope_30*.
+
+The *.bin files contain the device's serial number. This has been changed
+(via hex editor) to "MY12345678" in the files.
+
