@@ -1,0 +1,34 @@
+-------------------------------------------------------------------------------
+T55xx 125kHz RFID write protocol
+-------------------------------------------------------------------------------
+
+This is a set of example captures from portable RFID copiers.
+
+Details:
+http://www.ebay.com/itm/RFID-125KHz-EM4100-Card-Copier-Duplicator-5-Writable-Cards-5-Keyfobs-Tags-/151237092163?hash=item23366ee343:g:lNkAAOxyYSdTBrVN
+http://www.ebay.com/itm/Handheld-Portable-125Khz-RFID-Duplicator-Copier-Writer-for-EM4100-T5577-Card-/191630611446?hash=item2c9e1313f6:g:D7UAAOSwyQtVo4pM
+http://priority1design.com.au/t5557_rfid_transponder.html
+http://www.atmel.com/Images/Atmel-9187-RFID-ATA5577C_Datasheet.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic 16 clone (at 2MHz):
+
+  Probe       T5557 write
+  -----------------------
+  1           RFID signal
+
+
+Data
+----
+
+To transmit data to the tag you turn on and of the coil for x amount of
+field clocks. This type of modulation is called OOK.
+
+The purpose of these RFID copiers are to read a generic EM4100 tag and
+copy the tag data to another tag. To do that you need to configure the
+destination tag and write specially formatted data in the tag banks.
+Thus the signal contains 4-5 write packets.
+
