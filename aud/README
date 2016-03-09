@@ -1,0 +1,50 @@
+-------------------------------------------------------------------------------
+Renesas/Hitachi AUD (Advanced User Debugger)
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the Renesas/Hitachi AUD (Advanced User
+Debugger) protocol.
+
+Details:
+http://www.renesas.eu/products/mpumcu/superh/sh7050/sh7058/Documentation.jsp
+("rej09b0046 - SH7058 Hardware manual")
+
+
+Logic analyzer setup
+--------------------
+
+  Probe       Pin
+  ---------------
+  1           AUDCK
+  2           nAUDSYNC
+  3           AUDATA3
+  4           AUDATA2
+  5           AUDATA1
+  6           AUDATA0
+
+The audgen-* files are artificially generated thus:
+
+ - audgen-01.v is written in Verilog; due to limitations in sigrok only
+   single-bit values are output.
+ - Icarus Verilog is run to create a VCD dump:
+   - "iverilog audgen-01.v"
+   - "./a.out" (created by iverilog)
+ - The resulting VCD can probably be opened directly by PulseView, but is
+    here converted to a .sr dump.
+
+AUD traffic can be challenging to capture because it is clocked out at the
+MCU's clock frequency (20MHz typical). This requires an LA capable of either:
+
+ - Timing analysis on 6 channels (clock, sync, data3..0) at >= 80MSps
+   (40MSps gives very inconsistent results)
+ - State analysis @ 20MHz, this would be "easy" but cheap hardware like
+   Logic/Logic16 can't do it.
+
+
+Data
+----
+
+Example to view decoded output:
+
+  sigrok-cli -i audgen-01.sr -P aud:audck=AUDCK:naudsync=nAUDSYNC:audata3=AUDATA3:audata2=AUDATA2:audata1=AUDATA1:audata0=AUDATA0
+
