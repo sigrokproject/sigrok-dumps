@@ -1,0 +1,26 @@
+-------------------------------------------------------------------------------
+Wiegand connected RFID reader captures
+-------------------------------------------------------------------------------
+
+This is a set of example captures of Wiegand traffic from RFID reader modules.
+
+Details:
+https://en.wikipedia.org/wiki/Wiegand_interface
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a DSLogic Pro (20kHz sample rate) connected to a
+generic brand 13.56MHz reader with 36 bit output enabled firmware.
+
+  Probe       Reader
+  ------------------
+  0           D0
+  1           D1
+
+
+Data
+----
+
+The RFID tag hex values are encoded in the respective filenames.
