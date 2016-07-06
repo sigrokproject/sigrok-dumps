@@ -1,0 +1,39 @@
+-------------------------------------------------------------------------------
+DMX512-A
+-------------------------------------------------------------------------------
+
+This is a set of example captures of DMX512 packets from a USB
+interface (DMX4ALL Mini interface), driven by a lighting control
+software loaded with 10 basic dimmer fixtures located at DMX addresses
+1, 2, 101, 102, 201, 202, 301, 302, 401 and 402.
+
+The signal was grabbed directly at the interface without any actual
+fixtures attached to the bus.
+
+Details:
+http://www.dmx512-online.com/packt.html
+http://www.erwinrol.com/dmx512/
+https://wiki.openlighting.org/index.php/DMX512-A
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at various sample rates):
+
+  Probe       3-pin XLR DMX connector
+  -----------------------------------
+  0           DMX+ (3)
+  1           DMX- (2)
+
+The sigrok command line used was:
+
+  sigrok-cli --driver fx2lafw -c samplerate=<samplerate> --time 1s \
+             --channels '0=DMX,1=DMX Inverse' \
+             -o <samplerate>_all_<dmxvalue>.sr
+
+with <dmxvalue> being the dimmer level of all fixtures.
+
+Note: While "--time 1s" was used to create the files, they have
+retroactively been shortened to roughly 40ms each.
+
