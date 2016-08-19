@@ -1,0 +1,32 @@
+-------------------------------------------------------------------------------
+Falcosoft Soundfont Midi Player 3.7 Bassmidi + Soundfont Edition
+-------------------------------------------------------------------------------
+
+This is a set of examples of the MIDI communication from a Windows 7 running
+"Soundfont Midi Player 3.7 Bassmidi + Soundfont Edition" software to play
+MIDI through a USB-to-MIDI-Out adapter to Serdaco's
+"Waveblaster Module MIDI Interface Board 'Chill Limited Edition' V2 KIT"
+hardware. This device adapts a MIDI DIN cable to a 26-pin WaveBlaster
+connector (aka. wavetable connector).
+
+
+Details:
+http://falcosoft.hu/softwares.html
+http://www.serdashop.com/MIDIBOARDCHILL
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Sysclk LWLA1034 (at 100KHz):
+
+  Probe       MIDI UART
+  ---------------------
+  0 (red)     RX
+
+
+Data
+----
+
+The sigrok GUI PulseView was used to collect the data, set to 100KHz.
+
