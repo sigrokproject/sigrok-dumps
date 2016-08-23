@@ -1,0 +1,55 @@
+-------------------------------------------------------------------------------
+SPI / SSI32
+-------------------------------------------------------------------------------
+
+This is a set of SPI captures for the SSI32 protocol.
+
+
+Logic analyzer
+--------------
+
+The logic analyzer used was a DP Open Bench Logic Sniffer (with different
+sample rate configurations).
+
+
+Probing
+-------
+
+The sigrok command line used was:
+
+  sigrok-cli --driver=ols:conn=/dev/ttyACM0 --config samplerate=<srate> \
+             --time=100 -t 3=0 -C 0-4 -o <file>
+
+
+ssi32_bananapi_loop_test.sr, samplerate 5m
+------------------------------------------
+
+Created on Banana Pi with SPI clock = 1MHz. MISO connected in a loop to itself.
+
+Pins:
+
+  Banana Pi           LA        LOOP
+  ----------------------------------
+  (CON3) SPI-CLK ---> CLK  ---~ (NC)
+  (CON3) SPI-MISO <-- MISO <---
+  (CON3) SPI-MOSI --> MOSI -->^
+  (CON3) IO-4    <--- FC#  <---
+  (CON3) SPI-CE0 ---> CS#  -->^
+
+
+ssi32_watchdog.sr, samplerate 10m
+---------------------------------
+
+Created on Banana Pi attached to STM32F3 Discovery. SPI clock = 5MHz.
+STM32F3 was running ssi32_slave example with soft watchdog on LUN=9.
+
+Pins:
+
+  Banana Pi           LA         STM32F3 Discovery
+  ------------------------------------------------
+  (CON3) SPI-CLK ---> CLK  --->  (P2) PC10
+  (CON3) SPI-MISO <-- MISO <---  (P2) PC11
+  (CON3) SPI-MOSI --> MOSI --->  (P2) PC12
+  (CON3) SPI-CE0 ---> CS#  --->  (P3) PD12
+  (CON3) IO-4    <--- FC#  <---  (P2) PB4
+
