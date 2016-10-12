@@ -1,0 +1,51 @@
+-------------------------------------------------------------------------------
+GPIB
+-------------------------------------------------------------------------------
+
+This is an example capture of some GPIB traffic on an HP 1631D LA/scope.
+
+Details:
+http://www.rudiswiki.de/wiki9/SigrokDecoderGPIB
+https://github.com/rudi48/sigrok-gpib
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic16 clone (at 500kHz):
+
+  Probe       GPIB
+  -------------------
+  0           DIO1
+  1           DIO2
+  2           DIO3
+  3           DIO4
+  4           DIO5
+  5           DIO6
+  6           DIO7
+  7           DIO8
+  8           EOI
+  9           DAV
+  10          NRFD
+  11          NDAC
+  12          IFC
+  13          SRQ
+  14          ATN
+  15          REN
+
+
+Data
+----
+
+The following is happening on the GPIB bus in this capture:
+
+ - Controller sets the GPIB to UNLISTEN and UNTALK (neutral state)
+ - Controller sets device with GPIB address number 4 to LISTEN
+ - Controller sends command 'ID LF+EOI' to device with GPIB address number
+   4 (request identity string)
+ - Controller sets the GPIB to UNLISTEN and UNTALK (neutral state)
+ - Controller sets device with GPIB address number 4 to TALK
+ - Device with GPIB address number 4 sends the ID string 'HP1631D+EOI' to
+   controller
+ - Controller sets the GPIB to UNLISTEN and UNTALK (neutral state) 
+
