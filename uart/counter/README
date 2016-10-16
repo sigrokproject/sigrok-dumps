@@ -1,0 +1,38 @@
+-------------------------------------------------------------------------------
+UART traffic, 5-9 data bits, counter values in data bits
+-------------------------------------------------------------------------------
+
+This is a collection of example UART communication (TX only). The
+data bits in the UART frame contain numeric values from a counter.
+There are dumps for various numbers of data bits in the UART frames.
+
+
+Logic analyzer setup
+--------------------
+
+The capture was taken with an ASIX Sigma2 logic analyzer at a sample
+rate of 500kHz. The first three channels were enabled:
+
+  Probe       UART
+  ----------------
+  1           UART TX (counter values)
+  2           UART RX (always idle)
+  3           high for active UART frames
+
+
+Data
+----
+
+The hardware sending the data is an Atmel ATmega328P. The bitrate is
+always 19200, the frame format is 5n1, 6n1, 7n1, 8n1, 9n1 respectively.
+
+There is a pause between each UART frame (idle TX line for a few hundred
+microseconds), such that decoders will immediately "lock in" to the
+content, and manual inspection is simplified.
+
+Capture was arranged such that at least one full counter period is
+covered and all possible data bit patterns are seen.
+
+The ATmega firmware asserts a GPIO line when a UART frame is being
+sent. This is not essential for UART communication, but again is useful
+for human inspection, and verification of protocol decoders.
