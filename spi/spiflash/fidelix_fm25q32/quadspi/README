@@ -1,0 +1,30 @@
+-------------------------------------------------------------------------------
+FIDELIX FM25Q32
+-------------------------------------------------------------------------------
+
+This is a set of example captures of a FIDELIX FM25Q32 SPI flash chip
+(32MBit == 4Mbyte) that is read by ESP32.
+
+First part is the 2nd-stage bootloader loaded from SPI flash (using
+QuadSPI @ 10MHz). Then the 2nd-stage bootloader loads 02_blink (from SPI
+flash to SRAM) and executes it.
+
+The SPI hardware used is ESP32 DevKitC (from ESPRESSIF).
+
+Details:
+https://espressif.com/sites/default/files/documentation/esp32-devkitc_getting_started_guide_en.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a DreamSourceLab DSLogic (at 100MHz):
+
+  Probe       FM25Q32 pin
+  -----------------------
+  0           CS
+  1           CLK
+  2           IO0
+  3           IO1
+  4           IO2
+  5           IO3
