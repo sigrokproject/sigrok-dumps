@@ -1,0 +1,30 @@
+-------------------------------------------------------------------------------
+PS/2 keyboard
+-------------------------------------------------------------------------------
+
+This is a collection of PS/2 keyboard communication examples.
+
+A random PS/2 keyboard and a random PC mainboard were used as data source.
+
+For details see:
+http://www.computer-engineering.org/ps2protocol/
+http://www.computer-engineering.org/ps2keyboard/
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 24 MHz):
+
+  Probe       PS/2
+  ----------------
+  2           Data
+  3           Clock
+
+
+ps2_keyboard_asdfgh.sr
+----------------------
+
+This file contains a sequence of keypresses on a standard PS/2 keyboard:
+a, s, d, f, g. The dump contains the "make code" and "break code" of each key.
+
