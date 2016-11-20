@@ -1,0 +1,42 @@
+-------------------------------------------------------------------------------
+AVR PDI / Atmel ATxmega128A1
+-------------------------------------------------------------------------------
+
+These are example captures of the Atmel Program and Debug Interface (PDI).
+
+The programmer is Atmel's JTAG ICE III and avrdude 6.0.1. The target device
+is an ATxmega128A1 (Atmel's Xplained eval board).
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was an Asix Sigma2 (at 10MHz):
+
+  Probe   Signal
+  -----------------------
+  1       RESET / PDI_CLK
+  2       PDI_DATA
+
+
+Data
+----
+
+The following activities were captured:
+
+- Identify a target device:
+  avrdude -c jtag3pdi -p x128a1
+
+- Program (write) a blinkenlight firmware:
+  avrdude -c jtag3pdi -p x128a1 -Uflash:w:blinky.hex
+
+- Verify (read back) the blinkenlight firmware:
+  avrdude -c jtag3pdi -p x128a1 -Uflash:v:blinky.hex
+
+The protocol decoder can extract data when used like this:
+
+- Get the bytes which form the PDI requests and responses:
+  sigrok-cli -i atxmega128a1-pdi-identify.sr -P avr_pdi -B avr_pdi=bytes | hexdump -Cv
+
+- Get the interpreted PDI instructions and their data:
+  sigrok-cli -i atxmega128a1-pdi-identify.sr -P avr_pdi -A avr_pdi=cmd-data
