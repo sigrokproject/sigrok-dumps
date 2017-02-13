@@ -1,0 +1,35 @@
+-------------------------------------------------------------------------------
+Serial GPIB (IEC Bus)
+-------------------------------------------------------------------------------
+
+This is an example capture of some IEC Bus traffic on a CBM 1571 floppy disk
+drive.
+
+Details:
+https://en.wikipedia.org/wiki/Commodore_bus
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a genuine Saleae Logic16 (at 1 MHz):
+
+  Probe       IEC
+  ---------------
+  0           SRQ
+  1           -
+  2           ATN
+  3           CLK
+  4           DATA
+  5           RESET
+
+
+Data
+----
+
+The following is happening on the IEC bus in this capture:
+
+ - Controller sets device with GPIB address number 8 to TALK
+ - Controller reopens channel 15
+ - Device with GPIB address number 8 sends a status string to controller
+ - Controller sets the GPIB to UNTALK
