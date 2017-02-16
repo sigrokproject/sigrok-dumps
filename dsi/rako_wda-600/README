@@ -1,0 +1,19 @@
+RAKO Controls WDA-600 controller
+
+These captures were grabbed from a running DreamSourceLabs DSLogic unit.
+To generate logic levels the following circuit was used:
+
+         ___
+DSI  o--|___|----|<---o----o---------o  LOGIC
+                      |    |
+                      |    |
+                     .-.   |
+                     | |   -
+                     | |   ^
+                     '-'   |
+                      |    |
+                      |    |
+  Ov o----------------o----o---------o  Ov
+
+  Diodes=5V1 Zenner
+  Resistors=10K
