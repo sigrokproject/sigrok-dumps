@@ -1,0 +1,35 @@
+-------------------------------------------------------------------------------
+Maxim MAX7301
+-------------------------------------------------------------------------------
+
+This is a set of example captures of a Maxim MAX7301 GPIO expander.
+
+Details:
+https://www.maximintegrated.com/en/products/MAX7301
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 24MHz):
+
+  Probe       MAX7301
+  -------------------
+  0           CS#
+  1           MOSI
+  2           CLK
+  3           MISO
+  4           P12
+  5           P13
+  6           P14
+  7           P15
+
+
+Data
+----
+
+The capture was generated using sigrok-cli.
+
+The chip was driven by a 1Bitsy STM32F415RGT6 development board and libopencm3
+based driver firmware.
+
