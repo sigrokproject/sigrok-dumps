@@ -1,0 +1,9 @@
+This is traffic captured off an internal I2C bus of a Tektronix TDS 744A
+oscilloscope.
+
+On this bus there are two X24C02 EEPROMs, mapped at addresses 0 and 1.
+
+The I2C decoder will show the shifted addresses as 0x50 and 0x51 respectively.
+
+The decoded traffic consists of some initial reads, some (failed) probes of an
+inexistant device at address 0x52, then two block reads of 248 and 192 bytes.
