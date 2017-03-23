@@ -6,6 +6,6 @@ oscillator, with a DDR0 of 5.
 The device used to capture this was a Hantek 6022BE, with an 8MHz sample rate,
 single channel.
 
-The ATMega was programmed to output bytes between 0x1C and 0x20, separated by
+The ATMega was programmed to output bytes between 0x1A and 0x20, separated by
 null bytes.
 
