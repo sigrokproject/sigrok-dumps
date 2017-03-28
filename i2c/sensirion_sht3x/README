@@ -1,0 +1,27 @@
+-------------------------------------------------------------------------------
+Sensirion SHT3x
+-------------------------------------------------------------------------------
+
+This is a set of dumps of a Sensirion SHT3x temperature/humidity sensor.
+
+For details see:
+https://www.sensirion.com/en/products/humidity-sensors/digital-humidity-sensors-for-various-applications/
+https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/2_Humidity_Sensors/Sensirion_Humidity_Sensors_SHT3x_Datasheet_digital.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a USBee SX (at 8 MHz):
+
+  Probe       SHT3x
+  -----------------
+  1           SDA
+  2           SCL
+
+
+Data
+----
+
+The sensor reports a temperature of ca. 25 °C and a humidity of ca. 28 %RH.
+
