@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------------
+Sensirion SHT7x
+-------------------------------------------------------------------------------
+
+This is a set of dumps of a Sensirion SHT7x temperature/humidity sensor.
+
+For details see:
+https://www.sensirion.com/en/products/humidity-sensors/pintype-digital-humidity-sensors/
+https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/2_Humidity_Sensors/Sensirion_Humidity_Sensors_SHT7x_Datasheet_V5.pdf
+https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/2_Humidity_Sensors/Sensirion_Humidity_Sensors_SHT1x_SHT7x_CRC_Calculation_V1.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a USBee SX (at 8 MHz):
+
+  Probe       SHT7x
+  -----------------
+  2           DATA
+  3           SCK
+
+
+Data
+----
+
+The sensor reports a temperature of ca. 26 °C and a humidity of ca. 27 %RH.
+
