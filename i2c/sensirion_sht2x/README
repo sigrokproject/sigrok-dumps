@@ -1,0 +1,27 @@
+-------------------------------------------------------------------------------
+Sensirion SHT2x
+-------------------------------------------------------------------------------
+
+This is a set of dumps of a Sensirion SHT2x temperature/humidity sensor.
+
+For details see:
+https://www.sensirion.com/en/products/humidity-sensors/humidity-temperature-sensor-sht2x-digital-i2c-accurate/
+https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/2_Humidity_Sensors/Sensirion_Humidity_Sensors_SHT21_Datasheet_V4.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a USBee SX (at 8 MHz):
+
+  Probe       SHT2x
+  -----------------
+  1           SDA
+  2           SCL
+
+
+Data
+----
+
+The sensor reports a humidity of ca. 35 %RH.
+
