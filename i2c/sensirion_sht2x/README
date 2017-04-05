@@ -20,8 +20,17 @@ The logic analyzer used was a USBee SX (at 8 MHz):
   2           SCL
 
 
-Data
-----
+sensirion_sht21_humidity35.sr
+-----------------------------
 
 The sensor reports a humidity of ca. 35 %RH.
 
+
+i2c-sht21-100khz-read-serial-hold.sr
+------------------------------------
+
+This file captures reading the version and serial, as well as using
+the "temp hold" and "humidity hold" reading styles. Notice SCL held low
+by the slave.
+
+Temperature is ~23C and RH ~50% and the serial number is "e4d2 0122 d208 0131".
