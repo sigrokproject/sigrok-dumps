@@ -52,3 +52,10 @@ sainsmart_dds140_powerup.sr
 
 This is the I2C communication during powerup between the Cypress FX2 and the
 Microchip 24LC64 in the SainSmart DDS140 USB oscilloscope.
+
+
+rocktech_bm102_powerup.sr
+-------------------------
+
+This is the I2C communication during powerup between the Cypress FX2 and the
+Microchip 24LC64 in the Rocktech BM102 USB oscilloscope.
