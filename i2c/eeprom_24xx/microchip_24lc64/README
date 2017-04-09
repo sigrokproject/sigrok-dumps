@@ -1,0 +1,34 @@
+-------------------------------------------------------------------------------
+Microchip 24LC64
+-------------------------------------------------------------------------------
+
+This is a set of example captures of Microchip 24LC64 I2C traffic.
+
+Details:
+https://www.microchip.com/wwwproducts/en/24LC64
+http://ww1.microchip.com/downloads/en/DeviceDoc/21189T.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a CWAV USBee SX or equivalent (at 8MHz):
+
+  Probe       I2C pin
+  -------------------
+  0 (black)   SCL
+  1 (brown)   SDA
+
+
+amfpga-cpld-board-fx2-init.sr
+-----------------------------
+
+This is the I2C communication of a Microchip 24LC64 in an AMFPGA CPLD board.
+
+
+instrustar_isds250a_powerup.sr
+------------------------------
+
+This is the I2C communication during powerup between the Cypress FX2 and the
+Microchip 24LC64 in the Instrustar ISDS205A USB oscilloscope.
+
