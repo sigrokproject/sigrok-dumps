@@ -39,3 +39,10 @@ hantek_6022bl_powerup_la.sr
 
 This is the I2C communication during powerup between the Cypress FX2 and the
 Microchip 24LC02B in the Hantek 6022BL USB oscilloscope (LA mode).
+
+
+hantek_6022bl_powerup_scope.sr
+------------------------------
+
+This is the I2C communication during powerup between the Cypress FX2 and the
+Microchip 24LC02B in the Hantek 6022BL USB oscilloscope (scope mode).
