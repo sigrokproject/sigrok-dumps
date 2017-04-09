@@ -32,3 +32,10 @@ instrustar_isds250a_powerup.sr
 This is the I2C communication during powerup between the Cypress FX2 and the
 Microchip 24LC64 in the Instrustar ISDS205A USB oscilloscope.
 
+
+instrustar_isds205x_powerup_scope.sr
+------------------------------------
+
+This is the I2C communication during powerup between the Cypress FX2 and the
+Microchip 24LC64 in the Instrustar ISDS205X USB oscilloscope (scope mode).
+
