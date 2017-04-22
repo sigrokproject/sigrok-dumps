@@ -47,6 +47,27 @@ This is the I2C communication during powerup between the Cypress FX2 and the
 Microchip 24LC64 in the SainSmart DDS120 USB oscilloscope.
 
 
+sainsmart_dds120_powerup_scl_analog.sr
+--------------------------------------
+
+Same as sainsmart_dds120_powerup.sr, but recorded using an MSO (SCL/SDA
+digital and SCL analog).
+
+
+sainsmart_dds120_powerup_sda_analog.sr
+--------------------------------------
+
+Same as sainsmart_dds120_powerup.sr, but recorded using an MSO (SCL/SDA
+digital and SDA analog).
+
+
+sainsmart_dds120_powerup_scl_sda_analog.sr
+------------------------------------------
+
+Same as sainsmart_dds120_powerup.sr, but recorded using an oscilloscope
+(SCL and SDA analog).
+
+
 sainsmart_dds140_powerup.sr
 ---------------------------
 
