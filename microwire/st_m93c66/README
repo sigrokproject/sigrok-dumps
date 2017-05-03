@@ -1,0 +1,55 @@
+-------------------------------------------------------------------------------
+STMicroelectronics M93C66 Microwire EEPROM
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the Microwire traffic from a
+STMicroelectronics M93C66 Microwire EEPROM.
+
+Details:
+http://www.st.com/resource/en/datasheet/m93c86-r.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was an MCU123 Saleae Logic clone (at 4MHz):
+
+  Probe       M93C66 pin
+  ----------------------
+  1           S / CS
+  3           C / SK
+  4           D / SI
+  5           Q / SO
+
+M93C66 pin 6 (ORG) was tied high to use the x16 memory organisation (i.e.,
+16-bit words).
+
+PulseView was used to capture the trace with the following parameters:
+
+  - sample rate: 4 MHz
+  - samples: 50 k
+  - trigger: rising channel 1 (CS)
+  - pre-trigger: 5%
+
+
+st_m93c66.sr
+------------
+
+The M93C66 EEPROM has the same following marking:
+
+      C66WP
+  (ST) K431
+
+The communication is initiated by a custom software implementation for a
+STM32F103C8 using the Microwire protocol as master.
+
+The master performs the following actions:
+
+ - Read 16-bits word 0x4242 at 8-bit address 0x0
+ - Read first words (4x 0x4242) starting at address 0x0
+ - Enable write and erase
+ - Erase word at address 0x0 and wait until ready
+ - Erase complete EEPROM and wait until ready
+ - Write word 0x4242 at address 0x0 and wait until ready
+ - Write word 0x4242 on complete EEPROM and wait until ready
+ - Disable write and erase
