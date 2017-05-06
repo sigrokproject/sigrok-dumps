@@ -1,0 +1,29 @@
+-------------------------------------------------------------------------------
+SD card / SD mode / R-Car H2
+-------------------------------------------------------------------------------
+
+This is a set of example captures of SD cards in "SD mode" (not SPI mode).
+
+The cards were used in a board called "Lager" powered by a Renesas R-Car H2
+(r8a7790) SoC. The SD card was a Samsung PRO 32GB microSDHC.
+
+Details:
+http://elinux.org/R-Car/Boards/Lager
+http://www.samsung.com/de/consumer/memory-storage/memory-storage/memory-cards/MB-MG32EA/EU/
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a OpenBench Logic Sniffer at 50MHz.
+
+For easier measurement, the Linux driver for the SD controller was forced
+at 1 bit bus width and 25MHz max frequency.
+
+Obtained via PulseView, so no command-line.
+
+  Probe       SD card
+  -------------------
+  0           CMD
+  1           CLK
+
