@@ -1,0 +1,24 @@
+-------------------------------------------------------------------------------
+WS2812B-based NeoPixel Ring - 24 x 5050 RGB LED
+-------------------------------------------------------------------------------
+
+This is a set of captures of a 24-LED NeoPixel ring (WS2812B).
+
+Details:
+https://www.adafruit.com/product/1586
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a USBee SX (at 4/6/24MHz):
+
+  Probe       NeoPixel24 pin
+  --------------------------
+  1 (black)   DATA_IN
+
+
+Data
+----
+
+The data contains various captures of a "running light" LED blinking.
