@@ -1,0 +1,30 @@
+-------------------------------------------------------------------------------
+Analog Devices AD5258 digital potentiometer
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the I²C traffic to/from an Analog
+Devices AD5258 digital potentiometer.
+
+Details:
+http://www.analog.com/en/products/digital-to-analog-converters/digital-potentiometers/ad5258.html
+http://www.analog.com/media/en/technical-documentation/data-sheets/AD5258.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a CWAV USBee AX (at 4MHz):
+
+  Probe       AD5258 pin
+  ----------------------
+  0 (black)   SCL
+  1 (brown)   SDA
+
+  Analog      AD5258-controlled voltage elsewhere on the PCB
+
+
+Data
+----
+
+The data contains various digital potentiometer communication, e.g. reading
+and writing the RDAC register, reading/writing the internal EEPROM, etc.
