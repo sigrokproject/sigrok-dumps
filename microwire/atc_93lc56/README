@@ -1,0 +1,24 @@
+-------------------------------------------------------------------------------
+ATC 93LC56 Microwire EEPROM
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the Microwire traffic from an
+ATC 93LC56 Microwire EEPROM inside a USB ethernet dongle.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a CWAV USBee SX (at 8MHz):
+
+  Probe       93LC56 pin
+  ----------------------
+  0           NU
+  1           ORG
+  2           CS
+  3           CLK
+  4           DI
+  5           DO
+
+The ORG pin is pulled high to use the x16 memory organisation (16-bit words).
+
