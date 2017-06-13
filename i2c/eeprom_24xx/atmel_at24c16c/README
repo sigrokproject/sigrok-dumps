@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------------
+Atmel AT24C16C
+-------------------------------------------------------------------------------
+
+This is a set of example captures of Atmel AT24C16C I2C traffic.
+
+Details:
+https://www.microchip.com/wwwproducts/en/AT24C16C
+http://www.atmel.com/images/atmel-8719-seeprom-at24c16c-datasheet.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 4MHz):
+
+  Probe       I2C pin
+  -------------------
+  0 (black)   SCL
+  1 (brown)   SDA
+  2 (red)     WP
+
+
+dreamsourcelab_dslogic_powerup.sr
+---------------------------------
+
+This is the I2C communication during powerup between the Cypress FX2 and the
+Atmel AT24C16C in the DreamSourceLab DSLogic.
