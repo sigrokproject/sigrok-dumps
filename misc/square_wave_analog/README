@@ -1,0 +1,19 @@
+-------------------------------------------------------------------------------
+Analog clock signal
+-------------------------------------------------------------------------------
+
+This is a set of example captures of a clock signal (rectangle signal)
+generated using a function generator, sampled using an LA/MSO.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Noname LHT00SU1 (at 12MHz):
+
+  Probe       Signal
+  -------------------------------
+  1DCH        100kHz clock signal
+  2DCH        same 100kHz clock signal
+  1ACH        same 100kHz clock signal
+
