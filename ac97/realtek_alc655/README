@@ -1,0 +1,26 @@
+-------------------------------------------------------------------------------
+Realtek ALC655: AC'97 data
+-------------------------------------------------------------------------------
+
+This is set of example captures of the AC'97 data on a Realtek ALC655
+six-channel AC'97 2.3 audio codec. The data is a snippet of the traffic
+that occurs on an ASUS A8NE-FM/S mainboard (which contains the ALC655)
+during BIOS power-up.
+
+Details:
+https://en.wikipedia.org/wiki/AC%2797
+http://realtek.info/pdf/alc655.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic16 (at 50 MHz):
+
+  Probe       ALC655
+  ------------------
+  0           BIT-CLK
+  1           SDATA-OUT
+  2           SDATA-IN
+  3           SYNC
+
