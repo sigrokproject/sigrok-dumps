@@ -1,0 +1,25 @@
+-------------------------------------------------------------------------------
+SiLabs CP2110 serial-over-HID, UT612 LCR meter
+-------------------------------------------------------------------------------
+
+This is a capture of UART-over-HID communication to a UNI-T UT612 LCR meter
+which contains the SiLabs CP2110 HID chip and the ES51919 LCR meter chip.
+UART communication uses 9600/8n1, USB HID runs at full speed (USB1.1 12MHz).
+
+The LCR meter actually exclusively transmits data to the PC's RX line. The
+PC's TX traffic is just a development hack in preparation of bidirectional
+communication where cables support it.
+
+
+Logic analyzer setup
+--------------------
+
+The Asix Sigma analyzer was set to 50MHz samplerate. Capture length is 200M
+samples, which translates to four seconds duration.
+
+  Probe       CP2110 signals
+  --------------------------
+  1           USB D+
+  2           USB D-
+  3           UART TX (sigrok to meter)
+  4           UART RX (meter to sigrok)
