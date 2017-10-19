@@ -1,0 +1,77 @@
+-------------------------------------------------------------------------------
+Maxim Integrated DS2432 1k-Bit Protected 1-Wire EEPROM with SHA-1 Engine
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the 1-Wire traffic from a Maxim Integrated
+(previously Dallas Semiconductor) DS2432 1k-Bit Protected 1-Wire EEPROM with
+SHA-1 Engine.
+
+Details:
+http://datasheets.maximintegrated.com/en/ds/DS2432.pdf
+http://pdf.datasheetcatalog.com/datasheet/maxim/DS2432.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a MCU123 Saleae Logic clone:
+
+  Channel       DS2432 pin
+  ------------------------
+  1 (OWR)       1 (1-WIRE)
+
+sigrok-cli was used to capture the trace with the following parameters:
+
+  - sample rate: 1 MHz
+  - samples: 1 M
+  - trigger: falling channel 1 (OWR)
+
+  sigrok-cli --driver fx2lafw --channels D0=OWR --config samplerate=1m \
+             --samples 1M --triggers OWR=f --output-file ds2432.sr
+
+
+ds2432.sr
+---------
+
+The DS2432 chip in TSOC 6 package has the same following top marking:
+  DS
+  2432
+  618B1
+
+And bottom marking:
+  32AC
+
+The communication is initiated by a Bus Pirate HW v3b FW v6.6 in 1-Wire mode.
+
+The Bus Pirate in 1-Wire (master) mode performs the following actions:
+
+  - Read ROM ID using "READ ROM" ROM command (0x33): `(51)`
+
+  - Write scratchpad with 0's at target address 0x80 (secret memory) and read
+    resulting CRC using "Write Scratchpad" function command (0x0Fh):
+    `[0xcc 0x0f 0x80 0 0:8 r:2`
+
+  - Read target address, status byte, scratchpad, CRC using "Read Scratchpad"
+    function command (0xAA): `[0xcc 0xaa r:3 r:8 r:2`
+
+  - Provide authentication pattern store secret from scratchpad to memory and
+    read result after 10 ms using "Load First Secret" function command (0x5A):
+    `[0xcc 0x5a 0x80 0x00 0x5F %:10 r`
+
+  - Read authentication pattern using "Read Scratchpad" function command
+    (0xAA): `[0xcc 0xaa r:3`
+
+  - Copy scratchpad to memory with erroneous MAC and read result after 10 ms
+    using "Copy Scratchpad" function command (0x55):
+    `[0xcc 0x55 0x80 0x00 0xDF 0x42:20 %:10 r`
+
+  - Read first 8 bytes starting at target address 0 using "Read Memory"
+    function command (0xF0): `[0xcc 0xf0 0 0 r:8`
+
+  - Read page 0 and authentication using "Read Authenticated Page" function
+    command (0xa5): `[0xcc 0xa5 0 0 r:32 r:1 r:2 %:2 r:20 r:2`
+
+  - Compute next secret using memory page 0 and read result after 12 ms using
+    "Compute Next Secret" function command (0x33): `[0xcc 0x33 0x00 0x00 %:12 r`
+
+  - Read scratchpad to verify result: `[0xcc 0xaa r:3 r:8 r:2`
