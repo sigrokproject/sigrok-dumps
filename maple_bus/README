@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------------
+SEGA Maple bus
+-------------------------------------------------------------------------------
+
+This is a set of dumps of the SEGA Dreamcast Maple bus.
+
+For details see:
+http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=%2Fnetahtml%2FPTO%2Fsrchnum.htm&r=1&f=G&l=50&s1=6,324,603.PN.&OS=PN/6,324,603&RS=PN/6,324,603
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a genuine Saleae Logic16 (at 20 MHz):
+
+  Probe       Maple bus
+  ---------------------
+  1           SDCKA
+  5           SDCKB
+
+
+Data
+----
+
+Three different peripherals (a controller, a memory card, and a rumble
+pack) are probed using "Device Request" packets, each of which is
+replied to with a "Device status" packet.
+
