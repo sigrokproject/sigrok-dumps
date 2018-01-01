@@ -2,12 +2,15 @@
 EDID
 -------------------------------------------------------------------------------
 
-The captures in this directory were taken from a VGA cable, connected to
-various displays, as the EDID data was sent across the I2C bus.
+The captures in this directory were taken from the DDC/I2C bus.
+
+For the two Samsung displays below, the logic analyzer was attached to a
+VGA cable, which connects the computer and the display while the EDID data
+was sent across the I2C bus.
 
 To decode these, set up a protocol decoder stack like this:
 
-	i2c -> i2cfilter -> edid
+	i2c -> edid
 
 Details:
 https://en.wikipedia.org/wiki/Extended_display_identification_data
@@ -35,3 +38,21 @@ The logic analyzer used was a Saleae Logic (at 1MHz):
   1 (black)   SCL
   2 (brown)   SDA
 
+
+acer_al711_on_dp_dm_hdmi_vga.sr
+-------------------------------
+
+This setup is somewhat more evolved, as it used a computer with a
+dual-mode displayport (DP++), a DP-HDMI (Type 1) adapter, a HDMI DDC
+breakout cable, a HDMI-VGA adapter, and a CRT screen with VGA input.
+
+The logic analyzer was connected to the DDC bus between the two adapters
+above, i.e. on the HDMI connection. As the DP-HDMI adapter uses a level
+shifter between DP and HDMI DDC busses, also the communication between
+computer and the DP adapter is visible (the DDC busses on both side are
+physically connected). The DP-HDMI adapter is visible at I2C address
+0x40 and responds with the readonly identifier 'DP-HDMI Adaptor<EOT>'.
+
+The HDMI-VGA adapter modifies the EDID contents from the VGA moniter,
+it adds an CEA extension block at offset 0x80 and notifies the existence
+of the extension block in the first block.
