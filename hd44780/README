@@ -1,0 +1,51 @@
+-------------------------------------------------------------------------------
+Hitachi HD44780 display controller, 4-bit mode, initialization sequence
+-------------------------------------------------------------------------------
+
+This capture contains the initialization sequence of an Hitachi HD44780
+display controller which is very popular for 2x16, 4x20, and similar
+character oriented display modules.
+
+The specific hardware setup that got recorded uses 4-bit mode, which
+means that data gets communicated on lined D4-D7 only, and D0-D3 are
+not connected.
+
+
+Logic analyzer setup
+--------------------
+
+The capture was taken with an ASIX Sigma2 logic analyzer, sampling 8
+logic channels at a rate of 50MHz:
+
+  Probe       HD44780
+  -------------------
+  1           IR (infrared remote control, idle, not HD44780 related)
+  2           RS (selects "commands" and "display data" mode)
+  3           RW (read/write, always low for write, fixed in HW)
+  4           E (enable, falling edge clocks data transfers)
+  5           D4 (data lines ...)
+  6           D5
+  7           D6
+  8           D7
+
+
+Data
+----
+
+See https://en.wikipedia.org/wiki/Hitachi_HD44780_LCD_controller for a
+list of display controller commands, and especially the 'Mode Selection'
+section which discusses the synchronization phase.
+
+The sequence demonstrates the following steps:
+- Synchronize to the LCD controller, cope with it being in any arbitrary
+  state from previous execution.
+- Configure the LCD controller hardware to 4-bit mode, clear the screen
+  and setup other parameters.
+- Print two text labels: "Hello LCD" and "counter", start printing
+  counter values.
+
+When a dedicated HD44780 decoder is not available, the 'parallel' decoder
+can extract the most basic information: Clock on E (falling edge), D4-D7
+of the display corresponds to D0-D3 of the decoder (D4-D7 of the decoder
+are not connected). Words consist of 8 bits (span 2 bus cycles), and are
+in big endian format.
