@@ -1,0 +1,22 @@
+-------------------------------------------------------------------------------
+Siemens SDA2506-5
+-------------------------------------------------------------------------------
+
+This is a set of example captures of Siemens SDA2506-5 EEPROM traffic.
+
+Details:
+http://www.dataman.com/media/datasheet/Infineon/SDA2506-5.pdf
+https://github.com/max-weller/hwreverse/tree/master/blaupunkt-coburg-sqr-49
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used is unknown (at 1MHz):
+
+  Probe       EEPROM pin
+  ----------------------
+  0           CE#
+  2           D
+  5           CLK
+
