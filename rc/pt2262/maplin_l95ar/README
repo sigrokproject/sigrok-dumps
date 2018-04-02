@@ -1,0 +1,43 @@
+-------------------------------------------------------------------------------
+Maplin L95AR: Remote control mains sockets data
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the remote control data on a Maplin L95AR
+13A remote control mains sockets 4 pack. The remote transmits at 433.92 MHz
+and uses amplitude modulation.
+
+The signal is received by an RF Solutions RR3 decoder chip and then passed
+to the logic analyser.
+
+The RR3 decoder has been superceded by newer models.
+
+Details:
+https://www.rfsolutions.co.uk/downloads/1456159357DS-AM-HRR.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a USBee AX Pro / Saleae Logic clone (at 100kHz):
+
+  Probe       RR3
+  ---------------
+  0           OUT
+
+
+Data
+----
+
+ * maplin_l95ar_single_a.sr:
+   Contains a single set of pulses from pressing button A.
+
+ * maplin_l95ar_three_a.sr:
+   Contains a three sets of pulses from pressing button A.
+
+ * maplin_l95ar_a_b_c_d_on.sr:
+   Shows the received signal from pressing button A then button B
+   then button C and then button D.
+
+Note that there are some signals that are broken at the end of each button
+press. Both my remotes seem to do this.
+
