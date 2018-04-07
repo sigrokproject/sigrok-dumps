@@ -1,0 +1,39 @@
+-------------------------------------------------------------------------------
+SSD1306 OLED display controller, 4-wire SPI and I2C modes
+-------------------------------------------------------------------------------
+
+This capture contains a sequence of an SSD1306 display controller which is
+popular for OLED display modules. The controller supports various protocols.
+I2C and 4-wire SPI are used most often.
+
+
+Logic analyzer setup
+--------------------
+
+The 4-wire SPI capture was taken with DreamSourceLab DSLogic logic analyzer,
+sampling 4 logic channels at a rate of 10MHz:
+
+  Probe       SSD1306
+  -------------------
+  0           CLK  (clock)
+  1           MOSI (master out, slave in)
+  2           DC   (data / command)
+  3           CS   (chip select)
+
+The I2C capture was taken with DreamSourceLab DSLogic logic analyzer,
+sampling 2 logic channels at a rate of 2MHz:
+
+  Probe       SSD1306
+  -------------------
+  0           SCL (clock)
+  1           SDA (data)
+
+
+Data
+----
+
+See SSD1306 datasheet [1] and an STM32 library [2] used to generate recorded
+signals.
+
+[1]: https://cdn-shop.adafruit.com/datasheets/SSD1306.pdf
+[2]: https://github.com/afiskon/stm32-ssd1306
