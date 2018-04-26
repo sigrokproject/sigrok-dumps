@@ -1,0 +1,63 @@
+-------------------------------------------------------------------------------
+Intel MCS-48 external memory access
+-------------------------------------------------------------------------------
+
+Example dump of external program memory access on an Intel 8039 (like the 8048,
+part of the MCS-48 family) in an HP 3478A bench multimeter.
+
+The 8039 has no internal ROM. The respective mcs48 PD was designed to
+reconstruct a ROM dump without needing to desolder the ROM IC.
+
+The HP3478A is special in that it needed to access 8kB of code -- the normal
+MCS-48 address space is 4kB, so an extra address line was added (A12) under
+software control. In other words, they have crafted their code to toggle a
+pin to control A12 and thus switch memory "banks".
+
+Details:
+https://github.com/fenugrec/hp3478a_utils/blob/master/sigrok_PD/notes.txt
+https://en.wikipedia.org/wiki/Intel_MCS-48
+https://www.keysight.com/en/pd-3478A%3Aepsg%3Apro-pn-3478A/55-digit-dmm-with-hp-ib-interface
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was an Saleae Logic16 clone (at 8MHz).
+
+  Probe       i8039
+  -----------------
+  0           A8
+  1           A9
+  2           A10
+  3           A11
+  4           A12
+  5           ALE
+  7           PSEN
+  8           D0
+  9           D1
+  10          D2
+  11          D3
+  12          D4
+  13          D5
+  14          D6
+  15          D7
+
+A sampling rate of 8MHz was sufficient to validate transitions on ALE and PSEN.
+
+
+Data
+----
+
+Example sigrok-cli invocation to dump the memory accesses:
+
+ $ sigrok-cli -i i8039_sample.sr -P mcs48:d0=D0:d1=D1:d2=D2:d3=D3:d4=D4:d5=D5:d6=D6:d7=D7:a8=A8:a9=A9:a10=A10:a11=A11:a12=A12:ale=ALE:psen=PSEN
+
+The text annotations are formated as "XXXX:YY" where XXXX is the address
+and YY the byte at that address.
+
+A more useful command:
+
+ $ sigrok-cli -i i8039_sample.sr -P mcs48:d0=D0:d1=D1:d2=D2:d3=D3:d4=D4:d5=D5:d6=D6:d7=D7:a8=A8:a9=A9:a10=A10:a11=A11:a12=A12:ale=ALE:psen=PSEN -B mcs48 > rom_access.bin
+
+This writes every access to a raw file, simply as 3-byte chunks [XX XX YY]
+which may easily be post-processed to reconstruct the full ROM image.
