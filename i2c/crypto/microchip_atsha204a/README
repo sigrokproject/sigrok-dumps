@@ -1,0 +1,38 @@
+-------------------------------------------------------------------------------
+Microchip ATSHA204A
+-------------------------------------------------------------------------------
+
+The Microchip ATSHA204 is a symmetric crypto module that communicates with
+a host over I2C.
+
+Details:
+http://www.microchip.com/wwwproducts/en/ATsha204a
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a standard 8-channel FX2-based device (at 1 MHz).
+
+  Probe       ATSHA204A
+  ---------------------
+  0           SDA
+  1           SCL
+
+
+Data
+----
+
+The included sample originates from unit tests executed on the ATSHA204A
+and captured using PulseView. It contains samples of the following commands:
+
+ - Random
+ - DevRev
+ - Nonce
+ - GenDig
+ - HMAC
+ - MAC
+ - CheckMac
+ - DeriveKey
+ - Pause
+
