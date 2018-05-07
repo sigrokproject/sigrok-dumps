@@ -1,0 +1,39 @@
+-------------------------------------------------------------------------------
+ST7735 TFT display controller, 4-wire SPI
+-------------------------------------------------------------------------------
+
+This capture contains ST7735 TFT display controller communication which is
+popular for small (1.44", 1.8") 16-bit color display modules. The protocol
+of these modules is based on SPI, but unlike typical SPI has no MISO and uses
+two additional pins called RES (reset) and DC (data / command).
+
+Details:
+https://cdn-shop.adafruit.com/datasheets/ST7735.pdf
+https://github.com/adafruit/Adafruit-ST7735-Library
+
+
+Logic analyzer setup
+--------------------
+
+The 1.44" 128x128 px module was driven by Arduino Uno and Adafruit ST7735
+library. The capture was taken with 8 channel noname Saleae logic analyzer
+clone, sampling 5 logic channels at a rate of 24MHz:
+
+  Probe       ST7735
+  ------------------
+  0           CS   (chip select)
+  1           RES  (reset)
+  2           DC   (data / command)
+  3           MOSI (master out, slave in)
+  4           SCLK (clock)
+
+
+Data
+----
+
+This is a minimal capture despite the fact that it might look otherwise. It
+contains an initialization of a display and filling it with one complete frame.
+Long pauses are caused be sleeps for a few hundreds of milliseconds, which are
+required by the spec. Other oddities like frequent changes of CS are caused by
+specific library implementation.
+
