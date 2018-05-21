@@ -1,0 +1,31 @@
+-------------------------------------------------------------------------------
+ON Semi CAT24C256
+-------------------------------------------------------------------------------
+
+This is a set of example captures of ON Semi CAT24C256 I2C traffic.
+
+Details:
+http://www.onsemi.com/PowerSolutions/product.do?id=CAT24C256
+https://www.onsemi.com/pub/Collateral/CAT24C256-D.PDF
+https://github.com/whitequark/Glasgow
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was an mcupro Saleae 16 clone (at 2 MHz).
+
+  Probe       I2C pin
+  -------------------
+  0 (black)   SCL
+  1 (brown)   SDA
+
+
+glasgow-firmware-flash.sr
+-------------------------
+
+This is the I2C communication of the FX2_MEM EEPROM being flashed with
+8051 firmware and then verified on a Glasgow board. Only the changed bytes are
+written, which is why there are two read sequences. The uneven pages are
+because of the EP0 buffer being limited to 64 bytes.
+
