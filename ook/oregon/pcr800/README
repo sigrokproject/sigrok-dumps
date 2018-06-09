@@ -1,0 +1,38 @@
+-------------------------------------------------------------------------------
+PCR800: OOK data
+-------------------------------------------------------------------------------
+
+This is an example capture of an Oregon Scientific PCR800 rain sensor which
+transmits at 433.92 MHz using Manchester encoding and amplitude modulation.
+
+The signal was received by an RF Solutions RX12 superhet decoder chip and then
+passed to the logic analyser.
+
+In order to decode the Oregon v3 PCR800 you will need a preamble of '1111 ...'
+(default) in the ook decoder. Currently you can ook decode either a preamble
+of '1111 ...' or '1010 ...' but not both at the same time, so you can see
+Oregon v2.1 or v1/3 sensors.
+
+Details:
+http://www.oregonscientificstore.com/p-5-oregon-scientific-pcr800-wireless-rain-gauge-for-professional-weather-stations.aspx
+https://www.rfsolutions.co.uk/downloads/1481732062DS-AM-RX12.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a USBee AX Pro / Saleae Logic clone (at 25kHz):
+
+  Probe       RX12
+  ----------------
+  0           OUT
+  1           Output from Arduino running virtual BTHR968
+
+
+Data
+----
+
+ * oregon_pcr800.sr:
+   Contains a single set of pulses that belong to an Oregon Scientific PCR800
+   rain sensor. These should decode as channel 0, battery OK, rainfall 0
+   in/hour, total 38.885 inches (since the battery was changed), checksum OK.
