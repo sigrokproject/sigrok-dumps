@@ -1,0 +1,75 @@
+-------------------------------------------------------------------------------
+SWIM
+-------------------------------------------------------------------------------
+
+These are captures of an ST-Link V2 programming an STM8 using the SWIM protocol.
+
+Details:
+https://www.st.com/content/ccc/resource/technical/document/user_manual/ca/89/41/4e/72/31/49/f4/CD00173911.pdf/files/CD00173911.pdf/jcr:content/translations/en.CD00173911.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyser used was a DreamSourceLab DSLogic (at 10MHz).
+
+  Probe       Target
+  ------------------
+  0           RST
+  1           SWIM
+
+
+Data
+----
+
+Using stm8flash with an ST-Link V2 adapter to program an STM8S003F3.
+
+Command line:
+
+  $ stm8flash -c stlinkv2 -p stm8s003f3 -s opt -r /tmp/data; stm8flash -c \
+    stlinkv2 -p stm8s003f3 -s opt -r /tmp/data
+
+  stm8flash is modified both for correctness and to generate the test sequences.
+  The updated version can be found at https://github.com/mjagdis/stm8flash.
+
+
+tests/sample1.sr
+----------------
+
+Read of two blocks of memory from an STM8S103 starting at the base address
+of the OPTs. Repeated twice with no SRST to disable SWIM in between.
+Note that the second enter sequence is not seen as an enter sequence. Since
+SWIM is already active on the target it does NOT recognise a second enter
+sequence and instead sees each low sent by the host as a SWIM reset request
+to which it responds, if you zoom in enough, with its own 16μs sync frame.
+
+
+tests/sample2.sr
+----------------
+
+As sample1 but each of the runs ends with an SWIM reset followed by an SRST
+(system reset) SWIM command. Note that the SWIM reset consists of the host
+pulling the SWIM line low for 16μs to reset the target's SWIM module followed
+by the target acknowledging with its own synchronization frame (i.e. it pulls
+the line low for another 16μs). Note too that the RST bit is not set in
+SWIM_CSR so the SRST does not disable SWIM and the second enter sequence is
+treated as resyncing just as in sample1.
+
+
+tests/sample3.sr
+----------------
+
+As sample2 but now we modify stm8flash to set RST (bit 2) in SWIM_CSR (0x7f80)
+as part of its shutdown. This causes the SRST to disable SWIM as well as reset
+the target and now the subsequent enter sequence behaves as expected.
+
+
+tests/sample4.sr
+----------------
+
+As sample3 but the SRST at the end of each run is removed again. The second
+enter sequence is no longer recognised as an enter sequence and the target
+again responds to each low by with a sync frame indicating it is treating them
+as SWIM reset requests. This demonstrates that the SRST SWIM command is indeed
+responsible for disabling the SWIM module and that an external reset via the
+RST pin is insufficient regardless of the setting of the RST bit in SWIM_CSR.

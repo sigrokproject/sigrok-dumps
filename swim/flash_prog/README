@@ -1,0 +1,39 @@
+-------------------------------------------------------------------------------
+SWIM
+-------------------------------------------------------------------------------
+
+This is a capture of an ST-Link V2 programming an STM8 using the SWIM protocol.
+
+Details:
+https://www.st.com/content/ccc/resource/technical/document/user_manual/ca/89/41/4e/72/31/49/f4/CD00173911.pdf/files/CD00173911.pdf/jcr:content/translations/en.CD00173911.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyser used was a DreamSourceLab DSLogic (at 10MHz).
+
+  Probe       Target
+  ------------------
+  0           RST
+  1           SWIM
+
+
+sample1.sr
+----------
+
+Using stm8flash with an ST-Link V2 adapter to program an STM8S003F3.
+
+Command line:
+
+  $ stm8flash -c stlinkv2 -p stm8s003f3 -s flash -w prog.ihx
+
+stm8flash is modified both for correctness and to generate the test sequences.
+The updated version can be found at https://github.com/mjagdis/stm8flash.
+
+A complete flash programming operation. SWIM is enabled and set to high
+speed mode (notice how the pulse width and period decreases after the
+initial chatter). A read of the affected memory region is made, compared to
+the data to be written and those blocks that contain differences are written
+back. Finally an SRST SWIM command is sent to terminate the conversation
+and reset the target.
