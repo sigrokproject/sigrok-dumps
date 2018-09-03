@@ -17,7 +17,7 @@ Logic analyzer setup
 --------------------
 
 The captures were taken using a SALEAE LOGIC (fx2lafw), sampling at a rate of 
-1Mhz. Channel 3 of the analyzer is used 3 for the CEC bus traffic.
+1Mhz. Channel 3 of the analyzer is used for the CEC bus traffic.
 
   Probe       HDMI CONNECTOR
   --------------------------
