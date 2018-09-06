@@ -1,0 +1,49 @@
+-------------------------------------------------------------------------------
+Arbitrary CEC bus traffic
+-------------------------------------------------------------------------------
+
+These captures contain the typical command exchange between 2 CEC capable
+devices. In this case a Sony TV and 2 different amplifiers were used.
+
+The captures were taken connecting the TV and one of the amplifiers to later on
+switch the TV off and back on while dumping traffic on the CEC bus.
+
+The power OFF and power ON sequence can be seen in the captures with the 
+2 different amplifiers (Yamaha / Denon).
+
+Another spare capture was performed connecting one amplifier to the ARC input
+of the TV.
+
+
+Logic analyzer setup
+--------------------
+
+The captures were taken using a Saleae Logic (fx2lafw), sampling at a rate of 
+1MHz. Channel 3 of the analyzer is used for the CEC bus traffic.
+
+  Probe       HDMI connector
+  --------------------------
+  3           Pin 13 (CEC)
+
+
+Data
+----
+
+Command line used was:
+
+ $ sigrok-cli -d fx2lafw -c samplerate=1m -o dump.sr -C D3=CEC --time 15000
+
+  - tv_sony_amp_denon_switch_off_seq.sr
+    Sony TV connected to a Denon amplifier: TV is switched off from remote.
+
+  - tv_sony_amp_denon_switch_on_seq.sr
+    Sony TV connected to a Denon amplifier: TV is switched on from remote.
+
+  - tv_sony_amp_yamaha_switch_off_seq.sr
+    Sony TV connected to a Denon amplifier: TV is switched off from remote.
+
+  - tv_sony_amp_yamaha_switch_on_seq.sr
+    Sony TV connected to a Yamaha amplifier: TV is switched on from remote.
+
+  - tv_sony_amp_yamaha_arc_handshake.sr
+    Sony TV connected to a Yamaha amplifier via TV ARC input.
