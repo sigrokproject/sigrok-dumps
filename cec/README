@@ -8,6 +8,7 @@ devices. In this case a Sony TV and 2 different amplifiers were used.
 The captures were taken connecting the TV and one of the amplifiers to later on
 switch the TV off and back on while dumping traffic on the CEC BUS.
 
+
 The power OFF and power ON sequence can be seen in the captures with the 
 2 different amplifiers (YAMAHA / DENON).
 
