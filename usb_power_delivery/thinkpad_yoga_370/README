@@ -1,0 +1,89 @@
+-------------------------------------------------------------------------------
+USB Power Delivery protocol
+-------------------------------------------------------------------------------
+
+This directory contains captures of data communication on the Configuration
+Channels of Type-C USB connectors using the USB Power Delivery protocol.
+
+Details:
+http://www.usb.org/developers/powerdelivery/
+
+
+Logic analyzer setup
+--------------------
+
+These captures were made using different prototypes of the 'usb-c-grok', which
+is an FX2 based device designed to capture USB Configuration Channel traffic.
+
+I made all captures with PulseView, with the samplerate set to 4 MHz, except
+when noted otherwise.
+
+
+Devices used
+------------
+
+Lenovo Thinkpad Yoga 370
+ - https://psref.lenovo.com/Product/Think_Tablets_and_Convertibles/ThinkPad_Yoga_370
+ - 5V source
+ - 5/9/12/15/20V sink
+
+Aukey 45W PD source
+ - https://www.aukey.com/products/amp-usb-c-wall-charger-with-power-delivery-3-0-pa-y10
+ - The only device with Power Delivery 3.0 support
+ - 5/9/12/15/20V source
+ - Programmable 3 - 16V source
+
+Noname 65W PD source
+ - https://www.amazon.de/gp/product/B07538NJDZ/
+ - 5/9/12/15/20V source
+
+Cable Deconn USB hub/dock/dongle
+ - http://www.cabledeconn.com/sub/?id=708
+ - Power Delivery passtrough
+ - > supports PR swap
+ - USB 3.1 gen 1 hub with Gigabit Ethernet and 2 type A ports
+ - USB 2.0 hub with SD card reader and 3.5mm audio interface
+ - Displayport switch connected to DP-HDMI and DP-VGA converters
+ - Enough magic to make all of the above work at the same time
+
+Anker Powercore+ 26800 PD powerbank
+ - https://anker.com/uk/products/variant/powercore-26800-pd/A1375011
+ - 26800 mAh, almost 100 Wh
+ - 9V sink
+ - 5/9/12/15/20V source
+
+
+thinkpad_yoga_370-anker_powerbank-both_orientations.sr
+------------------------------------------------------
+
+I plugged in the powerbank in my laptop with the analyzer in between, then
+unplugged, reversed the plug and after around 2 seconds plugged it in again.
+
+At 65 ms we see a CRC packet which the devices have correctly seen but looks
+like it didn't capture correctly. At 1986 ms there is some noise, probably
+when I was replugging the connector.
+
+The Anker powerbank first advertises only 5V and 15V, then later advertises all
+other voltages. I don't know why this happens.
+
+
+thinkpad_yoga_370_aukey_45w.sr
+------------------------------
+
+I plugged the supply in my laptop. I included this because this supply
+advertises PPS capability and this is the only PD 3.0 feature in these captures.
+
+
+thinkpad_yoga_370-passtrough_dongle-anker_powerbank.sr
+------------------------------------------------------
+
+First the laptop advertises its capabilities multiple times. Then I plug in the
+dongle. At 415 ms the dongle responds and requests 5V from the laptop. Between
+460 and 600 ms it does all kinds of stuff that I don't understand. At 606 ms it
+enters DisplayPort Alternate Mode. I did not connect a display.
+
+After 3432 ms I plugged in the Anker powerbank to the passtrough port of the
+dongle, which sent a Power Role Swap message. Between 3470 and 3570 ms the CC
+line is low, because the dongle is switching it's power source. At 3677 ms the
+dongle advertises source capabilities to the laptop, which are basically the
+powerbanks capabilities reduced by 5W.

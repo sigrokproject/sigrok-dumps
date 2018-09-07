@@ -1,0 +1,71 @@
+-------------------------------------------------------------------------------
+USB Power Delivery protocol
+-------------------------------------------------------------------------------
+
+This directory contains captures of data communication on the Configuration
+Channels of Type-C USB connectors using the USB Power Delivery protocol.
+
+Details:
+http://www.usb.org/developers/powerdelivery/
+
+
+Logic analyzer setup
+--------------------
+
+These captures were made using different prototypes of the 'usb-c-grok', which
+is an FX2 based device designed to capture USB Configuration Channel traffic.
+
+I made all captures with PulseView, with the samplerate set to 4 MHz, except
+when noted otherwise.
+
+
+Devices used
+------------
+
+ZY12PDS Power Delivery sink module
+ - https://www.aliexpress.com/item/ZY12PD/32810557770.html
+ - Can be configured for 5/9/12/15/20V, or "highest possible" or
+   "all in sequence"
+ - Set to 9V, because I used it to upgrade a 9.6V toy car
+
+Aukey 45W PD source
+ - https://www.aukey.com/products/amp-usb-c-wall-charger-with-power-delivery-3-0-pa-y10
+ - The only device with Power Delivery 3.0 support
+ - 5/9/12/15/20V source
+ - Programmable 3 - 16V source
+
+Noname 65W PD source
+ - https://www.amazon.de/gp/product/B07538NJDZ/
+ - 5/9/12/15/20V source
+
+Cable Deconn USB hub/dock/dongle
+ - http://www.cabledeconn.com/sub/?id=708
+ - Power Delivery passtrough
+ - > supports PR swap
+ - USB 3.1 gen 1 hub with Gigabit Ethernet and 2 type A ports
+ - USB 2.0 hub with SD card reader and 3.5mm audio interface
+ - Displayport switch connected to DP-HDMI and DP-VGA converters
+ - Enough magic to make all of the above work at the same time
+
+Anker Powercore+ 26800 PD powerbank
+ - https://anker.com/uk/products/variant/powercore-26800-pd/A1375011
+ - 26800 mAh, almost 100 Wh
+ - 9V sink
+ - 5/9/12/15/20V source
+
+
+zy12pds_sink_module-65w_noname_supply.sr
+----------------------------------------
+
+This supply lies. It says 65W on the box and device but advertises only 60W.
+The sink is a module available from aliexpress or ebay which I configured to
+request 9V.
+
+
+zy12pds_sink_module-anker_powerbank.sr
+--------------------------------------
+
+The same module as before, now connected to the Anker powerbank, and configured
+to request all the voltages sequentially, with 1800ms between each one. This
+was captured at 6 MHz because at 4 MHz it had some issues with decoding packets
+from the ZY12PDS module, but only at some voltages.
