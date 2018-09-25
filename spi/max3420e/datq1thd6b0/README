@@ -1,0 +1,33 @@
+-------------------------------------------------------------------------------
+Maxim MAX3420E on a DATQ1THD6B0 touch screen module
+-------------------------------------------------------------------------------
+
+This directory contains captures of the SPI/USB communication of a
+DATQ1THD6B0 touch screen module (used for TFT monitors).
+
+Details:
+https://randomprojects.org/wiki/DATQ1THD6B0_touch_screen_module
+https://www.maximintegrated.com/en/products/interface/controllers-expanders/MAX3420E.html
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic16 (at 50MHz):
+
+  Probe       MAX3420E
+  --------------------
+  0           USB D-
+  1           USB D+
+  2           MOSI
+  3           CLK 
+  4           CS#
+  5           MISO
+
+
+max3420e_poweron_and_other_pcbs.sr
+----------------------------------
+
+The samplerate here is only 32MHz, USB may not be entirely decodable. This
+is a capture which is only meant to show the timing of when the two other
+PCBs are initialized relative to the main PCB.
