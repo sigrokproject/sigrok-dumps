@@ -12,10 +12,13 @@ For details on the device see:
 There are three chips which are connected to the main CPU's SCL/SDA pins:
 
  - Battery management chip: X-Powers AXP199
+  * I²C slave address: 0x34/52 (shifted: 0x68/104)
 
  - RTC chip: Hec Semiconductor H8563S
+  * I²C slave address: 0x51/81 (shifted: 0xa2/162)
 
  - Digital Thermal Orientation Sensor (DTOS): MEMSIC MXC6225XU
+   * I²C slave address: 0x15/21 (shifted: 0x2a/42)
 
 
 trekstor_ebr30_a_i2c_0x15.sr
