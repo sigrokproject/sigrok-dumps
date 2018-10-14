@@ -1,0 +1,6 @@
+A teensy 3.6 driving a at25sf041 4Mbit serial flash.
+Contains sparse button activated device id and status checks followed by a simple read.
+
+Use sigrok-cli -i AT25SF041.sr -P spi:cs=cs:mosi=mosi:clk=clk:miso=miso,spiflash to see decodes.
+
+Captured with dslogic plus
