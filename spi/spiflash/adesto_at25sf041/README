@@ -1,6 +1,26 @@
-A teensy 3.6 driving a at25sf041 4Mbit serial flash.
-Contains sparse button activated device id and status checks followed by a simple read.
+-------------------------------------------------------------------------------
+Adesto AT25SF041
+-------------------------------------------------------------------------------
 
-Use sigrok-cli -i AT25SF041.sr -P spi:cs=cs:mosi=mosi:clk=clk:miso=miso,spiflash to see decodes.
+This is an example capture of an Adesto AT25SF041 (4MBit == 512kByte) SPI
+flash chip being driven by a Teensy 3.6.
 
-Captured with dslogic plus
+It contains sparse button activated device ID and status checks followed by
+a simple read.
+
+Details:
+https://www.adestotech.com/wp-content/uploads/DS-AT25SF041_044.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a DreamSourceLab DSLogic Plus (at 50MHz):
+
+  Probe       AT25SF041 pin
+  -------------------------
+  0           clk
+  1           mosi
+  2           cs
+  3           miso
+
