@@ -1,0 +1,43 @@
+-------------------------------------------------------------------------------
+HUB75 led matrix
+-------------------------------------------------------------------------------
+
+This is an example capture of a 32x32 pixel 1/16 scan "normally addressed"
+HUB75 LED matrix. The matrix is being driven by a Raspberry Pi 3b+ with
+https://github.com/hzeller/rpi-rgb-led-matrix at 12 PWM bits per color.
+
+The A, B, C and D lines are address lines that select two rows at a time that
+can have LEDs on. Address 0 selects rows 0 and 16, address 2 selects row
+1 and 17, and so on.
+
+R1, G1 and B1 lines are binary data on the different color LEDs on the first
+line and R2, G2 and B2 for the second line. The data is clocked into constant
+current driver chips that act like 74595 shift registers.
+
+It is possible to build bigger displays by chaining the data to more panels.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a DreamSourceLab DSLogic Plus (at 100MHz):
+
+  Probe       HUB75 signal
+  ------------------------
+  0           CLK
+  1           #OE
+  2           LATCH
+  3           no connection
+  4           A
+  5           B
+  6           C
+  7           D
+  8           R1
+  9           G1
+  10          B1
+  11          no connection
+  12          R2
+  13          G2
+  14          B2
+  15          no connection
+
