@@ -1,0 +1,36 @@
+-------------------------------------------------------------------------------
+Winbond W25Q80D
+-------------------------------------------------------------------------------
+
+These are example captures of a Winbond W25Q80DV (8MBit == 1MByte) SPI
+flash chip being driven by a Teensy 3.2. The SPI clock is at 500kHz.
+
+Details:
+https://www.winbond.com/resource-files/w25q80dv_revg_07212015.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a DreamSourceLab DSLogic Plus (at 10MHz):
+
+  Probe       W25Q80DV pin
+  ------------------------
+  0           CS#
+  1           CLK
+  2           DI (MOSI)
+  3           DO (MISO)
+
+
+ce_and_writes.sr
+----------------
+
+Device ID and status query followed by chip erase, polling of the chip
+status and then by few writes and verifying reads.
+
+
+ce_without_wren.sr
+------------------
+
+Test file for write enable warnings, issues chip erase without first having
+captured WREN command.
