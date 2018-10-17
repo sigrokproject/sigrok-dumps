@@ -1,0 +1,62 @@
+-------------------------------------------------------------------------------
+LIN bus traffic
+-------------------------------------------------------------------------------
+
+Synthetically generated LIN bus traffic from a debugging session.
+
+UART settings on LIN are always 19200/8n1, lsb-first; LIN protocol version: 2.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a DreamSourceLab DSLogic Plus (various samplerates):
+
+  Probe       LIN
+  ---------------
+  0           LIN-Bus
+
+
+single_frame.sr
+---------------
+
+This shows one valid single LIN frame consisting of a header and a response
+of 2 data bytes.
+
+PID is 0xC1 -> ID: 0x01 Parity: 3
+Data 1: 0x11
+Data 2: 0x11
+Checksum: 0x1C
+
+
+lin_burst.sr
+------------
+
+10 valid LIN frames consisting of a header and a response of 3 data bytes each.
+The frames are all sent at the highest possible load UART can handle.
+
+PID is 0xA3 -> ID: 0x23 Parity: 2
+Data 1: 0x11
+Data 2: 0x22
+Checksum: 0x29
+
+
+lin_malformed.sr
+----------------
+
+Contains complete and incomplete LIN frames. Sometimes the PID is not sent
+after the sync. The goal is testing the correct behaviour of the state machine
+on protocol violations.
+
+
+lin_malformed2.sr
+-----------------
+
+Same as lin_malformed.sr but more traffic.
+
+
+lin_stress.sr
+-------------
+
+Different messages with different lengths and a changing bus load.
+No protocol violations.
