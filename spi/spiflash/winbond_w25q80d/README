@@ -22,11 +22,17 @@ The logic analyzer used was a DreamSourceLab DSLogic Plus (at 10MHz):
   3           DO (MISO)
 
 
-ce_and_writes.sr
-----------------
+chip_erase_and_writes.sr
+------------------------
 
 Device ID and status query followed by chip erase, polling of the chip
 status and then by few writes and verifying reads.
+
+
+chip_erase_and_writes_{start,end}.sr
+------------------------------------
+
+Smaller snippets extracted from the file above, since it's very large.
 
 
 ce_without_wren.sr
