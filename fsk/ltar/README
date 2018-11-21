@@ -1,0 +1,9 @@
+This is an example capture showing an FSK datastream from a
+Lazer Tag LTAR blaster.
+
+The original data stream is audio-FSK in an iPhone-compatible format.
+This capture was made with a little bit of hardware to get it digitized,
+as my capture hardware didn't have sufficient analog resolution to let the
+PulseView analog-to-logic conversion work well. The FSK decoder defaults to
+settings that work well for this particular usage, so just open the file and
+add the FSK decoder.
