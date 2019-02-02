@@ -10,8 +10,8 @@ Details:
  - DS1307 datasheet: http://sparkfun.com/datasheets/Components/DS1307.pdf
 
 
-Logic analyzer setup
---------------------
+A. Logic analyzer setup
+-----------------------
 
 The logic analyzer used was Open Bench Logic Sniffer (at 200kHz):
 
@@ -42,3 +42,32 @@ The sigrok command line used was:
   sigrok-cli --driver=ols:conn=/dev/ttyACM0 -d samplerate=200khz \
              --samples=24576 -p 0=SCL,1=SDA --triggers SDA=0 -o <filename>
 
+
+
+B. Logic analyzer setup
+-----------------------
+
+The logic analyzer used:
+  Logic Analyzer 24MHz 8CH (cheap Chinese one) at 100kHz.
+  The sigrok detects it as Saleae Logic with 8 channels.
+
+  Probe          DS1307 pin
+  -------------------------
+  D0 (CH1)       SCL
+  D1 (CH2)       SDA
+
+
+The sigrok 0.7.1 command line used:
+
+sigrok-cli --driver fx2lafw --channels D0=CLK,D1=DATA \
+           --config samplerate=500khz:captureratio=1 --samples 1000 \
+           --triggers CLK=1,DATA=f --output-file <filename>
+
+
+rtc_ds1307_100khz_sqw32khz_mode12h_pm.sr:
+-----------------------------------------
+The file provides reading of time keeping registers as well as control register
+of the RTC chip, which was setup to 12-hours mode, time with PM flag, and
+square wave frequency 32768 Hz before in order to demonstrate bugfixes
+in the pull request with commit 0214a63a4830a460dab5e871b77e2cee8515d072
+in libsigrokdecode project.
