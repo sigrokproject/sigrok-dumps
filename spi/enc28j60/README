@@ -1,0 +1,35 @@
+-------------------------------------------------------------------------------
+Microchip ENC28J60
+-------------------------------------------------------------------------------
+
+This is an example capture of the Microchip ENC28J60 SPI Ethernet chip.
+
+Details:
+http://ww1.microchip.com/downloads/en/DeviceDoc/39662e.pdf
+
+
+enc28j60-init-and-ping.sr
+-------------------------
+
+Capture contains the following 3 stages:
+
+1) Initialization phase where control registers are written.
+2) Polling phase that waits for the Ethernet link to be up.
+3) Two round-trips of ping packets (each consists of 1 RX of ICMP Echo Request
+   packet and 1 TX of ICMP Echo Reply packet).
+
+The chip was driven by a custom STM32F446 board running custom bare-metal
+firmware.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a DSLogic Plus (at 50MHz, with SPI clock at 16MHz):
+
+  Probe       ENC28J60
+  --------------------
+  0           CS#
+  1           MISO
+  2           CLK
+  3           MOSI
