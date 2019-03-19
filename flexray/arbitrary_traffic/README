@@ -39,21 +39,7 @@ controllers are connected together.
 The bus was externally terminated by adding a 100 Ohm resistor between FR_A+
 and FR_A- and another 100 Ohm resistor between FR_B+ and FR_B-.
 
-
-flexray_2s16_0d_one_cycle.sr
-----------------------------
-
-This shows one cycle of an ongoing FlexRay communication. Only channel A is used.
-
-Bitrate: 10 Mbit
-Used Channels: A
-Static frames: 2
-Dynamic frames: 0
-Length of static frames: 16 bytes
-Data on all frames is: 0x00 0x01 0x02 0x03
-                       0x00 0x00 0x00 0x00
-                       0x00 0x00 0x00 0x00
-                       0x00 0x00 0x00 0x00
+Network parameters used on all dumps are as follows:
 
 Cluster parameters:
 -------------------
@@ -135,3 +121,96 @@ Specific parameters for node 2:
 -------------------------------
 pKeySlotId = 2
 
+
+flexray_2s16_0d_one_cycle.sr
+----------------------------
+
+This shows one cycle of an ongoing FlexRay communication using 2 static frames.
+Only channel A is used.
+
+Bitrate: 10 Mbit
+Used Channels: A
+Static frames: 2
+Dynamic frames: 0
+Length of static frames: 16 bytes
+Data on all frames is: 0x00 0x01 0x02 0x03
+                       0x00 0x00 0x00 0x00
+                       0x00 0x00 0x00 0x00
+                       0x00 0x00 0x00 0x00
+
+
+flexray_2s16_1d2_one_cycle.sr
+-----------------------------
+
+This shows one cycle of an ongoing FlexRay communication using 2 static frames
+and 1 dynamic frame. Only channel A is used.
+
+Bitrate: 10 Mbit
+Used Channels: A
+Static frames: 2
+Dynamic frames: 1
+Length of static frames: 16 bytes
+Data on all static frames is: 0x00 0x01 0x02 0x03
+                              0x00 0x00 0x00 0x00
+                              0x00 0x00 0x00 0x00
+                              0x00 0x00 0x00 0x00
+
+Data on all dynamic frames is: 0x23 0x42
+
+
+flexray_coldstart_2s16_3d_multiple_cycles.sr
+--------------------------------------------
+
+This shows a cold start sequence and a few cycles of traffic.
+There are 2 static frames and 3 dynamic frames. Only channel A is used.
+
+Bitrate: 10 Mbit
+Used Channels: A
+Static frames: 2
+Dynamic frames: 3
+Length of static frames: 16 bytes
+Data on all static frames is: 0x00 0x01 0x02 0x03
+                              0x00 0x00 0x00 0x00
+                              0x00 0x00 0x00 0x00
+                              0x00 0x00 0x00 0x00
+
+Data on dynamic frames is:
+
+ID  8: 0x02 0x02 0x00 0x00
+       0x00 0x00 0x00 0x00
+       0x00 0x00 0x00 0x00
+       0x00 0x00 0x00 0x00
+
+ID 11: 0x33 0x33 0x33 0x00
+       0x00 0x00 0x00 0x00
+       0x00 0x00 0x00 0x00
+       0x00 0x00 0x00 0x00
+
+ID 15: 0x04 0x04 0x04 0x04
+       0x00 0x00 0x00 0x00
+       0x00 0x00 0x00 0x00
+       0x00 0x00 0x00 0x00
+
+
+flexray_ab_2s16_0d_one_cycle.sr
+-------------------------------
+
+This shows one cycle of an ongoing FlexRay communication using 2 static frames.
+Channel A and B are used and transmit the same data.
+
+Bitrate: 10 Mbit
+Used Channels: AB
+Static frames: 2
+Dynamic frames: 0
+Length of static frames: 16 bytes
+Data on frames is:
+
+ID 1: 0x00 0x01 0x02 0x03
+      0x00 0x00 0x00 0x00
+      0x00 0x00 0x00 0x00
+      0x00 0x00 0x00 0x00
+
+ID 2: 0x07 0x06 0x05 0x04
+      0x00 0x00 0x00 0x00
+      0x00 0x00 0x00 0x00
+      0x00 0x00 0x00 0x00
