@@ -1,0 +1,49 @@
+-------------------------------------------------------------------------------
+Maxim DS2408 1-Wire 8-Channel Addressable Switch
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the 1-Wire traffic from a Maxim Integrated
+(previously Dallas Semiconductor) DS2408 1-Wire Addressable Switch.
+
+Details:
+https://datasheets.maximintegrated.com/en/ds/DS2408.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The waveform data was acquired using Rigol DS1074Z oscilloscope.
+
+Because of the currently unresolved libsigrok bug #1364 it can't be acquired
+directly using rigol-ds, so it was obtained using external tool and then
+loaded into PulseView with "Import Raw analog data without header".
+
+This method is described here:
+https://skyboo.net/2019/03/using-rigol-ds1074z-oscilloscope-under-linux-and-pulseview/
+
+
+disable-test-mode.sr
+--------------------
+
+This is the special "Disable Test Mode" command which should be issued on the
+power-on, for reference read "Power-up timing", page 38 of the datasheet.
+
+
+channel-access-write.sr
+-----------------------
+
+A successful command for setting PIO outputs (channel access write).
+
+
+channel-access-write-fail.sr
+----------------------------
+
+Same command as above but the device is responding with 'Fail New State' (0xff)
+which informs about the error.
+
+
+read-pio-registers.sr
+---------------------
+
+A function for reading device registers (where a target address is given).
+In this example the address 0x89 is read (PIO output-latch state register).
