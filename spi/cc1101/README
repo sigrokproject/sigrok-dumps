@@ -1,0 +1,34 @@
+-------------------------------------------------------------------------------
+CC1101
+-------------------------------------------------------------------------------
+
+This directory contains captures of the communication between a CC1101
+transceiver, connected to an AVR microcontroller, and another transceiver.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic clone (at 16 MHz):
+
+  Probe           CC1101
+  ----------------------
+  0               MOSI
+  1               CLK
+  2               MISO
+  3               GDO2 (general purpose output 2 of CC1101)
+  4               GDO0 (general purpose output 0 of CC1101, used as interrupt
+                        signal from CC1101 to AVR microcontroller, active low)
+  5               CS, active low
+
+
+Data
+----
+
+The sigrok command line used was:
+
+  $ sigrok-cli.exe -d fx2lafw --config "samplerate=16 MHz" --time 1s \
+                   --channels D0=MOSI,D1=CLK,D2=MISO,D3=GDO2,D4=GDO0,D5=CS \
+                   --triggers CS=f \
+                   -P spi:clk=CLK:mosi=MOSI:miso=MISO:cs=CS,cc1101
+
