@@ -26,5 +26,5 @@ Data
 
 The sigrok command line used was:
 
-  sigrok-cli.exe -i cc1101-command-strobe.sr -P spi:clk=SCK:mosi=MOSI:miso=MISO:cs=CS,cc1101
+  sigrok-cli.exe -d fx2lafw --config "samplerate=16 MHz" --time 1s  --channels D0=MOSI,D1=CLK,D2=MISO,D3=GDO2,D4=GDO0,D5=CS --triggers CS=f -P spi:clk=CLK:mosi=MOSI:miso=MISO:cs=CS,cc1101
 
