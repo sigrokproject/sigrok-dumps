@@ -1,0 +1,58 @@
+-------------------------------------------------------------------------------
+ROHM BH1750FVI Digital Ambient Light Sensor
+-------------------------------------------------------------------------------
+
+This is a capture of data output from a ROHM BH1750FVI digital ambient
+light sensor.
+
+Details:
+https://www.mouser.com/ds/2/348/bh1750fvi-e-186247.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used is a Saleae Logic clone (at 500kHz):
+
+ Probe          BH1750FVI pin
+ ----------------------------
+ D0 (CH1)       SCL
+ D1 (CH2)       SDA
+
+
+bh1750_hresolutionmode.sr
+-------------------------
+
+The sigrok 0.7.1 command line used:
+
+sigrok-cli --driver fx2lafw --channels D0=SCL,D1=SDA \
+           --config samplerate=500khz:captureratio=1 --samples 100000 \
+           --triggers SCL=1,SDA=f --output-file <filename>
+
+The file provides recommended setup of the sensor in One Time H-Resolution Mode
+with default value 69 (0x45) of the measurement time bits in measurement time
+registers (sensor sensitivity adjusting) with standard resolution 0.83 lux per
+count.
+The sensor has ADDR pin grounded (ADDR = 'L'), which results to the slave
+address 35 (0x23).
+The long time period between communication bursts represents sensor's
+conversion period for configured resolution.
+
+
+bh1750_h2resolutionmode.sr
+--------------------------
+
+The sigrok 0.7.1 command line used:
+
+sigrok-cli --driver fx2lafw --channels D0=SCL,D1=SDA \
+           --config samplerate=500khz:captureratio=1 --samples 500000 \
+           --triggers SCL=1,SDA=f --output-file <filename>
+
+The file provides setup of the sensor in One Time H-Resolution Mode2 with
+value 254 (0xFE) of the measurement time bits in measurement time
+registers (sensor sensitivity adjusting) with the lowest resolution 0.11 lux
+per count (the highest sensitivity).
+The sensor has ADDR pin grounded (ADDR = 'L'), which results to the slave
+address 35 (0x23).
+The long time period between communication bursts represents sensor's
+conversion period for configured resolution.
