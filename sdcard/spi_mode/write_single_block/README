@@ -30,3 +30,7 @@ File data_transfer_complete_simulated.sr contains a complete CMD24 start
 as well as the communication of the R1 response, the data start token,
 the payload data, and the data response. This capture was created by a
 simulation.
+
+File data_transfer_complete_real.sr is similar to the above, but is a
+capture of a "real" transfer. The data (512 bytes) is all-zero, except for
+the first 12 bytes which are ASCII "Sigrok rocks".
