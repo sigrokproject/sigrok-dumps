@@ -1,9 +1,10 @@
 -------------------------------------------------------------------------------
-I2S Master 2-channel 16-bit 16-kHz
+I2S Master 2-channel 32-bit 8-kHz
 -------------------------------------------------------------------------------
 
 This is an example of an I2S master playing a recording of the BBC
 shipping forecast through one channel, and the other channel disconnected.
+
 
 Logic analyzer setup
 --------------------
@@ -15,4 +16,3 @@ The logic analyzer used was an EE Electronics ESLA201A (at 12MHz):
   0           Clock
   1           Frame Select
   2           Data
-
