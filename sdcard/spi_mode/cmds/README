@@ -1,0 +1,25 @@
+-------------------------------------------------------------------------------
+SD card / SPI-mode / Commands
+-------------------------------------------------------------------------------
+
+This is a set of example captures of individual SD card commands in SPI-mode.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was an FX2-based device (at 24MHz):
+
+  Probe       SD card
+  -------------------
+  0           MOSI
+  1           MISO
+  2           CLK
+  3           CS#
+
+
+cmd17.sr
+--------
+
+This file contains a CMD17 (READ_SINGLE_BLOCK) sequence, reading 512 bytes
+from address 0x000f. The first few bytes of the data are "sigrok rocks".
