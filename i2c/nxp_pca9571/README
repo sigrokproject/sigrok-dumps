@@ -1,0 +1,44 @@
+-------------------------------------------------------------------------------
+NXP PCA9571
+-------------------------------------------------------------------------------
+
+The NXP PCA9571 chip is an 8-bits I²C output expander.
+
+Details:
+https://www.nxp.com/products/analog/interfaces/ic-bus/ic-general-purpose-i-o/remote-8-bit-general-purpose-outputs-for-1-mhz-i2c-bus:PCA9571
+https://www.nxp.com/docs/en/data-sheet/PCA9571.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Hobby Components HCTEST0006 (at 2 MHz):
+
+  Probe       I²C signal
+  ----------------------
+  0           SDA
+  1           SCL
+
+
+Data
+----
+
+The sigrok command line used was:
+
+sigrok-cli -d fx2lafw -c samplerate=2mhz --time <time> \
+	--channels 'D0=SDA,D1=SCL' -o <filename.sr>
+
+
+This is a set of example captures of NXP PCA9571 I/O accesses.
+
+Three traces are included:
+
+ - pca9571_simple.sr: a simple output write operation.
+
+ - pca9571_sequence.sr: 64 consecutive write operations.
+
+ - pca9571_warning.sr: this produces a warning because the first read value
+   is different from the expected one (the PCA9571 start-up 8-bits port
+   status is high logic level 0xFF). This may occur if the first monitored
+   operation is a read operation and the PCA9571 is not in its default state
+   or if the PCA9571 reboots during the monitoring.
