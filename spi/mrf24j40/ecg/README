@@ -1,0 +1,36 @@
+-------------------------------------------------------------------------------
+Microchip MRF24J40MA
+-------------------------------------------------------------------------------
+
+This is a set of captures of the communication of an ECG device using a
+Microchip MRF24J40MA RF chip.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 12MHz).
+
+  Probe  MRF24J40MA
+  -----------------
+  0      CS#
+  1      SDO (MISO)
+  2      RESET#
+  3      WAKE
+  4      INT
+  5      SDI (MOSI)
+  6      SCK
+  7      CONTROL2 (custom debug signal)
+
+
+mrf24j40ma_no_txfails.sr
+------------------------
+
+This is a capture of a device where there aren't many TX fails (but some
+occasional retries).
+
+
+mrf24j40ma_many_txfails.sr
+--------------------------
+
+This is a capture of another device, where there are many TX fails and retries.
