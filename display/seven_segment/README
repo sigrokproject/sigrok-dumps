@@ -1,0 +1,43 @@
+-------------------------------------------------------------------------------
+Generic 7-segment display
+-------------------------------------------------------------------------------
+
+These are files containing data to test the function of the seven_segment
+protocol decoder.
+
+
+Logic analyzer setup
+--------------------
+
+Two files were generated without logic analyzer.
+
+For the last file a Saleae Logic clone was used (at 20kHz).
+
+  Probe          Display pin
+  --------------------------
+  0              A
+  1              B
+  2              C
+  3              D
+  4              E
+  5              F
+  6              G
+  7              DP
+
+
+test_7_segment_0-9.sr
+---------------------
+
+Cycles through the numbers 0 to 9.
+
+
+test_7_segment_0-f.sr
+---------------------
+
+Cycles through the numbers 0 to F.
+
+
+test_7_segment_slow.sr
+----------------------
+
+Cycles through the numbers 0 to F with alternating dot.
