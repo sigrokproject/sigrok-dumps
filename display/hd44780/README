@@ -11,8 +11,8 @@ means that data gets communicated on lined D4-D7 only, and D0-D3 are
 not connected.
 
 
-Logic analyzer setup
---------------------
+Logic analyzer setup (hd44780-reset-init-hello.sr)
+--------------------------------------------------
 
 The capture was taken with an ASIX Sigma2 logic analyzer, sampling 8
 logic channels at a rate of 50MHz:
@@ -29,8 +29,8 @@ logic channels at a rate of 50MHz:
   8           D7
 
 
-Data
-----
+hd44780-reset-init-hello.sr
+---------------------------
 
 See https://en.wikipedia.org/wiki/Hitachi_HD44780_LCD_controller for a
 list of display controller commands, and especially the 'Mode Selection'
@@ -49,3 +49,122 @@ can extract the most basic information: Clock on E (falling edge), D4-D7
 of the display corresponds to D0-D3 of the decoder (D4-D7 of the decoder
 are not connected). Words consist of 8 bits (span 2 bus cycles), and are
 in big endian format.
+
+
+Logic analyzer setup (other files)
+----------------------------------
+
+The capture was taken with a Saleae Logic clone (mostly at 200kHz):
+
+  Probe       HD44780
+  -------------------
+  1           RS (selects "commands" and "display data" mode)
+  2           E (enable, falling edge clocks data transfers)
+  3           D4 (data lines...)
+  4           D5
+  5           D6
+  6           D7
+
+
+hd44780-blink.sr
+----------------
+
+Arduino firmware based on the LiquidCrystal example Arduino Sketch.
+
+This is what the decoded data should look like:
+
+ - initialization
+ - write "hello, world!"
+ - toggle blinking every 3 seconds
+
+
+hd44780-cursor.sr
+-----------------
+
+Arduino firmware based on the LiquidCrystal example Arduino Sketch.
+
+This is what the decoded data should look like:
+
+ - initialization
+ - write "hello, world!"
+ - toggle cursor every 0.5 seconds
+
+
+hd44780-customcharacter.sr
+--------------------------
+
+Arduino firmware based on the LiquidCrystal example Arduino Sketch.
+
+This is what the decoded data should look like:
+
+ - initialization
+ - define special characters: heart, smiling face, unhappy face, stickman
+   with arms low, stickman with arms up
+ - write "I {heart} Arduino {smiling face}" and "    {stickman with arms low}"
+ - toggle second line between "    {stickman with arms low}" and
+   "    {stickman with arms up}" about (!) every 0.9 seconds
+
+
+hd44780-font.sr
+---------------
+
+Arduino firmware based on the LiquidCrystal example Arduino Sketch.
+
+This is what the decoded data should look like:
+
+ - initialization
+ - define special characters: heart, smiling face, unhappy face, stickman
+   with arms low, stickman with arms up
+ - every about 250ms a set of 2 * 16 characters are written to the display,
+   starting at 0
+
+
+hd44780-power.sr
+----------------
+
+Arduino firmware based on the LiquidCrystal example Arduino Sketch.
+
+This is what the decoded data should look like:
+
+ - initialization
+ - write "hello, world!"
+ - toggle display power every 0.5 seconds
+
+
+hd44780-shift.sr
+----------------
+
+Arduino firmware based on the LiquidCrystal example Arduino Sketch.
+
+This is what the decoded data should look like:
+
+ - initialization
+ - write "hello, world!"
+ - repeats:
+   - shift text to the left until it is outside the view
+   - shift text to the right until it is outside the view
+   - shift text to the left until it is where it was before shifting
+
+
+hd44780-shiftcursor_204.sr
+--------------------------
+
+This is what the decoded data should look like:
+
+ - initialization
+ - write "hello, world!"
+ - using cursor shifts it replaces the ! by ?, w by W and h by H, so it is
+   "Hello, World?" in the end
+
+
+hd44780-textdirection.sr
+------------------------
+
+Arduino firmware based on the LiquidCrystal example Arduino Sketch.
+
+This is what the decoded data should look like:
+
+ - initialization
+ - write "abcdefghijklm"
+ - continue to the left until "s"
+ - continue to the right until "z"
