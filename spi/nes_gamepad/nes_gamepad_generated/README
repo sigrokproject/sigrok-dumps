@@ -1,0 +1,165 @@
+-------------------------------------------------------------------------------
+NES Gamepad signalling
+-------------------------------------------------------------------------------
+
+Synthetically generated NES gamepad signalling.
+
+SPI settings are always:
+
+Clock polarity = 1
+Clock phase    = 0
+Bit order      = msb-first
+Word size      = 8
+
+Chip-select is not used and must not be assigned to any channel.
+
+        ___
+   GND |o  \
+   CUP |o o| VCC
+ OUT 0 |o o| D3
+    D1 |o o| D4
+       -----
+NES Gamepad Connector
+
+VCC   - Power 5V
+GND   - Ground
+CUP   - Shift register clock (CLK)
+OUT 0 - Shift register latch (optional)
+D1    - Gamepad data (MISO)
+D3    - Data (unused)
+D4    - Data (unused)
+
+Data pins D3 and D4 are not used by the standard game pad but by special
+controllers like the Nintento Zapper light gun.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a DreamSourceLab DSLogic Plus (at 10 MHz):
+
+  Probe       NES gamepad
+  -----------------------
+  0           OUT 0
+  1           D1
+  2           CUP
+
+
+a.sr
+----
+
+Button press of button 'A'.
+
+MISO bits: 01111111
+MISO data: 7F
+Button States: A
+
+
+b.sr
+----
+
+Button press of button 'B'.
+
+MISO bits: 10111111
+MISO data: BF
+Button States: B
+
+
+select.sr
+---------
+
+Button press of button 'Select'.
+
+MISO bits: 11011111
+MISO data: DF
+Button States: Select
+
+
+start.sr
+--------
+
+Button press of button 'Start'.
+
+MISO bits: 11101111
+MISO data: EF
+Button States: Start
+
+
+north.sr
+--------
+
+Button press of button 'North'.
+
+MISO bits: 11110111
+MISO data: F7
+Button States: North
+
+
+south.sr
+--------
+
+Button press of button 'South'.
+
+MISO bits: 11111011
+MISO data: FB
+Button States: South
+
+
+west.sr
+-------
+
+Button press of button 'West'.
+
+MISO bits: 11111101
+MISO data: FD
+Button States: West
+
+
+east.sr
+-------
+
+Button press of button 'East'.
+
+MISO bits: 11111110
+MISO data: FE
+Button States: East
+
+
+a_b.sr
+------
+
+Button press of button 'A' and 'B'.
+
+MISO bits: 00111111
+MISO data: 3F
+Button States: A + B
+
+
+b_select_west.sr
+----------------
+
+Button press of button 'B' and 'Select' and 'West'.
+
+MISO bits: 10011101
+MISO data: 9D
+Button States: B + Select + West
+
+
+no_button.sr
+------------
+
+Controller connected but no button pressed.
+
+MISO bits: 11111111
+MISO data: FF
+Button States: No button is pressed
+
+
+unconnected.sr
+--------------
+
+Gamepad not connected.
+
+MISO bits: 00000000
+MISO data: 00
+Button States: Gamepad is not connected.
