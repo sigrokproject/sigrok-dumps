@@ -58,12 +58,12 @@ The capture was taken with a Saleae Logic clone (mostly at 200kHz):
 
   Probe       HD44780
   -------------------
-  1           RS (selects "commands" and "display data" mode)
-  2           E (enable, falling edge clocks data transfers)
-  3           D4 (data lines...)
-  4           D5
-  5           D6
-  6           D7
+  0           RS (selects "commands" and "display data" mode)
+  1           E (enable, falling edge clocks data transfers)
+  2           D4 (data lines...)
+  3           D5
+  4           D6
+  5           D7
 
 
 hd44780-blink.sr
