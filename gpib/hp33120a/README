@@ -1,0 +1,38 @@
+-------------------------------------------------------------------------------
+GPIB / HP 33120A
+-------------------------------------------------------------------------------
+
+This is an example capture of a *idn query to an HP33120A AWG using an
+AR488 (Arduino bitbang GPIB adapter).
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a generic FX2 board (at 500kHz):
+
+
+  Probe       GPIB
+  ----------------
+  0           DIO1
+  1           DIO2
+  2           DIO3
+  3           DIO4
+  4           DIO5
+  5           DIO6
+  6           DIO7
+  7           DIO8
+  8           EOI
+  9           DAV
+  10          NRFD
+  11          NDAC
+  12          IFC
+  13          SRQ
+  14          ATN
+  15          REN
+
+
+Data
+----
+
+Send *idn? and receive instrument ident string.
