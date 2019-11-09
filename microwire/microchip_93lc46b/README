@@ -1,0 +1,27 @@
+-------------------------------------------------------------------------------
+Microchip 93LC46B Microwire EEPROM
+-------------------------------------------------------------------------------
+
+This is a set of example captures of the Microwire traffic from a
+Microchip 93LC46B Microwire EEPROM to an FTDI FT232* chip on a random
+unknown eval board.
+
+Details:
+https://www.microchip.com/wwwproducts/en/93LC46B
+http://ww1.microchip.com/downloads/en/DeviceDoc/20001749K.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a CWAV USBee SX (at 8MHz):
+
+  Probe       93LC46B pin
+  -----------------------
+  0           CS
+  1           CLK
+  2           DI
+  3           DO
+  4           ORG
+
+The ORG pin is tied high to use the x16 memory organisation (16-bit words).
