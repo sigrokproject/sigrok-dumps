@@ -1,0 +1,7 @@
+Capture of a *idn query to an HP33120A AWG using an AR488 (arduino bitbang gpib adapter).
+
+Data captured using generic/LCsoft FX2 board with fx2lafw at 500kHz.
+
+hp33120a-idn.pvs
+hp33120a-idn.sr
+

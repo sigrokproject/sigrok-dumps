@@ -1,0 +1,20 @@
+Capture of traffic with an HP53131A counter using an AR488 (arduino bitbang gpib adapter).
+
+Data captured using generic/LCsoft FX2 board with fx2lafw at 500kHz.
+
+Send *idn? and receive instrument ident string
+Send 'read?' and receive a measurement (10MHz frequency)
+
+Note : I'm unsure whether the state of the bus between read command and result is correct. It may indicate an error in the AR488.
+
+hp53131a-idn-read.pvs
+hp53131a-idn-read.sr
+
+
+Set HP53131A to period measurement and talk-only mode and AR488 to listen-only mode
+
+Note : the regular NRFD/NDAC handshake occurring before and after the LON transfer is related to the AR488 timing out non-existent transfers and may be incorrect.
+
+hp53131a-ton.pvs
+hp53131a-ton.sr
+
