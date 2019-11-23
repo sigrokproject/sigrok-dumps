@@ -1,17 +1,50 @@
-Capture of traffic with an HP53131A counter using an AR488 (arduino bitbang gpib adapter).
+-------------------------------------------------------------------------------
+GPIB
+-------------------------------------------------------------------------------
+
+This is an example apture of traffic with an HP53131A counter using an AR488 (arduino bitbang gpib adapter).
+
+Logic analyzer setup
+--------------------
 
 Data captured using generic/LCsoft FX2 board with fx2lafw at 500kHz.
 
-Send *idn? and receive instrument ident string
-Send 'read?' and receive a measurement (10MHz frequency)
+  Probe       GPIB
+  -------------------
+  0           DIO1
+  1           DIO2
+  2           DIO3
+  3           DIO4
+  4           DIO5
+  5           DIO6
+  6           DIO7
+  7           DIO8
+  8           EOI
+  9           DAV
+  10          NRFD
+  11          NDAC
+  12          IFC
+  13          SRQ
+  14          ATN
+  15          REN
 
-Note : I'm unsure whether the state of the bus between read command and result is correct. It may indicate an error in the AR488.
+
+Data
+----
+
+Send *idn? and receive instrument ident string
+Send 'read?', wait for acquistion and receive a measurement (10MHz frequency)
 
 hp53131a-idn-read.pvs
 hp53131a-idn-read.sr
 
 
+Data
+----
+
 Set HP53131A to period measurement and talk-only mode and AR488 to listen-only mode
+
+This setup is specifically useful for recording long logfiles of timing data for use in ADEV measurements by "time-nuts" - see http://www.ke5fx.com/timelab/readme.htm 
 
 Note : the regular NRFD/NDAC handshake occurring before and after the LON transfer is related to the AR488 timing out non-existent transfers and may be incorrect.
 
