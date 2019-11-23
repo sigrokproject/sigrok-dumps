@@ -1,0 +1,35 @@
+-------------------------------------------------------------------------------
+NFC ISO/IEC 15693 vicinity reader / tag capture with demodulation
+-------------------------------------------------------------------------------
+
+This is an example of an NFC ISO/IEC 15693 vicinity reader / tag capture
+with demodulation.
+
+
+Hardware setup for the capture
+------------------------------
+
+* HydraBus v1.2 + HydraNFC Shield v1.1
+ * Using firmware HydraFW (HydraBus) v0.9-beta-92-g3c34dfd 2019-10-12
+Tag ISO/IEC 15693 Vicinity ICODE SLI/SLIX (uID RW)
+* CH1 connected to HydraBus/HydraNFC PA5
+ * Capture HydraNFC reader clock 13.56MHz
+* CH2 connected to “Calibration Coil ISO 10373-6”
+ * Capture NFC signal between NFC Reader & NFC Vicinity Tag
+* Impedance Adapter 50 Ohm (also called Rigol Impedance Adjuster 50 Ohm)
+  used on CH2 with "Calibration Coil ISO 10373-6"
+ * PL-50 (50 Ohms +/-1%, 2 WATT, DC - 1GHz)
+* PicoScope 3406DMSO (8bits @ 1 GS/s, Memory 512MS)
+* Picoscope v6.x software on Windows 7 SP1 64bits
+
+NFC ISO/IEC 15693 Vicinity read UID capture was demodulated with an Octave
+script which creates CH3 & CH4 and all channels are displayed with PulseView.
+
+
+Capture details
+---------------
+
+CH1: connected to HydraBus/HydraNFC PA5 (capture HydraNFC reader Clock 13.56MHz)
+CH2: connected to "Calibration Coil ISO 10373-6" (capture NFC signal between Reader & Tag)
+CH3: clock reconstructed from CH1 / CH2 to decode CH4
+CH4: filtered data envelope reconstructed from from CH1 / CH2
