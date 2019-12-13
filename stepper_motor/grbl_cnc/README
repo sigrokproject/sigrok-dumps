@@ -16,7 +16,7 @@ The logic analyzer used was an FX2 based device (at 2MHz):
 
   Probe       Target
   ------------------
-  0           DIR
-  1           STEP
+  0           EN
+  1           STEP (Y axis)
   2           TX
   3           RX
