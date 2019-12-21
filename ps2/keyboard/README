@@ -7,8 +7,8 @@ This is a collection of PS/2 keyboard communication examples.
 A random PS/2 keyboard and a random PC mainboard were used as data source.
 
 For details see:
-http://www.computer-engineering.org/ps2protocol/
-http://www.computer-engineering.org/ps2keyboard/
+https://web.archive.org/web/20161231114842/http://www.computer-engineering.org/ps2protocol/
+https://www.avrfreaks.net/sites/default/files/PS2%20Keyboard.pdf
 
 
 Logic analyzer setup
@@ -28,3 +28,18 @@ ps2_keyboard_asdfgh.sr
 This file contains a sequence of keypresses on a standard PS/2 keyboard:
 a, s, d, f, g. The dump contains the "make code" and "break code" of each key.
 
+After each transmission, the receiving controller appears to pull the clock
+line low for more than 100 microseconds. This inhibits transmission until the
+clock line is released, presumably because the receiving controller needs time
+to process data. Due to this, additional very short clock pulses can be
+observed, as the controller starts inhibiting communication only shortly after
+packets are received.
+
+
+ps2_keyboard_asdfgh_no_inhibit.sr
+---------------------------------
+
+The keys a, s, d, f and g pressed on a random PS/2 keyboard.
+
+In this dump, the receiving end was passive, without inhibiting communication.
+Thus only clock pulses produced by the keyboard can be observed.
