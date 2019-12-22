@@ -1,0 +1,32 @@
+-------------------------------------------------------------------------------
+DCC model train captures
+-------------------------------------------------------------------------------
+
+These captures contain some data captured on a model railway base on the
+tams electronik EasyControl controller. The booster used was a self-built
+tams electronik B-2 booster.
+
+
+Logic analyzer setup
+--------------------------------------------------
+
+The logic analyzer used was a Saleae Logic clone (at 1MHz).
+
+  Probe       DCC
+  -------------------
+  1           Data (captured via a simple voltage clamping circuit)
+
+
+captures
+--------------------------------------------------
+Since the controller continuously resends the data, the captures do
+contain more than stated.
+
+  capture					Action
+  ---------------------------------------------------------------
+  decoder_2_light.sr		switch light on train with address 2
+  decoder_45_light.sr		switch light on train with address 45
+  decoder_120_121.sr		switch state of decoder 120, 121
+  decoder_133.sr			switch state of decoder 133
+  decoder_140.sr			switch state of decoder 140
+  decoder_310.sr			switch state of decoder 310
