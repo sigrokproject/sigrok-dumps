@@ -1,0 +1,25 @@
+-------------------------------------------------------------------------------
+DMX512-A
+-------------------------------------------------------------------------------
+
+This is a set of example captures of DMX512 packets from a USB
+interface (µDMX).
+
+The signal was grabbed directly at the interface without any actual
+fixtures attached to the bus.
+
+Details:
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic clone (at 1MHz):
+
+  Probe       3-pin XLR DMX connector
+  -----------------------------------
+  0           DMX+ (3)
+  1           DMX- (2)
+  
+The files are named <interfacename>_<dmxvalue>.sr, with <dmxvalue> being
+the dimmerlevel of the first 255 channels. Any other channel will be at 0.
