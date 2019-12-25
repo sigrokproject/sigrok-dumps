@@ -1,0 +1,22 @@
+-------------------------------------------------------------------------------
+Grbl CNC
+-------------------------------------------------------------------------------
+
+This is a set of captures of a CNC running the Arduino-based g-code-parser
+and CNC milling controller "Grbl".
+
+Details:
+https://github.com/gnea/grbl
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was an FX2 based device (at 2MHz):
+
+  Probe       Target
+  ------------------
+  0           EN
+  1           STEP (Y axis)
+  2           TX
+  3           RX

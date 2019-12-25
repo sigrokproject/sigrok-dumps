@@ -1,0 +1,37 @@
+-------------------------------------------------------------------------------
+Philips RC-6 remote control captures
+-------------------------------------------------------------------------------
+
+These captures contain the IR data sent by various remote controls.
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 1MHz):
+
+  Probe       RC-6
+  ----------------
+  0           IR
+  1           Raw
+
+The data was captured using a TSOP1736 directly connected to channel 0.
+For comparison a phototransistor is connected to channel 1. Only channel 0
+should be used for decoding.
+
+
+philips_RC2143604_numbers.sr
+----------------------------
+
+This capture was taken with a Philips RC2143604 remote control. The
+sequence of keys is "power", 1, 2, ..., 9, 0.
+
+Note that this remote uses Mode 0.
+
+
+philips_unknown_numbers.sr
+--------------------------
+
+This capture was taken with an unknown Philips remote control. The
+sequence of keys is "power", 1, 2, ..., 9.
+
+Note that this remote uses Mode 0.

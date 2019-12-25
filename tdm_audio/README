@@ -1,0 +1,35 @@
+-------------------------------------------------------------------------------
+TDM Audio
+-------------------------------------------------------------------------------
+
+This is a set of captures of TDM audio.
+
+Details:
+https://hackaday.io/project/2984-teensy-audio-library/log/57537-tdm-support-for-many-channel-audio-io
+https://www.analog.com/media/en/technical-documentation/technical-articles/MS-2275.pdf
+
+
+Logic analyser setup
+--------------------
+
+The logic analyser used was a Saleae Logic16 (at 50MHz):
+
+  Probe       TDM Audio
+  ---------------------
+  3           Bitclk
+  2           Framesync
+  1           Data
+
+
+tdm-4ch-16bit-cap1.sr
+---------------------
+
+4 channels, 16 bits per sample.
+Data is set of 0x1100 0x3322 0x5544 0x7766 0x9988 0xbbaa 0xddcc 0xffee.
+
+
+tdm-8ch-16bit-cap1.sr
+---------------------
+
+8 channels, 16 bits per sample
+Data is byte 0x12 repeated.

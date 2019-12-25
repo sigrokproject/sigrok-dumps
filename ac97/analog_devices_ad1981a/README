@@ -1,0 +1,39 @@
+-------------------------------------------------------------------------------
+Analog Devices AD1981A: AC'97 data
+-------------------------------------------------------------------------------
+
+This is set of example captures of the AC'97 data on an Analog Devices
+AD1981A AC'97 2.2 audio codec.
+
+Details:
+https://en.wikipedia.org/wiki/AC%2797
+https://www.analog.com/en/products/ad1981a.html
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic16 (at 50/100 MHz):
+
+  Probe       AD1981A
+  -------------------
+  0           BIT_CLK
+  1           SDATA_IN
+  2           SYNC
+  3           RESET# (only in the 50MHz captures)
+
+SDATA_OUT never toggled, so it was omitted.
+
+
+ac97_ad1981a_powerup1*.sr
+-------------------------
+
+The data is the first chunk of traffic that occurs on an random mainboard
+(which contains the AD1981A) during BIOS power-up.
+
+
+ac97_ad1981a_powerup2*.sr
+-------------------------
+
+Same as above, but this is a snippet of the second chunk of data that occurs
+a few seconds after the first chunk.

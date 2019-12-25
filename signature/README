@@ -1,0 +1,34 @@
+-------------------------------------------------------------------------------
+Signature from Hewlett-Packard Instrument
+-------------------------------------------------------------------------------
+
+These captures contain the valid signature, confirmed with HP's service manual.
+
+Details:
+http://hpmemoryproject.org/an/pdf/an_222.pdf
+https://www.hpl.hp.com/hpjournal/pdfs/IssuePDFs/1977-05.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 6-24MHz):
+
+  Probe       Pin
+  ---------------
+  0           START
+  1           STOP
+  5           DATA
+  7           CLOCK
+
+The sigrok command line used was:
+
+  sigrok-cli -d fx2lafw -c samplerate=24MHz -o <filename> --time 1s
+
+Time, samplerate and <filename> parameters vary depending on the file.
+
+
+unstable1.sr
+------------
+
+This is not valid signature, but useful for regression tests.

@@ -1,0 +1,41 @@
+-------------------------------------------------------------------------------
+Amulet Technologies LCD UART protocol
+-------------------------------------------------------------------------------
+
+This is a dump of Amulet LCD UART protocol for Barco Encore Small Controller
+video mixer controller.
+
+Amulet LCDs have their own processor, flash and RAM. They work by displaying
+pages created with GemStudio and have an "ASCII" protocol for selecting the
+page and updating strings and other variables for widgets.
+
+Details:
+https://www.amulettechnologies.com/index.php/products/display-modules
+https://www.amulettechnologies.com/index.php/support/documentation/send/9-users-guide/34-users-guide
+(protocol definition starts on page 159)
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a DreamSourceLabs DSLogic (at 10MHz):
+
+It was connected on the 5V logic level UART line between the Amulet
+display and the main CPU board.
+
+  Probe       UART
+  ----------------
+  0           RX (on the Amulet display)
+  1           TX (on the Amulet display)
+
+
+Data
+----
+
+The communication is UART (115200/8n1).
+
+bootup.sr contains the display initialization at controller bootup, since all
+of the pages are on the display flash no proprietary firmware is present.
+
+menu_changes.sr is a capture of cycling between different menu pages using
+buttons on the controller keyboard.
