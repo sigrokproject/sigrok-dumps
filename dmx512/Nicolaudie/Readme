@@ -1,28 +1,33 @@
--------------------------------------------------------------
-					DMX512 Nicolaudie Dump
--------------------------------------------------------------
+-------------------------------------------------------------------------------
+DMX512-A
+-------------------------------------------------------------------------------
 
-This Package includes DMX Dumps of Nicolaudie Interfaces.
-It includes the following files:
+This is a set of example captures of DMX512 packets from a from a USB
+interface (Nicolaudie).
 
-SunliteSuite_0.sr:	 	A dump of a few data packs sending 0 on all 512 channels.
-						Device: Sunlite Suite 2 BC
+The signal was grabbed directly at the interface without any actual
+fixtures attached to the bus.
 
-SunliteSuite_0-255.sr	A dump of a few data packs sending the values 0 to 256 corresponding
-						To the channel number. Beginning with a value of 0 for the first DMX channel
-						and a value of 255 on the 256th channel. Channel 257-512 are set to 0.
-						Device: Sunlite Suite 2 BC
+Details:
+http://www.dmx512-online.com/packt.html
+http://www.erwinrol.com/dmx512/
+https://wiki.openlighting.org/index.php/DMX512-A
 
 
-Analyzer setup:
+Logic analyzer setup
+--------------------
 
-The signals are grabbed directly at the Interface without any additional wires or fixtures connected.
-The used logic analyzer was a Saleae Logic8 compatible clone at the following pinout:
+The logic analyzer used was a Saleae Logic 8 Clone:
 
-Analyzer		DMX Plug
-----------------------------
-0				DMX+
-1				DMX-
-
+  Probe       3-pin XLR DMX connector
+  -----------------------------------
+  0           DMX+ (3)
+  1           DMX- (2)
+  
 All dumps are made on a windows machine using Pulseview 0.5.0-git-4ab6d24
-@1MHz and 1M Samples.
+
+The files are named the folowing way: <samplerate>_<interfacename>_<dmxvalue>.sr
+
+with <dmxvalue> being the dimmerlevel of the first 255 channels. Any other channel will be at 0.
+
+
