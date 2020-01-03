@@ -1,14 +1,16 @@
 -------------------------------------------------------------------------------
-DMX512-A
+DMX512-A / SGM Regia 256
 -------------------------------------------------------------------------------
 
-This is a set of example captures of DMX512 packets from lightining desks
-(SGM).
+This is a set of example captures of DMX512 packets from an SGM Regia 256
+lightining desk.
 
 The signal was grabbed directly at the interface without any actual
 fixtures attached to the bus.
 
 Details:
+https://en.wikipedia.org/wiki/DMX512
+https://sgmlight.com/products
 
 
 Logic analyzer setup

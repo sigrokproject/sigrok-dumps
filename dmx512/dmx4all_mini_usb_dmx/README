@@ -1,9 +1,9 @@
 -------------------------------------------------------------------------------
-DMX512-A
+DMX512-A / DMX4ALL Mini-USB-DMX-Interface
 -------------------------------------------------------------------------------
 
-This is a set of example captures of DMX512 packets from a USB
-interface (DMX4ALL Mini interface), driven by a lighting control
+This is a set of example captures of DMX512 packets from a
+DMX4ALL Mini-USB-DMX-Interface, driven by a lighting control
 software loaded with 10 basic dimmer fixtures located at DMX addresses
 1, 2, 101, 102, 201, 202, 301, 302, 401 and 402.
 
@@ -11,9 +11,11 @@ The signal was grabbed directly at the interface without any actual
 fixtures attached to the bus.
 
 Details:
-http://www.dmx512-online.com/packt.html
-http://www.erwinrol.com/dmx512/
+https://en.wikipedia.org/wiki/DMX512
+http://www.dmx512-online.com/dmx512_packet.html
+https://www.erwinrol.com/page/articles/dmx512/
 https://wiki.openlighting.org/index.php/DMX512-A
+https://www.dmx4all.de/produkt-archiv/
 
 
 Logic analyzer setup
