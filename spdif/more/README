@@ -1,0 +1,15 @@
+Several .sr files for testing of SPDIF.
+
+Use channel D6 for testing. The test signal is a 44,1kHz 2 channel audio signal (2.822Mbit/s).
+
+spdif_16mhz_44khz.sr:
+Original decoder is lucky to enter the stream with pulses of medium length. OK.
+New decoder recognizes short pulses (width <= 3 samples) and reports an error. OK.
+
+spdif_16mhz_44khz_3.sr:
+Original decoder decodes wrong because of false pulse width detection at the beginning. Fail.
+New decoder recognizes short pulses (width <= 3 samples) and reports an error. OK.
+
+spdif_24mhz_44khz_1.sr:
+Original decoder doesn't find any frames because of long low level phase before the data stream. Fail.
+Now decoder correctly decodes stream after synchronisation (First frame is missed). OK.
