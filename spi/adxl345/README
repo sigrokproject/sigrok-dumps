@@ -1,0 +1,41 @@
+-------------------------------------------------------------------------------
+Analog Devices ADXL345
+-------------------------------------------------------------------------------
+
+This is a set of example captures of an Analog Devices ADXL345 accelerometer.
+
+Details:
+https://www.analog.com/media/en/technical-documentation/data-sheets/ADXL345.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was ADALM2000 (at 2MHz):
+
+  Probe       ADXL345
+  -------------------
+  0           CLK (Pin 4)
+  1           MOSI (Pin 2)
+  2           MISO (Pin 3)
+  3           CS# (Pin 1)
+
+
+Probing
+-------
+
+The sigrok command line used was:
+
+  sigrok-cli -i - -I binary:numchannels=16:samplerate=2mhz -C 0-3 -o <file>
+
+
+adxl345_registers.sr
+--------------------
+
+m2kcli digital auto -c buffer_size=10000 nb_samples=640000 format=binary | sigrok-cli -i - -I binary:numchannels=16:samplerate=2mhz -C 0-3 -o adxl345_registers.sr
+
+
+adxl345_axis.sr
+---------------
+
+m2kcli digital auto -c buffer_size=10000 nb_samples=200000 format=binary | sigrok-cli -i - -I binary:numchannels=16:samplerate=2mhz -C 0-3 -o adxl345_axis.sr
