@@ -1,0 +1,19 @@
+-------------------------------------------------------------------------------
+I2S Master 2-channel 16-bit 48-kHz
+-------------------------------------------------------------------------------
+
+This is an example of an I2S master playing a short clip of song The Man (by
+Taylor Swift) through both channels.
+There is noise interfered because of the cheap logic analyzer.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was an unbranded one (recoginzed as CWAV USBee AX):
+
+  Probe       I2S pin
+  -------------------
+  0           BCLK
+  1           WS
+  2           TX Data
