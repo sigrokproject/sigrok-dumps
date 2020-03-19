@@ -1,0 +1,34 @@
+-------------------------------------------------------------------------------
+Analog Devices AD7920
+-------------------------------------------------------------------------------
+
+This is a set of example captures of an Analog Devices AD7920 12-bit ADC.
+
+Details:
+https://www.analog.com/media/en/technical-documentation/data-sheets/AD7910_7920.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was ADALM2000 (at 5MHz):
+
+  Probe       AD7920
+  ------------------
+  0           CLK
+  1           MISO
+  2           CS#
+
+
+Probing
+-------
+
+The sigrok command line used was:
+
+  sigrok-cli -i - -I binary:numchannels=16:samplerate=5mhz -C 0-2 -o <file>
+
+
+ad7920_fast_read.sr
+-------------------
+
+m2kcli digital auto -c buffer_size=10000 nb_samples=10000000 format=binary | sigrok-cli -i - -I binary:numchannels=16:samplerate=5mhz -o ad7920_fast_read.sr -C 0-2
