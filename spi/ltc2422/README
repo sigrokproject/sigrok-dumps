@@ -1,0 +1,34 @@
+-------------------------------------------------------------------------------
+Linear Technology Corporation LTC2422
+-------------------------------------------------------------------------------
+
+This is a set of example captures of an LTC2422 20-bit ADC.
+
+Details:
+https://www.analog.com/media/en/technical-documentation/data-sheets/24212f.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was ADALM2000 (at 5MHz):
+
+  Probe       LTC2422
+  -------------------
+  0           SKL
+  1           MISO
+  2           CS
+
+
+Probing
+-------
+
+The sigrok command line used was:
+
+  sigrok-cli -i - -I binary:numchannels=16:samplerate=5mhz -C 0-2 -o <file>
+
+
+ltc2422_read_adc.sr
+--------------------
+
+m2kcli digital auto -c buffer_size=10000 nb_samples=10000000 format=binary | sigrok-cli -i - -I binary:numchannels=16:samplerate=5mhz -o ltc2422_read_adc.sr -C 0-2
