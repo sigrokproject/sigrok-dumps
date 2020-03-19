@@ -1,0 +1,33 @@
+-------------------------------------------------------------------------------
+Linear Technology Corporation LTC2607
+-------------------------------------------------------------------------------
+
+This is a set of example captures of LTC2607 16-bit rail-to-rail DACs.
+
+Details:
+https://www.analog.com/media/en/technical-documentation/data-sheets/26071727fa.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was ADALM2000 (at 500kHz):
+
+  Probe       LTC2607
+  -------------------
+  0           SCL
+  1           SDA
+
+
+Probing
+-------
+
+The sigrok command line used was:
+
+  sigrok-cli -i - -I binary:numchannels=16:samplerate=500khz -C 0,1 -o <file>
+
+
+ltc2607_write_dac.sr
+--------------------
+
+m2kcli digital auto -c buffer_size=10000 nb_samples=5000000 format=binary | sigrok-cli -i - -I binary:numchannels=16:samplerate=500khz -o ltc2607_write_dac.sr -C 0,1
