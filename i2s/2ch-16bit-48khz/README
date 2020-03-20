@@ -1,0 +1,22 @@
+-------------------------------------------------------------------------------
+I2S Master 2-channel 16-bit 48-kHz
+-------------------------------------------------------------------------------
+
+These are 2 examples of an I2S master playing 
+
+  1. a short clip of COVID-19 (by Kurzgesagt) 
+  2. a short clip of song The Man (by Taylor Swift)  
+
+through both channels.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was an unbranded one (recoginzed as CWAV USBee AX):
+
+  Probe       I2S pin
+  -------------------
+  0           BCLK
+  1           WS
+  2           TX Data
