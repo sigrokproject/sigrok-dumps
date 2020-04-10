@@ -15,9 +15,9 @@ The logic analyzer used was ADALM2000 (at 5MHz):
 
   Probe       LTC2422
   -------------------
-  0           SKL
-  1           MISO
-  2           CS
+  0           SCK
+  1           SDO
+  2           CS#
 
 
 Probing
