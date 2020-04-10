@@ -15,8 +15,8 @@ The logic analyzer used was ADALM2000 (at 5MHz):
 
   Probe       AD5626
   ------------------
-  0           CLK
-  1           MOSI
+  0           SCLK
+  1           SDIN
   2           CS#
 
 
