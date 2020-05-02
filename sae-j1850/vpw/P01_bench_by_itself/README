@@ -1,0 +1,124 @@
+------------------------------------------------------------
+J1850 VPW transmission from GM P01 Powertrain Control Module
+------------------------------------------------------------
+
+Captured by pman92 - 2 May 2020
+
+This is a capture of data from a General Motors "P01" Powertrain Control
+Module. The control module was wired on the bench in a minimal setup
+with nothing else connected. An ignition switch was included to provide
+ignition power to the PCM. The following information was then obtained
+from the module with PCMHammer 012 and an X-Pro VT interface (see
+https://github.com/LegacyNsfw/PcmHacks/wiki/PCM-Hammer and
+https://obdxpro.com/x-pro-vt/).
+
+  VIN: 6H8WHY19F2L857286
+  OS ID: 12202088
+  Calibration ID: 92113609
+  Hardware ID: 9386530
+  Serial Number: 2EB2TZJT2070
+  Broad Cast Code: DFNN
+  MEC: 0
+
+An Arduino was connected to the data line via a basic interface circuit
+that used a voltage comparator to monitor the J1850 VPW bus voltage
+(high or low). The Arduino was programmed using pin change interrupts to
+measure the time difference between changes of bus state (active or
+passive). The Arduino would watch for SOF signals and then count the
+following bus state/time changes to calculate the data within the packet.
+It would calculate and confirm the checksum matched to ensure the data
+was OK. It would then transmit the complete received packet back to the
+PC via USB and was displayed on the Arduino serial monitor. The returned
+data included a timestamp. If a checksum didn't match, an error message
+would be returned instead of the relavent data packet.
+
+
+Logic analyzer setup
+--------------------
+
+The capture was taken with a Saleae Logic 8 Channel clone at 16MHz for
+50M samples. The ignition switch on the bench wiring was turned on and
+the PCM started transmitting data.
+
+  Probe   VPW
+  -------------
+  1       data
+
+
+Capture verification
+--------------------
+
+1. Arduino checksum calculation and confirmation
+
+J1850 VPW packets contain a checksum. If a bad or incorrect checksum was
+found, an error message would be transmitted back to the PC by the Arduino
+instead of that data packet/frame. No error messages were recorded during
+the capturing of this data, so the Arduino checksum calculations were all
+correct, and it considered the data intact.
+
+2. Visual inspection of first data packet in Pulseview
+
+The first data packet (+616.8ms to +622.1ms) was visually inspected in
+PulseView and the bit values written down by hand. They were then split
+into groups of 8 bit values, which were converted each to a single hex
+value. The single hex values of the first data packet were then confirmed
+to match the hex values that the Arduino had returned as the first packet.
+
+3. Timing between first and last data
+
+There is a total of 33 packets visible. PulseView shows the first packet
+ending at 622ms, and the last packet ends at 3059ms, meaning 2437ms between
+the "end of the first" and "end of the last" packets in the capture. The
+Arduino also returned a time stamp of when the packet was processed and
+sent to the PC. Between the first and 33rd packet, the difference in
+Arduino time stamps was 2438ms. The difference of only 1ms confirms the
+PulseView capture and Arduino are looking at the same range of data.
+
+NOTE that there are glitches within the capture. There is a series of
+short glitches/pulses around 506-507ms within the capture. I'm unsure of
+the cause, but this was around the time when the ignition switch on the
+bench was turned on. Maybe it was noise caused by the switch or maybe it
+was noise coming from the PCM when it powered up. Either way this could
+be a good example to make sure the decoder can ignore/skip bad data or
+glitches.
+
+
+Data
+----
+
+The Arduino returned the following data packets, written in hex, from
+first to last within the PulseView capture:
+
+  68 13 10 11 00 46
+  68 EA 10 0A 01 AE
+  88 15 10 01 C8
+  88 1B 10 10 00 00 46
+  8A EA 10 20 8A 00 10
+  A9 CE 10 07 69
+  A8 F3 10 11 02 2B
+  C8 3B 10 3C 04 48
+  68 EA 10 0A 01 AE
+  88 15 10 01 C8
+  8A EA 10 20 8A 00 10
+  A9 CE 10 07 69
+  49 92 10 01 BE
+  49 92 10 01 BE
+  8A EA 10 20 82 00 4A
+  8A EA 10 20 82 00 4A
+  68 49 10 10 0B CF
+  68 EA 10 0A 01 AE
+  88 15 10 01 C8
+  8A EA 10 20 8A 00 10
+  A9 CE 10 07 69
+  E9 2A 10 3C EE
+  49 92 10 01 BE
+  E9 2A 10 3C EE
+  8A EA 10 20 82 00 4A
+  68 EA 10 0A 01 AE
+  88 15 10 01 C8
+  8A EA 10 20 8A 00 10
+  A9 CE 10 07 69
+  E8 FF 10 03 B3
+  49 92 10 01 BE
+  E9 2A 10 3C EE
+  8A EA 10 20 82 00 4A
