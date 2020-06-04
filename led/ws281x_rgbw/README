@@ -1,0 +1,19 @@
+-------------------------------------------------------------------------------
+WS281x-based RGBW LED Strip
+-------------------------------------------------------------------------------
+
+This is for testing purposes a short sequence for 4 LEDs showing different colors and values
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Clone (at 4MHz)
+
+
+Data
+----
+Decoded it shows:
+red (Led0: 0, Led1: 63, Led2: 127, Led3: 255)
+green (0, 63, 127, 255)
+blue (0, 63, 127, 255)
+white (0, 63, 127, 255)
