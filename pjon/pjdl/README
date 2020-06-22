@@ -1,0 +1,40 @@
+-------------------------------------------------------------------------------
+PJON over PJDL
+-------------------------------------------------------------------------------
+
+This is a collection of example PJON communication which uses the PJDL
+link layer. Which does serial communication on a single wire, and the
+reference library happens to implement it by means of software bitbang
+(which affects the timing of signals on the wire).
+
+
+Logic analyzer setup
+--------------------
+
+The capture was taken with a logic analyzer at a samplerate of 4MSa/s.
+Communication is done on a single channel.
+
+  Probe       PJDL
+  ----------------
+  1           data
+
+
+pjon-pjdl-glitch-and-ack-and-failed-ack.sr
+------------------------------------------
+
+Two STM32F103 (Blue Pill boards) run the example code which resides in
+the examples/ARDUINO/Local/SoftwareBitBang/SendAndReceive/Device1/ and
+Device2/ directories. Communication mode 1 translates to 44us and 116us
+for data and pad bits. Device addresses are 44 and 45. The letter 'B' is
+sent as the payload data in both directions. Synchronous responses get
+requested, but one device won't respond. The capture also contains a few
+glitches which as a byproduct exercise the decoder's robustness, and
+recovery after synchronization loss.
+
+
+pjon-pjdl-incomplete-frame-missing-ack-repetitive.sr
+----------------------------------------------------
+
+This is a longer capture taken from the above setup. Some of the glitches
+happen to fall into a PJON frame's period and can prevent or can disturb
+the accumulation of the frame's content.

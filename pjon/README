@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+PJON protocol stack, project homepage https://www.pjon.org/
+-------------------------------------------------------------------------------
+
+This is a collection of example PJON communication. Subdirectories contain
+different types of communication (link layers, or setups).
+
+PJON protocol and PJDL link layer specs:
+https://www.pjon.org/PJON-protocol-specification-v3.2.php
+https://www.pjon.org/PJDL-specification-v4.1.php
