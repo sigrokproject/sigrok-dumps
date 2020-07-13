@@ -1,0 +1,130 @@
+--------------------------------------------------------------------------------------------------------
+Dumps of HydraNFC Shield v2 (STMicroelectronics ST25R3916 NFC chipset communication using SPI + IRQ pin)
+--------------------------------------------------------------------------------------------------------
+
+Dumps of HydraNFC Shield v2 (STMicroelectronics ST25R3916 NFC chipset communication using SPI + IRQ pin)
+Those dumps are intended to be analyzed with st25r3916_spi decoder
+
+Hardware setup for the capture
+------------------------------
+
+* HydraBus v1 Rev1.4 + HydraNFC Shield v2 R1.4
+ * Using firmware (https://github.com/hydrabus/hydrafw_hydranfc_shield_v2) HydraFW (HydraBus v1/HydraNFC Shield v2) v0.1-beta-11-g682a268 2020-07-13
+ * HydraBus SPI Master is configured with signal 0_CLK @10.5MHz, CLK Polarity=0, CLK Phase=1, Bit order=Send/receive MSB first
+
+Tag ISO/IEC 14443-A (106 kbps) ST25TA02K-P (CLOUD-ST25TA MB1207-B) NFC Forum Type 4 Tag (https://www.st.com/cloud-st25ta)
+ * Read UID of the tag
+ * nfc-a scan
+ * NFC-A UID:02A20071C84F90
+
+Tag ISO/IEC 14443-B
+ * Read UID of the tag (nfc-b scan)
+ * nfc-b scan
+ * NFC-B UID:00422099
+
+Tag ISO/IEC 15693 Vicinity ST25 (5cm x 5cm Tag)
+ * Read UID of the tag
+  * nfc-v scan
+  * NFC-V UID:E0022300265F64F2
+
+ST25R3916 Registers Space A & B after init
+ * Read all ST25R3916 Registers Space A & B
+  * show registers
+  * ST25R3916 Registers space A:
+	*	0x00    : 0x07
+	*	0x01    : 0x3c
+	*	0x02    : 0x83
+	*	0x03    : 0x08
+	*	0x04    : 0x00
+	*	0x05    : 0x00
+	*	0x06    : 0x00
+	*	0x07    : 0x00
+	*	0x08    : 0x50
+	*	0x09    : 0x00
+	*	0x0a    : 0x00
+	*	0x0b    : 0x08
+	*	0x0c    : 0x2d
+	*	0x0d    : 0xd8
+	*	0x0e    : 0x00
+	*	0x0f    : 0x0c
+	*	0x10    : 0x00
+	*	0x11    : 0x00
+	*	0x12    : 0x00
+	*	0x13    : 0x84
+	*	0x14    : 0x6c
+	*	0x15    : 0x80
+	*	0x16    : 0xff
+	*	0x17    : 0xff
+	*	0x18    : 0xff
+	*	0x19    : 0xfb
+	*	0x1a    : 0x00
+	*	0x1b    : 0x00
+	*	0x1c    : 0x00
+	*	0x1d    : 0x00
+	*	0x1e    : 0x00
+	*	0x1f    : 0x00
+	*	0x20    : 0x00
+	*	0x21    : 0x00
+	*	0x22    : 0x00
+	*	0x23    : 0x00
+	*	0x24    : 0x00
+	*	0x25    : 0xdf
+	*	0x26    : 0x49
+	*	0x27    : 0x45
+	*	0x28    : 0x70
+	*	0x29    : 0x5f
+	*	0x2a    : 0x11
+	*	0x2b    : 0x00
+	*	0x2c    : 0x00
+	*	0x2d    : 0x00
+	*	0x2e    : 0x00
+	*	0x2f    : 0x00
+	*	0x30    : 0x00
+	*	0x31    : 0x12
+	*	0x32    : 0x00
+	*	0x33    : 0x00
+	*	0x34    : 0x00
+	*	0x35    : 0x00
+	*	0x36    : 0x00
+	*	0x37    : 0x00
+	*	0x38    : 0x00
+	*	0x39    : 0x00
+	*	0x3a    : 0x00
+	*	0x3b    : 0x00
+	*	0x3c    : 0x00
+	*	0x3d    : 0x00
+	*	0x3e    : 0x00
+	*	0x3f    : 0x2a
+	*	ST25R3916 Registers space B:
+	*	0x00    : 0x40
+	*	0x01    : 0x00
+	*	0x02    : 0x0c
+	*	0x03    : 0x93
+	*	0x04    : 0x00
+	*	0x05    : 0x00
+	*	0x06    : 0x33
+	*	0x07    : 0x10
+	*	0x08    : 0x7c
+	*	0x09    : 0x80
+	*	0x0a    : 0x04
+	*	0x0b    : 0xe0
+	*	0x0c    : 0x00
+	*	0x0d    : 0x00
+	*	0x0e    : 0x00
+	*	0x0f    : 0x00
+
+Capture details for all types of Tags
+-------------------------------------
+0_CLK:  HydraBus v1/STM32F405 PB10 SPI2 Master CLK out connected to HydraNFC Shield v2/ST25R3916 SPI Slave SCLK pin30 in
+1_MISO: HydraBus v1/STM32F405 PC2 SPI2 Master MISO in connected to HydraNFC Shield v2/ST25R3916 SPI Slave MISO pin32 out
+2_MOSI: HydraBus v1/STM32F405 PC3 SPI2 Master MOSI out connected to HydraNFC Shield v2/ST25R3916 SPI Slave MOSI pin31 in
+3_CS#:  HydraBus v1/STM32F405 PC1 SPI2 Master CS out connected to HydraNFC Shield v2/ST25R3916 SPI Slave BSS pin29 in
+4_IRQ:  HydraBus v1/STM32F405 PA1 IRQ Input in connected to HydraNFC Shield v2/ST25R3916 IRQ pin27 out
+
+SPI / ST25R3916 Configuration:
+CS# Polarity active-low
+Clock polarity 0
+Clock phase 1
+Bit order msb-first
+Word size 8
+
