@@ -1,0 +1,13 @@
+------------------------------------------------------------------------
+Sony infrared remote control (SIRC)
+------------------------------------------------------------------------
+
+See https://www.sbprojects.net/knowledge/ir/sirc.php for a description
+of the SIRC protocol.
+
+Logic analyzer setup
+--------------------
+
+  Probe  SIRC
+  -----------
+  0      IR
