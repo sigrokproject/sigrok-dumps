@@ -1,0 +1,24 @@
+------------------------------------------------------------------------
+NEC infrared protocol
+------------------------------------------------------------------------
+
+These captures were taken with the "Joy-IT SBC IR01" remote control. File
+joy_it_sbc_irc01_all.sr contains data for all the buttons of that remote.
+File joy_it_sbc_irc01_enter_no_repeat.sr contains a single button that gets
+pressed repeatedly, but for a short period of time such that the remote
+won't send a repeat signal (each button press is new).
+
+There are several interesting aspects to these files:
+- The signal would not decode with 5% tolerance. A wider limit is needed
+  because this remote control's signal is outside of that narrow window.
+- The absence of IR frames for repeated button press could reveal an issue
+  with earlier decoder implementations, where the emission of annotations
+  for an IR frame was deferred until the start of the next IR frame.
+
+Logic analyzer setup
+--------------------
+
+  Probe  NEC
+  -----------
+  0      IR (carrier removed)
+  1      RAW (includes carrier)
