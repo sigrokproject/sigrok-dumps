@@ -1,0 +1,16 @@
+------------------------------------------------------------------------
+Extended NEC infrared protocol
+------------------------------------------------------------------------
+
+See https://www.sbprojects.net/knowledge/ir/nec.php for a description of the
+NEC protocol including the extended protocol.
+
+These are random button presses, including a few repeat signals. The remote
+in question is unmarked and used for remote controlling ceiling lights.
+
+Logic analyzer setup
+--------------------
+
+  Probe  NEC
+  -----------
+  0      IR
