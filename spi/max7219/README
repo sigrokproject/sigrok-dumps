@@ -21,7 +21,7 @@ The logic analyzer used was a Saleae Logic clone (at 2MHz):
   3           CLK
 
 
-Data
+max7219.sr
 ----
 
 The capture was generated using PulseView.
@@ -29,3 +29,16 @@ The capture was generated using PulseView.
 The chip was driven by an FTDI FT232H connected to USB, using a custom Perl
 program to drive the signals, including the intentional error cases.
 
+
+
+max7219_4x_cascaded_chips.sr
+----
+
+MAX7219 settings:
+  Number of daisy-chained chips = 4
+
+The capture was generated using PulseView.
+
+The chip was driven by an Arduino UNO connected to USB, using code from here:
+https://github.com/Sebski123/MAX72xx-Sigrok/blob/master/Sigrok_max7219_test_data.ino
+to drive the signals, including the intentional error cases.
