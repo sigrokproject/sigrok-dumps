@@ -37,3 +37,28 @@ Long pauses are caused be sleeps for a few hundreds of milliseconds, which are
 required by the spec. Other oddities like frequent changes of CS are caused by
 specific library implementation.
 
+
+Dump with unknown command
+-------------------------
+
+Taken with the same setup as above on a 128x160 display with Arduino TFT library and the following code:
+
+#include <TFT.h>
+#include <SPI.h>
+ 
+#define cs   10
+#define dc   9   // A0
+#define rst  8
+
+TFT TFTscreen = TFT(cs, dc, rst);
+
+void setup() 
+{
+  TFTscreen.begin();
+  TFTscreen.background(0, 255, 0);
+}
+ 
+void loop() 
+{
+}
+
