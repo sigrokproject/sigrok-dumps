@@ -1,0 +1,14 @@
+------------------------------------------------------------------------
+SDQ (Texas Instruments, battery authentication)
+------------------------------------------------------------------------
+
+See https://www.ti.com/lit/ds/symlink/bq26100.pdf for the Texas Instruments
+bq26100 battery pack authentication. Apple uses SDQ in devices like MagSafe
+or Lightning connectors, as well as in some batteries.
+
+Logic analyzer setup
+--------------------
+
+  Probe      Signal
+  -----------------
+  0          SDQ
