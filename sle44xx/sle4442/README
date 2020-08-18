@@ -1,0 +1,38 @@
+-------------------------------------------------------------------------------
+Siemens SLE4442 Chip Card protocol capture
+-------------------------------------------------------------------------------
+
+This is a collection of reader-card communication dumps.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Cypress FX2 no-brand device (at 500kHz):
+
+  Probe       SLE4442 pin
+  -----------------------
+  1           I/O
+  2           CLK
+  3           RST
+
+
+sle4442_atr.sr
+--------------
+ATR issued by reader and response by card
+
+sle4442_psc_correct.sr
+----------------------
+Reader reset, PSC sent by reader to the card and accepted
+
+sle4442_psc_wrong.sr
+--------------------
+Reader reset, PSC sent by reader to the card and refused
+
+sle4442_read_main_memory.sr
+---------------------------
+Full read of main memory
+
+sle4442_write_cafe1337_offset_30.sr
+-----------------------------------
+Write 0xCA 0xFE 0x13 0x37 to main memory at offset 0x30, then main memory read
