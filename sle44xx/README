@@ -1,0 +1,29 @@
+------------------------------------------------------------------------
+Siemens SLE44xx Chip Card Protocol
+------------------------------------------------------------------------
+
+SLE 4418/4428/4432/4442 memory cards implement a 2-wire protocol for data
+communication (signals CLK and I/O). A RST signal can be used to terminate
+currently pending long memory reads, and resets the card's address counter
+when combined with CLK. The next response data then is the Answer to Reset
+(ATR) which identifies the chip's capabilities, and allows to adjust for
+subsequent communication of more requests.
+
+See the Siemens document for details:
+
+  ICs for Chip Cards
+  Intelligent 256-Byte EEPROM
+  SLE 4432/SLE 4442
+  Data Sheet 07.95
+
+
+Logic analyzer setup
+--------------------
+
+  Probe    SLE44xx
+  ----------------
+  0        I/O
+  1        CLK
+  2        RST
+
+See subdirectories for chip specific example files.
