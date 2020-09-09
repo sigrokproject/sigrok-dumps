@@ -1,0 +1,48 @@
+-------------------------------------------------------------------------------
+Maxim Integrated DS3231 RTC
+-------------------------------------------------------------------------------
+
+Details:
+ - DS3231 datasheet: https://datasheets.maximintegrated.com/en/ds/DS3231.pdf
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was Geeetech Mini Board Cypress FX2(LP) eval board
+with fx2lafw firmware (at 4MHz):
+
+ Probe          DS3231 pin
+ -------------------------
+ 0              SCL
+ 1              SDA
+
+
+ds3231_ex1.sr
+----------------------
+
+The file provides reading/writing of time keeping registers as well as
+control, control/status and temperature registers of the RTC chip, which
+was setup to 24-hours mode:
+
+- Read Control register
+- Write Control register - disable alarms
+- Read Control/Status register
+- Write Control/Status register - clear alarm's flags
+- Write Alarm 1 registers - set Alarm 1 at every 1st date
+- Write Alarm 2 registers - set Alarm 2 at every minute
+- Read date/time
+- Read temperature (MSB)
+
+
+ds3231_ex2.sr
+----------------------
+
+The file provides reading/writing of time keeping registers as well as
+control/status and temperature registers of the RTC chip, which was setup
+to 24-hours mode and after Alarm 2 occured:
+
+- Read Control/Status register
+- Write Control/Status register - clear alarm flag
+- Read date/time
+- Read temperature (MSB)
