@@ -1,0 +1,48 @@
+-------------------------------------------------------------------------------
+Solomon SSD1306 128 x 64 Dot Matrix OLED/PLED Driver
+-------------------------------------------------------------------------------
+
+Details:
+ - SSD1306 datasheet:  
+ http://www.solomon-systech.com/en/product/advanced-display/oled-display-driver-ic/ssd1306/
+
+
+The logic analyzer used was KeeYees USB Logic Analyzer 24 MHz 8CH
+with fx2lafw firmware (at 500kHz):
+
+ Probe          DS3231 pin
+ -------------------------
+ 0              SCL
+ 1              SDA
+
+
+ssd1306_ex1.sr
+----------------------
+
+The file provides writing a standard init sequence and the transfer of first data bytes, 
+among others:
+
+- Display one
+- Display off
+- Set display mode
+- Set start line
+- Set address / segment mapping
+- Set multiplexing
+- Set vertical offset
+- Set clock ration
+- Set pre-charge
+- Set contrast
+- Set charge pump
+- Set column and page range
+
+
+ssd1306_ex2.sr
+----------------------
+
+Write the 5-parameter command 0x2a = set vertical and left horizontal scroll
+
+
+ssd1306_ex3.sr
+----------------------
+
+Write the 2-parameter command 0x23 = set fade-out and blinking
