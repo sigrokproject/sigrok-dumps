@@ -1,0 +1,48 @@
+------------------------------------------------------------------------
+SQI communication (multi-I/O SPI)
+------------------------------------------------------------------------
+
+This capture demonstrates SQI communication, which is a form of SPI data
+exchange where transmitters use multiple I/O data lines in parallel to
+communicate the same amount of data in fewer clock cycles.
+
+In contrast to e.g. QuadSPI flash memory chips which may change the data
+line count or clock scheme several times within a transaction, SQI keeps
+the clock and the number of data lines used by the transmitter consistent
+across the full length of the SPI transaction. Only the direction of data
+lines could change, when e.g. a master first transmits a request which
+the slave then responds to, while both use the same number of data lines.
+Full duplex communication as with the traditional MISO/MOSI scheme is
+not possible with SQI.
+
+
+Logic analyzer setup
+--------------------
+
+The capture was taken at a samplerate of 100MHz.
+
+  Probe       SPI
+  ----------------------------
+  2           SCK (clock)
+  3           CS (select)
+  4           IO0 (data, LSB)
+  5           IO1
+  6           IO2
+  7           IO3 (data, MSB)
+
+
+sqi-four-data-lines-one-transfer.sr
+-----------------------------------
+
+This capture uses four I/O data lines. Data gets sampled at the rising
+clock edge (single data rate). Data is sent in MSB first order. The SPI
+transaction's data byte sequence is:
+
+  80 00 00 10 22 42 4f 4f 54 00 80 00 00 a8 85 77 00 20 4e 00 00
+
+
+sqi-four-data-lines-three-transfers.sr
+--------------------------------------
+
+This capture was constructed from the above single-transfer example
+capture. The SPI transfer is repeated three times.
