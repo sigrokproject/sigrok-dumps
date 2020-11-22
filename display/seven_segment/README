@@ -41,3 +41,16 @@ test_7_segment_slow.sr
 ----------------------
 
 Cycles through the numbers 0 to F with alternating dot.
+
+
+test_7_segment_all_alphabet.sr
+------------------------------
+
+Covers more combinations of LED segments, including alphanumeric codes
+(letters, punctuation).
+
+
+mystery_message.sr
+------------------
+
+Contains LED segment combinations that are not known to the decoder.
