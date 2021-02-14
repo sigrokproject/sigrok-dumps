@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Motor PWM one phase signal (high and low)
+-------------------------------------------------------------------------------
+
+This is a synthetic motor pwm signal (three-phase inverter) for one motor phase 
+containing high and low side signals. 
+It is very important to satisfy a minimum required dead-time between the two 
+signals, so this can be measured with the EdgeDiff decoder.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Salae Logic16 clone.
+
+
+Decoder setup
+-------------
+
+Example decoder setup is contained in the also provided motor_pwm.pvs file.
