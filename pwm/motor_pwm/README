@@ -17,4 +17,5 @@ The logic analyzer used was a Salae Logic16 clone.
 Decoder setup
 -------------
 
-Example decoder setup is contained in the also provided motor_pwm.pvs file.
+Example decoder setup for dead time measurement is contained in the also provided 
+motor_pwm.pvs file.
