@@ -1,0 +1,46 @@
+-------------------------------------------------------------------------------
+IBM POWER9 LPC (low pin count) traffic
+-------------------------------------------------------------------------------
+
+These captures are examples of various transaction types from an IBM POWER9 LPC
+(low pin count) interface.
+
+Details:
+http://en.wikipedia.org/wiki/Low_Pin_Count
+
+
+Hardware setup
+--------------
+
+The logic analyser used was a DreamSourceLab DSLogic U3Pro32. As support for
+this is not yet in sigrok, the traces were captured externally and imported.
+
+  Probe  LPC
+  ----------
+  0      LAD0
+  1      LAD1
+  2      LAD2
+  3      LAD3
+  4      LFRAME#
+  5      LCLK
+
+
+power9_lpc_io_read.sr
+--------------
+An I/O read from 0x3fd (serial port) which returns 0x60.
+
+power9_lpc_io_write.sr
+---------------
+An I/O write to 0x3f8 (serial port) of 0x73.
+
+power9_lpc_firmware_read.sr
+--------------------
+A firmware read from 0xfff7000 which returns 0x54524150.
+
+power9_lpc_firmware_write.sr
+---------------------
+A firmware write to 0xc031360 of 0x0000.
+
+power9_lpc_io_write_abort.sr
+---------------------
+An I/O read that gets aborted because the peripheral never responded.
