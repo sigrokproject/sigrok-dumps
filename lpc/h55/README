@@ -1,0 +1,30 @@
+-------------------------------------------------------------------------------
+Intel H55 LPC (low pin count) traffic
+-------------------------------------------------------------------------------
+
+This capture is an LPC (low pin count) I/O read transaction from an Intel H55
+chipset on a Foxconn H55MXV motherboard.
+
+Details:
+http://en.wikipedia.org/wiki/Low_Pin_Count
+
+
+Hardware setup
+--------------
+
+The capture was taken with an FPGA sampling at 200 MHz and imported into sigrok
+as 8bit binary data.
+
+  Probe  LPC
+  ----------
+  2      LCLK
+  3      LFRAME#
+  4      LAD0
+  5      LAD1
+  6      LAD2
+  7      LAD3
+
+
+h55_lpc_io_write.sr
+---------------
+An I/O write to 0x2e (super IO index register) of 0x55.
