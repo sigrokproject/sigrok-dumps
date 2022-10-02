@@ -19,7 +19,14 @@
 
 VERSION = "0.1.0"
 
-DESTDIR ?= /usr/local/share/sigrok-dumps
+# TODO Ideally instructions would use autotools, cmake, or some other
+# higher level abstraction instead of DIY shell commands. Which would
+# improve portability and robustness (by picking the most appropriate
+# install tool that is available on the target), and would transparently
+# enable support for --prefix and DESTDIR et al, including out of source
+# builds when desired.
+PREFIX ?= /usr/local
+INSTALL_DIR = $(PREFIX)/share/sigrok-dumps
 
 # Be explicit about which files or subdirectories to install.
 # Update this list when adding a new top level subdirectory to the
@@ -62,5 +69,5 @@ dist: ChangeLog
 	@rm -f ChangeLog
 
 install:
-	@mkdir -p $(DESTDIR)
-	@cp -r $(FILES_DIRS) $(DESTDIR)
+	@mkdir -p $(DESTDIR)$(INSTALL_DIR)
+	@cp -r $(FILES_DIRS) $(DESTDIR)$(INSTALL_DIR)
