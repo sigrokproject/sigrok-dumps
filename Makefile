@@ -21,6 +21,34 @@ VERSION = "0.1.0"
 
 DESTDIR ?= /usr/local/share/sigrok-dumps
 
+# Be explicit about which files or subdirectories to install.
+# Update this list when adding a new top level subdirectory to the
+# set of example captures. It's assumed that this event is rare.
+# The list is phrased such that users can specify additional items
+# when they invoke the 'make install' command.
+FILES_DIRS += ac97 am230x arm_trace aud avr_isp avr_pdi
+FILES_DIRS += caliper can cec
+FILES_DIRS += dac dali dcc dcf77 display dmx512 dsi
+FILES_DIRS += flexray fsk
+FILES_DIRS += gpib graycode
+FILES_DIRS += i2c i2s ir
+FILES_DIRS += jtag
+FILES_DIRS += led lens_mounts lpc
+FILES_DIRS += maple_bus mcs48 mdio microwire miller misc morse mouse_sensors
+FILES_DIRS += nfc nonstandard_eeproms
+FILES_DIRS += onewire ook
+FILES_DIRS += pjon ps2 pwm
+FILES_DIRS += qi
+FILES_DIRS += rc rfid
+FILES_DIRS += sae-j1850 sdcard sdq sht7x signature sle44xx spdif spi
+FILES_DIRS += stepper_motor swd swim
+FILES_DIRS += tdm_audio
+FILES_DIRS += uart usb usb_power_delivery
+FILES_DIRS += vfd
+FILES_DIRS += wiegand
+FILES_DIRS += xy2-100
+FILES_DIRS += z80
+
 all:
 	@echo "Run 'make dist' to create a tarball."
 
@@ -35,6 +63,4 @@ dist: ChangeLog
 
 install:
 	@mkdir -p $(DESTDIR)
-	@cp -r * $(DESTDIR)
-	@rm -f $(DESTDIR)/Makefile
-
+	@cp -r $(FILES_DIRS) $(DESTDIR)
