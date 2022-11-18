@@ -1,0 +1,85 @@
+-------------------------------------------------------------------------------
+SENT: Single Edge Nibble Transmission for Automotive Applications
+-------------------------------------------------------------------------------
+
+Captures of a SENT channel in various configurations. Common setup:
+- clock tick time of 3 microseconds,
+- fast channel 1 data: 0xABC
+- fast channel 2 data: 0xDEF
+- slow channel message ID: 0x12
+- slow channel message data: 0xDEAD
+
+Unless noted in the file description, the channel was not configured to
+generate a pulse pause.
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Saleae Logic (at 1MHz):
+
+  Probe       SENT
+  ---------------
+  D0          Data
+
+
+fast_h1_slow_none.sr
+--------------------
+Fast channel format: H.1 (two 12-bit fast channels)
+Slow channel format: no slow channel data
+
+fast_h2_slow_none.sr
+--------------------
+Fast channel format: H.2 (one 12-bit fast channel), no slow channel
+Slow channel format: no slow channel data
+
+fast_h3_slow_none.sr
+--------------------
+Fast channel format: H.3 (high-speed with one 12-bit fast channel)
+Slow channel format: no slow channel data
+
+fast_h4_slow_none.sr
+--------------------
+Fast channel format: H.4 (secure sensor with 12-bit fast channel 1 and secure sensor
+information on fast channel 2)
+Slow channel format: no slow channel data
+
+fast_h5_slow_none.sr
+--------------------
+Fast channel format: H.5 (single sensor with 12-bit fast channel 1 and zero value on fast channel 2)
+Slow channel format: no slow channel data
+
+fast_h6_slow_none.sr
+--------------------
+Fast channel format: H.6 (two fast channels with 14-bit fast channel 1 and 10-bit fast channel 2)
+Slow channel format: no slow channel data
+
+fast_h7_slow_none.sr
+--------------------
+Fast channel format: H.7 (two fast channels with 16-bit fast channel 1 and 8-bit fast channel 2)
+Slow channel format: no slow channel data
+
+fast_h1_slow_short.sr
+---------------------
+Fast channel format: H.1 (two 12-bit fast channels)
+Slow channel format: Short serial message format
+
+fast_h1_slow_short.sr
+---------------------
+Fast channel format: H.1 (two 12-bit fast channels)
+Slow channel format: Short serial message format (4-bit message ID, 8-bit data)
+
+fast_h1_slow_enhanced_c0.sr
+---------------------------
+Fast channel format: H.1 (two 12-bit fast channels)
+Slow channel format: Enhanced serial message format configuration 0 (8-bit message ID, 12-bit data)
+
+fast_h1_slow_enhanced_c1.sr
+---------------------------
+Fast channel format: H.1 (two 12-bit fast channels)
+Slow channel format: Enhanced serial message format configuration 1 (4-bit message ID, 16-bit data)
+
+fast_h1_slow_none_pulse_pause_100.sr
+------------------------------------
+Fast channel format: H.1 (two 12-bit fast channels)
+Slow channel format: no slow channel data
+Pulse pause: 100 ticks
