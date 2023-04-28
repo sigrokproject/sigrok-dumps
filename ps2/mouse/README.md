@@ -9,6 +9,25 @@ http://www-ug.eecg.utoronto.ca/desl/nios_devices_SoC/datasheets/PS2%20Protocol.h
 http://www-ug.eecg.utoronto.ca/desl/nios_devices_SoC/datasheets/PS2%20Mouse%20Protocol.htm
 
 
+ps2_qnx_mouse_initialize_and_move.sr
+------------------------------
+
+This file contains setup and communication between a QNX host and a standard mouse.
+The mouse packets are 3 bytes long (standard mouse, no scrollwheel)
+The sample includes x movement, y movement, and a click.
+
+Initialize a ps2 mouse, configure it; the mouse then reports movement data.
+- Power is turned on, mouse resets
+- Host resets device, waits for reset to complete
+- Host waits for GUI to start (about 90 seconds)
+- Host sets sample rate to 40 samples/second
+- Host sets resolution to 8 counts/mm
+- Host enables data streaming
+- After a delay, the mouse is moved, and reports its changing location in a sequence of 3 bytes:
+  - flags, x movement, y movement
+  - The sample includes x and y movement, as well as two left clicks
+
+
 ps2_microsoft_mouse_initialize_and_move.sr
 ------------------------------
 
