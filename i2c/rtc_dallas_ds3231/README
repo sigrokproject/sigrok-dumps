@@ -1,15 +1,16 @@
 -------------------------------------------------------------------------------
-Maxim Integrated DS3231 RTC
+Maxim Integrated DS3231(M) RTC
 -------------------------------------------------------------------------------
 
 Details:
- - DS3231 datasheet: https://datasheets.maximintegrated.com/en/ds/DS3231.pdf
+ - DS3231 datasheet:  https://datasheets.maximintegrated.com/en/ds/DS3231.pdf
+ - DS3231M datasheet: https://datasheets.maximintegrated.com/en/ds/DS3231M.pdf
 
 
 Logic analyzer setup
 --------------------
 
-The logic analyzer used was Geeetech Mini Board Cypress FX2(LP) eval board
+A) The logic analyzer used was Geeetech Mini Board Cypress FX2(LP) eval board
 with fx2lafw firmware (at 4MHz):
 
  Probe          DS3231 pin
@@ -46,3 +47,39 @@ to 24-hours mode and after Alarm 2 occured:
 - Write Control/Status register - clear alarm flag
 - Read date/time
 - Read temperature (MSB)
+
+
+
+B) The logic analyzer used was KeeYees USB Logic Analyzer 24 MHz 8CH
+with fx2lafw firmware (at 500kHz):
+
+ Probe          DS3231 pin
+ -------------------------
+ 0              SCL
+ 1              SDA
+
+
+ds3231_ex3.sr
+----------------------
+
+The file provides writing of time keeping registers to Saturday, 05.09.2020, 
+17:30:00 h, alarm1 to daily, 06:29:00 h and alarm2 to every Thursday, 09:15 h
+Then it reads all registers from 0x00 to 0x12:
+
+- in one I2C read step
+- by sequentially writing the register ID an reading the content
+- by sequentially reading the content starting from register 0x0 using auto-
+  increment
+
+
+ds3231_ex4.sr
+----------------------
+
+Same as ds3231_ex3.sr, but date / time register in AM/PM mode.
+
+
+ds3231_ex5.sr
+----------------------
+
+Write same data as in ds3231_ex3.sr, then read 30 registers in one I2Cread  
+with auto-increment (auto wrap-around after 0x12)
