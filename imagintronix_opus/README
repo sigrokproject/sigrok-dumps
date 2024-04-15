@@ -1,0 +1,77 @@
+-------------------------------------------------------------------------------
+RF / Imagintronix/Opus
+-------------------------------------------------------------------------------
+
+This is a set of example captures of RF communication of a cheap 433.92 MHz Soil sensor
+
+This model was called Imagintronix XH300TX, but the protocol was referenced as "imagintronix/Opus" on various sites
+https://shop.domo-supply.com/en/sensors/884-imagintronix-additional-moisture-sensor.html
+
+
+Data received with a 433MHz receiver WL101-341.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a LHT00SU1.
+
+  Probe       
+  -------------------------------------
+  1 D7			Output Pin DO
+
+Timings:
+- 1:     0.550 ms
+- 0:     1.350 ms
+- pause: 0.9   ms
+
+Probably it should be possible to modify those timing values / invert the signal.
+
+Resources:
+- https://forum.fhem.de/index.php/topic,25546.120.html
+- https://forum.pilight.org/showthread.php?tid=1641
+
+I'm still trying to figure out the exact protocol, according to the pilight.org thread it's:
+
+nibble    hex    description
+0    f    preamble; always F hex
+1    f    preamble; always F hex
+2    5    TX type; always 5 hex
+3    addr    TX address / sensor ( 5,6 or 7); only three possible
+4    s_rh_h    soil moisture high nibble
+5    s_rh_l    soil moisture low nibble
+6    t_h    temperature high nibble
+7    t_l    temperature low nibble
+8    security_h    security code; always F hex
+9    security_l    security code; always F hex
+10    checksum_h    checksum = 2:3 +4:5+6:7+8:9
+11    checksum_l    checksum = 2:3 +4:5+6:7+8:9
+
+but that seems not to match completely, also it's not clear to me yet how the temperature is encoded.
+
+                 ch humidity temp?
+11111111 0101 01 10 00000101 00111000 1111 1111 1001 0010 freezer1
+11111111 0101 01 10 00000101 00100100 1111 1111 0111 1110 freezer2
+11111111 0101 01 10 00000101 00011101 1111 1111 0111 0111 freezer3
+11111111 0101 01 10 00000101 00011010 1111 1111 0111 0100 freezer4
+11111111 0101 01 10 00000101 01000101 1111 1111 1001 1111 low bat (no effect?)
+11111111 0101 01 10 00000101 01000100 1111 1111 1001 1110 low bat (no effect?)
+11111111 0101 01 11 00000101 01000001 1111 1111 1001 1100 ohne feuchtigkeit, raumtemp., address 3
+11111111 0101 01 01 00000101 01000010 1111 1111 1001 1011 ohne feuchtigkeit, raumtemp., address 1
+11111111 0101 01 11 00000101 01000010 1111 1111 1001 1101 ohne feuchtigkeit, raumtemp., address 3
+11111111 0101 01 10 00000101 01000010 1111 1111 1001 1100 ohne feuchtigkeit, raumtemp., address 2
+11111111 0101 01 10 00000101 01000011 1111 1111 1001 1101 ohne feuchtigkeit, raumtemp., address 2, ohne reset
+11111111 0101 01 10 01100011 01000010 1111 1111 1111 1010 water,             raumtemp., address 2, ohne reset
+
+from https://forum.fhem.de/index.php/topic,25546.120.html
+11111111 0101 01 10 01010011 01000100 1111 1111 1110 1100
+       channel:
+           VALUE      2
+       humidity:
+           VALUE      83
+       state:
+           VALUE      T: 28 H: 83
+       temperature:
+           VALUE      28
+
+
