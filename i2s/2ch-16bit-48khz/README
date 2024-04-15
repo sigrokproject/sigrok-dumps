@@ -1,0 +1,31 @@
+-------------------------------------------------------------------------------
+I2S Master 2-channel 16-bit 48-kHz
+-------------------------------------------------------------------------------
+
+These are 2 examples of an I2S master playing 
+
+  1. Atmosphere by Greek555 (from https://freesound.org/people/Greek555/sounds/512114/)
+     2ch-16bit-48khz_01.sr
+     2ch-16bit-48khz_01.wav (decoded wav file) 
+  2. Ambient Wave 55 - MSfxP7 - 17_3_33 by Erokia (from https://freesound.org/people/Erokia/sounds/511616/)
+     2ch-16bit-48khz_02.sr
+     2ch-16bit-48khz_02.wav (decoded wav file)
+
+through both channels.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was an unbranded one (recoginzed as CWAV USBee AX):
+
+  Probe       I2S pin
+  -------------------
+  0           WS
+  1           SCK
+  2           SD
+
+  Sample rate:
+  1. 8MHz
+  2. 12MHz
+
