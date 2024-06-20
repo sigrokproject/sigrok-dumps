@@ -1,0 +1,19 @@
+-------------------------------------------------------------------------------
+ModuleInterface protocol stacked on top of the PJON protocol.
+-------------------------------------------------------------------------------
+
+The ModuleInterface protocol allows for easy programming of IoT modules with 
+automatic synchronization of settings, inputs and outputs to/from a master, 
+including http and mqtt connectors for easy interoperability and cooperation 
+with other automation systems.
+It is stacked on top of the PJON protocol stack.
+
+This is a collection of example ModuleInterface communication using the PJON
+strategy PJDL. 
+
+ModuleInterface project: https://www.github.com/fredilarsen/moduleinterface/
+PJON project home page: https://www.pjon.org/
+
+PJON protocol and PJDL link layer specs:
+https://www.pjon.org/PJON-protocol-specification-v3.2.php
+https://www.pjon.org/PJDL-specification-v4.1.php
