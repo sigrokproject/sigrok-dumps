@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+3-phase motor pwm signals (high and low side, active low)
+-------------------------------------------------------------------------------
+
+This is a synthetic motor pwm signal (three-phase inverter) containing high and 
+low side signals, which are active low (switch is active at low level).
+phase U: constantly 10% duty cycle, 
+phase V: constantly 50% duty cycle, 
+phase W: constantly 90% duty cycle
+
+It is very important to satisfy a minimum required dead-time between switching 
+off the high side and switching on the low side and vice-versa to prevent phase
+short-circuits. This dead-time can be observed here to be ~1.4us.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Salae Logic16 clone operated at 16MHz.
+
