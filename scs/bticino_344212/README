@@ -1,0 +1,24 @@
+SCS (Sistema Cablaggio Semplificato): BTicino 344212 intercom
+-------------------------------------------------------------
+
+These measurements have been taken with a Rigol DS1102E oscilloscope.
+
+The target device probed was a BTicino 344212 intercom system.
+
+Channel 1 was set to 10X and connected to the intercom’s SCS bus.
+
+The Sample Rate was set to 10 MHz because:
+
+1. Acquire → Memdepth was set to Long mem.
+2. Time Base was set to 2ms.
+
+The captures were transferred from the oscilloscope and converted to sigrok
+using https://github.com/scottprahl/RigolWFM/:
+
+$ wfmconvert E sigrok 2020-10-15-nuki131-ring.wfm
+$ wfmconvert E sigrok 2020-10-15-nuki131-door-open.wfm
+
+Relevant URLs:
+
+1. https://michael.stapelberg.ch/posts/2020-09-28-nuki-scs-bticino-decoding/
+2. http://guidopic.altervista.org/alter/eibscsgt.html
