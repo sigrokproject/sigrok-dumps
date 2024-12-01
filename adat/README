@@ -1,0 +1,25 @@
+This contains dumps of the ADAT Lightpipe protocol
+There are high resolution dumps (100M logic analyzer sample rate)
+for 44.1kHz and 48kHz audio samplerate
+There is a low resolution dump (32M logic analyzer sample rate)
+to test if decoding still works there.
+
+All the audio samples in all the dumps contain only silence.
+This is irrelevant for testing, because if the ADAT frame
+can be decoded correctly that means that the individual bits also
+pose no problem.
+
+Logic Analyzer Hardware:
+Saleae Logic 16 clone
+Target Device: RME Fireface 800
+Pin 0 was connected to the ADAT RX Pin of a self
+made ADAT receiver breakout board (Terminal part is PLR-T10,
+circuit according to datasheet)
+I made the dumps with PulseView, not sigrok-cli
+using the samplerates indicated in the filenames,
+with only Channel 0 active.
+
+Best Regards,
+Hans
+
+hansfbaier --at-- gmail dot com
