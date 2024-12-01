@@ -1,0 +1,110 @@
+-------------------------------------------------------------------------------
+RF / XT200
+-------------------------------------------------------------------------------
+
+This is a set of example captures of RF communication of cheap 433.92 MHz thermometers.
+
+I used a "Digoo R8S", but there are plenty others with a same encoding.
+https://www.banggood.com/Digoo-DG-R8S-433MHz-Wireless-Digital-Hygrometer-Thermometer-Weather-Station-Remote-Sensor-p-1139603.html
+
+
+Data received with a 433MHz receiver WL101-341.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a LHT00SU1.
+
+  Probe       
+  -------------------------------------
+  1 D0			Output Pin DO
+
+
+The protocol is as follows:
+- Fixed high time of 500us
+- Low time 8ms was start
+- Low time 4ms was a 1 bit
+- Low time 2ms was a 0 bit
+- Frame was 36bits repeated 7 times
+
+Probably it should be possible to modify those timing values.
+
+Resources:
+- https://www.avrfreaks.net/forum/chinese-433mhz-temperature-sensor-protocol
+- https://rayshobby.net/reverse-engineer-wireless-temperature-humidity-rain-sensors-part-1/
+
+Converting the acutal data into temperatures differs between various models, for the Digoo R8S, the following code works fine on an Atmega:
+
+
+/*
+ * needed resolution:
+ * 0,1 ms - 4 ms
+ *
+ * long interval: 4ms -> 78
+ * short interval: 2ms -> 39
+ * pause: 0,6ms -> 14 (9-14)
+ *
+ * 20Mhz with 1024er Prescaler (TCCR0B: CA02 and CS00)
+ * 19.53125 Kilohertz
+ *
+ * -> 0.0512 ms per clock
+ *
+ *  -> Bereich: 0.0512 - 13,1 ms
+ */
+
+#define LEN0 39     //length of a 0 pulse
+#define LEN1 78     //length of a 1 pulse
+#define TOL 10      //length tolerance
+#define PAUSE 14
+#define PAUSETOL 3
+volatile uint8_t bits[MAXBITS];
+volatile uint8_t bitpos=0;
+
+ISR (PCINT2_vect) {
+  cli();
+  TCCR0B = 0; // stop timer
+  uint8_t count = TCNT0;
+  uint8_t store = 0, bit = 0;
+
+  if(!(PIND & 1<<PD6)) { // pin not set
+    if(!(count < (PAUSE + PAUSETOL) && count > (PAUSE - PAUSETOL))) // no valid pause
+    {
+      bitpos=0;
+    }
+  } else {
+    if(       (count>(LEN1-TOL) && count<(LEN1+TOL))) {
+      bit = 1;
+      store = 1;
+    } else if (count>(LEN0-TOL) && count<(LEN0+TOL)) {
+      bit = 0;
+      store = 1;
+    } else {
+      bitpos=0;
+    }
+  }
+
+  if(store) {
+    bits[bitpos++]=bit;
+		if(bitpos==37) {
+      if(bits[0]==1 && bits[1]==0 && bits[2]==0 && bits[3]==1) {
+        uint8_t i,j,hum=0,chan=1,bat=0,id=0;
+        uint16_t temp=0;
+        uint8_t buf[7];
+
+        for(i=1,j=0;i<9;i++)
+          hum+=bits[36-i]<<j++;
+        for(i=9,j=0;i<13;i++)
+          temp+=bits[36-i]<<j++;
+        for(i=13,j=4;i<17;i++)
+          temp+=bits[36-i]<<j++;
+        for(i=17,j=8;i<21;i++)
+          temp+=bits[36-i]<<j++;
+        for(i=21,j=0;i<23;i++)
+          chan+=bits[36-i]<<j++;
+        for(i=24,j=0;i<25;i++)
+          bat+=bits[36-i]<<j++;
+        for(i=25,j=0;i<33;i++)
+          id+=bits[36-i]<<j++;
+
+				[...]
