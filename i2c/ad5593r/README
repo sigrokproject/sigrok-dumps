@@ -1,0 +1,46 @@
+-------------------------------------------------------------------------------
+Analog Devices AD5593R
+-------------------------------------------------------------------------------
+
+The Analog Devices AD5593R is a 12-bit ADC/DAC with 8 channels that
+operates over an I2C interface.
+The captures from this directory were taken from the I2C bus.
+
+Details:
+https://www.analog.com/media/en/technical-documentation/data-sheets/AD5593R.pdf
+
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was ADALM2000 (at 10MHz):
+
+  Probe       AD5593R
+  --------------------
+  Pin 5           SDA
+  Pin 6           SCL
+
+
+
+Probing
+-------
+
+Logic Analyzer config:
+	m2kcli digital auto --set sampling_frequency_in=10000000
+	m2kcli digital auto --set-channel channel=5 trigger_condition=falling_edge
+	m2kcli digital auto --set trigger_delay=-100
+
+The sigrok command line used was:
+	sigrok-cli -i - -I binary:numchannels=16:samplerate=10mhz -C 5=sda,6=scl -o <file>
+
+
+
+ad5593r_DAC_write.sr
+--------------------
+	m2kcli digital auto -c buffer_size=5000000 nb_samples=5000000 format=binary | sigrok-cli -i - -I binary:numchannels=16:samplerate=10mhz -C 5=sda,6=scl -o ad5593r_DAC_write.sr
+
+
+ad5593r_boot.sr
+--------------------
+	m2kcli digital auto -c buffer_size=5000000 nb_samples=5000000 format=binary | sigrok-cli -i - -I binary:numchannels=16:samplerate=10mhz -C 5=sda,6=scl -o ad5593r_boot.sr
