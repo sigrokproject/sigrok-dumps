@@ -1,0 +1,63 @@
+--------------------------------------------------------
+BISS C / Renishaw Encoder
+--------------------------------------------------------
+
+This is a set of example captures of unidirectional BISS
+communication with a Renishaw Resolute absolute encoder.
+
+The BISS adapter used is an MB5U USB adapter from IC-Haus.
+
+Although the encoder supports 32k updates per second, I
+was not able to get the MB5U to exceed 70 updates per second.
+
+Details:
+https://www.ichaus.de/product/mb5u/
+https://www.renishaw.com/resourcecentre/download/data-sheet-biss-c-mode-unidirectional-for-resolute-and-fortis-encoders--131419
+https://biss-interface.com/wp-content/uploads/2024/07/BiSS_C_unidirectional_protocol_A3en.pdf
+
+
+Logic analzyer setup
+---------------------
+
+The differential signal was converted using RS422 transcivers
+on the MO+/- and SLO+/- lines.
+
+The logic analyzer was a generic fx2lafw device at 24MHz
+
+    Channels  Signal
+    ------------------------
+    1         MO  (Clock)
+    3         SLO (Data)
+
+
+All samples were captured with Pulseview using a sample rate of 24MHz and a sample length of 1M
+
+The sigrok command might be
+    sigrok-cli --driver fx2lafw --config samplerate=24m --samples 1m  
+               -c '1=MA,3=SLO' \
+               -o renishaw_biss_1MHz.sr
+
+renishaw_biss_250kHz.sr
+--------------------
+
+The MB5U was configured for 250kHz clock rate.
+
+renishaw_biss_1MHz.sr
+--------------------
+
+The MB5U was configured for 1MHz clock rate.
+
+renishaw_biss_2MHz.sr
+--------------------
+
+The MB5U was configured for 2MHz clock rate.
+
+renishaw_biss_5MHz.sr
+--------------------
+
+The MB5U was configured for 5MHz clock rate.
+
+renishaw_biss_10MHz.sr
+--------------------
+
+The MB5U was configured for 10MHz clock rate.
