@@ -1,0 +1,92 @@
+-------------------------------------------------------------------------------
+DCC model train captures
+-------------------------------------------------------------------------------
+
+Captures of an OpenRemise S3Main command station.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a nanoDLA (samplerate 1 or 2MHz).
+
+  Probe       DCC
+  ------------------
+  0           P track
+  1           N track
+  2           BIDI
+
+
+Captures
+--------
+
+  Capture                                                       Action
+  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  advanced_operations_128_speed_step_control.sr                 Extended loco 3485, sets direction=1 speed=84/126
+  advanced_operations_analog_function_group_0.sr                Basic loco 86, sets analog channel=106 data=142
+  advanced_operations_analog_function_group_1.sr                Basic loco 3, sets analog channel=1 data=64
+  advanced_operations_special_operating_modes.sr                Extended loco 1780, sets special operating modes consist=middle shunting=1 west=1 east=0 MAN=1
+  advanced_operations_speed_direction_and_functions_0.sr        Basic loco 3, sets direction=1 speed=stop F0=0 F1=1 F2=0 F3=1 F4=0 F5=1 F6=0 F7=1
+  advanced_operations_speed_direction_and_functions_1.sr        Basic loco 3, sets direction=1 speed=stop F0=0 F1=1 F2=0 F3=1 F4=0 F5=1 F6=0 F7=1 F8=1 F9=0 F10=1 F11=0 F12=1 F13=0 F14=1 F15=0
+  advanced_operations_speed_direction_and_functions_2.sr        Basic loco 3, sets direction=1 speed=stop F0=0 F1=1 F2=0 F3=1 F4=0 F5=1 F6=0 F7=1 F8=1 F9=0 F10=1 F11=0 F12=1 F13=0 F14=1 F15=0 F16=0 F17=0 F18=0 F20=1 F21=1 F22=1 F23=1
+  advanced_operations_speed_direction_and_functions_3.sr        Basic loco 3, sets direction=1 speed=stop F0=0 F1=1 F2=0 F3=1 F4=0 F5=1 F6=0 F7=1 F8=1 F9=0 F10=1 F11=0 F12=1 F13=0 F14=1 F15=0 F16=0 F17=0 F18=0 F20=1 F21=1 F22=1 F23=1 F24=1 F25=1 F26=1 F27=1 F28=0 F29=0 F30=0 F31=0
+  app_adr_high_low_basic.sr                                     Basic loco 3, app:adr_high and app:adr_low
+  app_adr_high_low_consist.sr                                   Consist 3, app:adr_high and app:adr_low
+  app_adr_high_low_extended.sr                                  Extended loco 1337, app:adr_high and app:adr_low
+  app_dyn_0.sr                                                  Dyn datagrams with subindices X0 and X46
+  app_dyn_1.sr                                                  Dyn datagrams with subindices X0, X7, X26, X27 and X46
+  app_pom_0.sr                                                  CV3
+  app_search.sr                                                 Track search loco 3
+  app_xpom.sr                                                   CV1 CV267 CV65286 CV701
+  basic_accessory_decoder_control.sr                            Basic accessory 346, output0=1
+  basic_accessory_decoder_nop.sr                                Basic accessory nop
+  consist_control_set_consist_address.sr                        Basic loco 7, sets consist address reversed=1 address=109
+  cv_access_long_form_verify_bit.sr                             Basic loco 7, verify CV760:6=0
+  cv_access_long_form_verify_byte.sr                            Extended loco 1571, verify CV916=161
+  cv_access_long_form_write_bit.sr                              Extended loco 8082, write CV557:5=1
+  cv_access_long_form_write_byte.sr                             Extended loco 9576, write CV462=19
+  cv_access_short_form_0.sr                                     Basic loco 60, write CV23=169
+  cv_access_short_form_1.sr                                     Extended loco 8645, write CV24=123
+  cv_access_short_form_2.sr                                     Basic loco 99, write CV17=12 CV18=13
+  cv_access_short_form_3.sr                                     Basic loco 13, write CV31=1 CV32=115
+  cv_access_short_form_4.sr                                     Basic loco 32, write CV19=79 CV20=23
+  cv_access_xpom_verify_bytes.sr                                Basic loco 3, verify CV1001-1004
+  cv_access_xpom_write_bit.sr                                   Basic loco 3, write CV667:4=1
+  cv_access_xpom_write_bytes_0.sr                               Basic loco 3, write CV20187=9
+  cv_access_xpom_write_bytes_1.sr                               Basic loco 3, write CV5692=9 CV5693=32
+  cv_access_xpom_write_bytes_2.sr                               Basic loco 3, write CV292=9 CV293=42 CV294=180
+  cv_access_xpom_write_bytes_3.sr                               Basic loco 3, CV2521352=9 CV2521353=42 CV2521354=180 CV2521355=2
+  decoder_control_decoder_acknowledgement_request.sr            Extended loco 8978, decoder acknowledgement request
+  decoder_control_decoder_hard_reset.sr                         Basic loco 3, decoder hard reset
+  decoder_control_digital_decoder_reset_0.sr                    Broadcast, digital decoder reset
+  decoder_control_digital_decoder_reset_1.sr                    Extended loco 2656, digital decoder reset
+  decoder_control_factory_test_0.sr                             Basic loco 79, factory test
+  decoder_control_factory_test_1.sr                             Basic loco 3, factory test with unknown parameters
+  decoder_control_set_advanced_addressing.sr                    Basic loco 70, set advanced addressing (CV29:5=1)
+  digital_decoder_idle.sr                                       Idle, digital decoder idle
+  extended_accessory_decoder_control.sr                         Extended accessory 1222, set aspect=23
+  extended_accessory_decoder_nop.sr                             Extended accessory nop
+  feature_expansion_binary_state_control_long_form.sr           Extended loco 222, set state 22599=1
+  feature_expansion_binary_state_control_short_form.sr          Extended loco 3210, set state 45=1
+  feature_expansion_command_station_feature_identification_0.sr Broadcast, loco features
+  feature_expansion_command_station_feature_identification_1.sr Broadcast, accessory and broadcast features
+  feature_expansion_command_station_feature_identification_2.sr Broadcast, BiDi features
+  feature_expansion_f13_f20.sr                                  Basic loco 43, set F13=0 F14=0 F15=0 F16=1 F17=1 F18=1 F19=1 F20=0
+  feature_expansion_f21_f28.sr                                  Basic loco 17, set F21=0 F22=0 F23=0 F24=1 F25=1 F26=0 F27=0 F28=0
+  feature_expansion_f29_f36.sr                                  Extended loco 1387, set F29=0 F30=0 F31=1 F32=0 F33=1 F34=1 F35=0 F36=0
+  feature_expansion_f37_f44.sr                                  Basic loco 3, set F37=1 F38=0 F39=0 F40=0 F41=1 F42=1 F43=0 F44=0
+  feature_expansion_f45_f52.sr                                  Basic loco 62, set F45=0 F46=1 F47=1 F48=1 F49=0 F50=0 F51=0 F52=1
+  feature_expansion_f53_f60.sr                                  Extended loco 6267, set F53=0 F54=0 F55=1 F56=1 F57=1 F58=1 F59=0 F60=1
+  feature_expansion_f61_f68.sr                                  Extended loco 4445, set F61=0 F62=0 F63=1 F64=0 F65=0 F66=1 F67=1 F68=0
+  feature_expansion_system_time.sr                              Broadcast, set milliseconds=1234
+  feature_expansion_time_and_data0.sr                           Broadcast, set time thursday 13:45 update=1 acceleration=7
+  feature_expansion_time_and_date1.sr                           Broadcast, set data 4/11/3428
+  feature_expansion_time_and_date2.sr                           Broadcast, set time scale=12.34
+  function_group_f0_f4.sr                                       Extended loco 4776, set F0=0 F1=1 F2=0 F3=0 F4=1
+  function_group_f5_f8.sr                                       Basic loco 3, set F5=1 F6=1 F7=0 F8=0
+  function_group_f9_f12.sr                                      Basic loco 73, set F9=0 F10=1 F11=1 F12=0
+  service_mode_verify.sr                                        Service, verify CV1 (8x bit-, then byte verify)
+  service_mode_write.sr                                         Service, write CV1=3
+  speed_and_direction_0.sr                                      Basic loco 3, set direction=1 speed=16/28 (or 8/14 and F0=1)
+  speed_and_direction_1.sr                                      Basic loco 3, set direction=0 speed=stop/28 (or stop/14 and F0=0)
+  speed_and_direction_2.sr                                      Basic loco 3, set direction=0 speed=estop/28 (or estop/14 and F0=0)

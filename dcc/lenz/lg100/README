@@ -1,0 +1,24 @@
+-------------------------------------------------------------------------------
+DCC model train captures
+-------------------------------------------------------------------------------
+
+Captures of a Lenz LG100 brake module operated on an LZ100 command station.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a nanoDLA (samplerate 12MHz).
+
+  Probe       DCC
+  ------------------
+  0           P track
+  1           N track
+
+
+Captures
+--------
+
+  Capture  Action
+  --------------------------------------------------------
+  lg100.sr LZ100 output until ~8s, LG100 output afterwards

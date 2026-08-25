@@ -1,0 +1,28 @@
+-------------------------------------------------------------------------------
+DCC model train captures
+-------------------------------------------------------------------------------
+
+Captures of an ESU LokSound 4 (4.17.9249) decoder.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Pico2 (samplerate 1MHz) with an OpenRemise sniffer board (https://github.com/OpenRemise/Sniffer).
+
+  Probe       DCC
+  ------------------
+  D2
+  D3
+  D4          P track
+  D5          N track
+  D6          BIDI
+
+
+Captures
+--------
+
+  Capture       Action
+  --------------------------
+  verify_cv1.sr Verify CV1=0
+  write_cv1.sr  Write CV1=4

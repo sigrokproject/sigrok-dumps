@@ -1,0 +1,26 @@
+-------------------------------------------------------------------------------
+DCC model train captures
+-------------------------------------------------------------------------------
+
+Captures of a ZIMO MX10 command station.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a nanoDLA (samplerate 1MHz).
+
+  Probe       DCC
+  ------------------
+  0           P track
+  1           N track
+
+
+Captures
+--------
+
+  Capture                                     Action
+  ----------------------------------------------------------------------------------------------------------------------------------------
+  operations_mode_to_service_mode_and_back.sr Seamless transition from operations mode to service mode and back
+  operations_mode_with_cutout.sr              Operations mode with lots of different decoders in the transmission cycle (RailCom enabled)
+  operations_mode_without_cutout.sr           Operations mode with lots of different decoders in the transmission cycle (RailCom disabled)

@@ -1,0 +1,29 @@
+-------------------------------------------------------------------------------
+DCC model train captures
+-------------------------------------------------------------------------------
+
+Captures of a ZIMO MX645 (40.22) decoder.
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Pico2 (samplerate 1MHz) with an OpenRemise sniffer board (https://github.com/OpenRemise/Sniffer).
+
+  Probe       DCC
+  ------------------
+  D2
+  D3
+  D4          P track
+  D5          N track
+  D6          BIDI
+
+
+Captures
+--------
+
+  Capture         Action
+  ----------------------------
+  verify_cv1_0.sr Verify CV1=0
+  verify_cv1_1.sr Verify CV1=0
+  write_cv1.sr    Write CV1=4
