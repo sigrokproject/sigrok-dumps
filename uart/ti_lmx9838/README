@@ -1,0 +1,47 @@
+-------------------------------------------------------------------------------
+Texas Instruments LMX9838 SimplyBlue Bluetooth module
+-------------------------------------------------------------------------------
+
+These are example captures of the UART command interface of an LMX9838
+"SimplyBlue" Bluetooth serial port module (AN-1699 command set), taken
+between a host PC running the Simply Blue Commander tool and the module
+inside a DiaLink J2534 automotive diagnostic adapter.
+
+The module runs at 921600 baud, 8n1.
+
+Details:
+https://www.ti.com/product/LMX9838
+https://www.ti.com/lit/an/snoa498b/snoa498b.pdf (AN-1699 Software User's Guide)
+
+
+Logic analyzer setup
+--------------------
+
+The logic analyzer used was a Chip&Dip RDC2-0064 (at 4MHz):
+
+  Probe    LMX9838
+  -----------------
+  0 (TX)   TX (module -> host)
+  1 (RX)   RX (host -> module)
+
+
+lmx9838_gap_read_local_name.sr
+------------------------------
+
+Host reads the friendly name of the module:
+
+  RX: 02 52 03 00 00 55 03                  REQ GAP_READ_LOCAL_NAME
+  TX: 02 43 03 14 00 5A 00 12 "DiaLink #D1625359" 00 03
+                                            CFM GAP_READ_LOCAL_NAME,
+                                            Status: OK
+
+
+lmx9838_gap_read_local_bda.sr
+-----------------------------
+
+Host reads the Bluetooth address of the module; the module's firmware
+refuses the command:
+
+  RX: 02 52 05 00 00 57 03                  REQ GAP_READ_LOCAL_BDA
+  TX: 02 43 05 01 00 49 32 03               CFM GAP_READ_LOCAL_BDA,
+                                            Status: ERROR_COMMAND_DISALLOWED
